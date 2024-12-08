@@ -1,4 +1,4 @@
-import { ArrowRight, DumbellIcon, Sofa, Users } from "lucide-react";
+import { ArrowRight, DumbbellIcon, Sofa, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
@@ -41,7 +41,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center p-6">
               <div className="w-12 h-12 mx-auto mb-4 bg-primary/5 rounded-full flex items-center justify-center">
-                <DumbellIcon className="h-6 w-6 text-accent" />
+                <DumbbellIcon className="h-6 w-6 text-accent" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Sports Equipment</h3>
               <p className="text-gray-600">Professional-grade fitness equipment for every workout need.</p>
