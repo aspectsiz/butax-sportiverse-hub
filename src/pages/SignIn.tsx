@@ -6,7 +6,7 @@ import { LoginFooter } from "@/components/auth/LoginFooter";
 
 const SignIn = () => {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
       
       <main className="flex-grow container max-w-md mx-auto px-4 py-8">
         
@@ -17,7 +17,6 @@ const SignIn = () => {
             Enter your credentials to access your account. If you don't remember your password,
             you can reset it using your verified phone number.
           </p>
-          
           <LoginForm />
         </div>
       </main>
