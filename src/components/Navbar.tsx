@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
+import { NavLinks } from "./navigation/NavLinks";
+import { AuthButtons } from "./auth/AuthButtons";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,25 +19,12 @@ const Navbar = () => {
           
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
-              <Link to="/shop" className="hover:text-accent px-3 py-2 rounded-md text-sm font-medium">
-                Shop
-              </Link>
-              <Link to="/blog" className="hover:text-accent px-3 py-2 rounded-md text-sm font-medium">
-                Blog
-              </Link>
-              <Link to="/franchise" className="hover:text-accent px-3 py-2 rounded-md text-sm font-medium">
-                Franchise
-              </Link>
-              <Link to="/about" className="hover:text-accent px-3 py-2 rounded-md text-sm font-medium">
-                About
-              </Link>
-              <Link to="/contact" className="hover:text-accent px-3 py-2 rounded-md text-sm font-medium">
-                Contact
-              </Link>
+              <NavLinks />
             </div>
           </div>
 
           <div className="flex items-center gap-4">
+            <AuthButtons />
             <button className="hover:text-accent">
               <ShoppingCart className="h-6 w-6" />
             </button>
@@ -60,41 +49,7 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link
-              to="/shop"
-              className="hover:text-accent block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => setIsOpen(false)}
-            >
-              Shop
-            </Link>
-            <Link
-              to="/blog"
-              className="hover:text-accent block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => setIsOpen(false)}
-            >
-              Blog
-            </Link>
-            <Link
-              to="/franchise"
-              className="hover:text-accent block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => setIsOpen(false)}
-            >
-              Franchise
-            </Link>
-            <Link
-              to="/about"
-              className="hover:text-accent block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => setIsOpen(false)}
-            >
-              About
-            </Link>
-            <Link
-              to="/contact"
-              className="hover:text-accent block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => setIsOpen(false)}
-            >
-              Contact
-            </Link>
+            <NavLinks onClick={() => setIsOpen(false)} />
           </div>
         </div>
       )}
