@@ -6,7 +6,7 @@ import { LoginFooter } from "@/components/auth/LoginFooter";
 
 const SignIn = () => {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       
       <main className="flex-grow container max-w-md mx-auto px-4 py-8">
         
