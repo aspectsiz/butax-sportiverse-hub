@@ -8,6 +8,8 @@ import { SessionContextProvider } from '@supabase/auth-helpers-react';
 import { AuthProvider } from "./contexts/AuthContext";
 import Index from "./pages/Index";
 import Shop from "./pages/Shop";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 const queryClient = new QueryClient();
 
@@ -31,7 +33,8 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/shop" element={<Shop />} />
-              {/* Additional routes will be added as we implement more pages */}
+              <Route path="/signin" element={<SignIn />} />
+              <Route path="/signup" element={<SignUp />} />
               <Route path="*" element={<Index />} />
             </Routes>
           </BrowserRouter>
