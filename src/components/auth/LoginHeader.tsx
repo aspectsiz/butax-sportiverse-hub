@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const LoginHeader = () => (
-  <header className="bg-white shadow-sm py-6 mb-8">
+  <header className="bg-white mb-2">
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
