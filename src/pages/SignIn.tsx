@@ -10,7 +10,7 @@ const SignIn = () => {
       
       <main className="container max-w-3xl mx-auto px-4 py-8">
         
-        <div className="bg-white p-6 rounded-lg shadow-md">
+        <div className="bg-white p-6 rounded-lg shadow-xl">
           <LoginHeader />
           <LoginTabs />
           <p className="text-gray-600 mb-6">
