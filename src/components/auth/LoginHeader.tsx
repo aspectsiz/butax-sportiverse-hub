@@ -6,12 +6,12 @@ export const LoginHeader = () => (
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <img
-            src="/lovable-uploads/539d646d-fc68-4de8-8bf1-581f6aaf3527.png"
+            src="/lovable-uploads/butax-logo.png"
             alt="BUTAX Logo"
-            className="h-12"
+            className="h-16"
           />
           <div>
-            <h1 className="text-3xl font-semibold text-[#4284be]">BUTAX</h1>
+            <h1 className="text-3xl font-semibold text-[#4284be] tracking-widest">BUTAX</h1>
             <p className="text-sm text-gray-600">Kimlik Doğrulama Sistemi</p>
           </div>
         </div>
