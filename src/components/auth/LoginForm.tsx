@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Eye, EyeOff, Keyboard } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/components/ui/use-toast";
+import { SocialLoginButtons } from "./SocialLoginButtons";
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -142,6 +143,8 @@ export const LoginForm = () => {
             Sign In
           </Button>
         </div>
+
+        <SocialLoginButtons />
       </form>
     </Form>
   );
