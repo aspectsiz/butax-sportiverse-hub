@@ -2,6 +2,7 @@ import React from "react";
 import { LoginHeader } from "@/components/auth/LoginHeader";
 import { LoginForm } from "@/components/auth/LoginForm";
 import { LoginFooter } from "@/components/auth/LoginFooter";
+import { LoginTabs } from "@/components/auth/LoginTabs";
 
 const SignIn = () => {
   return (
@@ -9,6 +10,7 @@ const SignIn = () => {
       <main className="container max-w-3xl mx-auto px-4 py-8">
         <div className="bg-white p-6 rounded-lg shadow-xl">
           <LoginHeader />
+          <LoginTabs />
           <p className="text-gray-600 mb-6">
             Enter your credentials to access your account. If you don't remember your password,
             you can reset it using your verified phone number.
