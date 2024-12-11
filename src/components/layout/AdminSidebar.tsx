@@ -25,7 +25,6 @@ import {
   Sheet,
   SheetContent,
   SheetHeader,
-  SheetTitle,
 } from "@/components/ui/sheet";
 import {
   Accordion,
@@ -78,7 +77,6 @@ interface AdminSidebarProps {
 }
 
 export const AdminSidebar = ({ open, onClose }: AdminSidebarProps) => {
-  // Handle mobile sidebar
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768 && open) {

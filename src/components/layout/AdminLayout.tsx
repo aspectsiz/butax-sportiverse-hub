@@ -12,8 +12,10 @@ export const AdminLayout = ({ children }: { children: React.ReactNode }) => {
         <AdminSidebar open={mobileOpen} onClose={() => setMobileOpen(false)} />
         <div className="flex-1 flex flex-col min-h-screen">
           <AdminTopbar onMenuClick={() => setMobileOpen(true)} />
-          <main className="flex-1 p-6">
-            {children}
+          <main className="flex-1 p-6 overflow-auto">
+            <div className="max-w-7xl mx-auto">
+              {children}
+            </div>
           </main>
         </div>
       </div>
