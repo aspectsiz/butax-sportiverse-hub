@@ -1,3 +1,4 @@
+import { AdminLayout } from "@/components/layout/AdminLayout";
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -51,8 +52,8 @@ const AdminDashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
+    <AdminLayout>
+      <div className="space-y-8">
         {/* Welcome Section */}
         <div className="bg-primary rounded-lg p-8 mb-8 relative overflow-hidden">
           <div className="relative z-10">
@@ -161,7 +162,7 @@ const AdminDashboard = () => {
           </Button>
         </div>
       </div>
-    </div>
+    </AdminLayout>
   );
 };
 
