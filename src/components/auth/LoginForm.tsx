@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -30,6 +31,8 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const { signIn } = useAuth();
   const { toast } = useToast();
+  const navigate = useNavigate();
+  
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -37,6 +40,22 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
       password: "",
     },
   });
+
+  const handleSuccessfulLogin = () => {
+    switch (userType) {
+      case 'user':
+        navigate('/dashboard/user');
+        break;
+      case 'admin':
+        navigate('/dashboard/admin');
+        break;
+      case 'gym':
+        navigate('/dashboard/gymdealer');
+        break;
+      default:
+        navigate('/');
+    }
+  };
 
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     try {
@@ -52,6 +71,7 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
           title: "Signed in successfully",
           description: "Welcome back!",
         });
+        handleSuccessfulLogin();
       }
     } catch (error) {
       toast({
