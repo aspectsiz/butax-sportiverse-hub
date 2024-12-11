@@ -1,8 +1,13 @@
 import React from 'react';
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
-export const LoginTabs = () => (
-  <Tabs defaultValue="user" className="w-full max-w-3xl mx-auto mb-8">
+interface LoginTabsProps {
+  activeTab: string;
+  onTabChange: (value: string) => void;
+}
+
+export const LoginTabs = ({ activeTab, onTabChange }: LoginTabsProps) => (
+  <Tabs value={activeTab} onValueChange={onTabChange} className="w-full max-w-3xl mx-auto mb-8">
     <TabsList className="grid w-full grid-cols-3 h-12 bg-transparent p-1 gap-2">
       <TabsTrigger
         value="user"

@@ -22,7 +22,11 @@ const loginSchema = z.object({
   password: z.string().min(6),
 });
 
-export const LoginForm = () => {
+interface LoginFormProps {
+  userType: string;
+}
+
+export const LoginForm = ({ userType }: LoginFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const { signIn } = useAuth();
   const { toast } = useToast();
@@ -35,17 +39,25 @@ export const LoginForm = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
-    const { error } = await signIn.email(values.email, values.password);
-    if (error) {
+    try {
+      const { error } = await signIn.email(values.email, values.password);
+      if (error) {
+        toast({
+          title: "Error signing in",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Signed in successfully",
+          description: "Welcome back!",
+        });
+      }
+    } catch (error) {
       toast({
         title: "Error signing in",
-        description: error.message,
+        description: "An unexpected error occurred",
         variant: "destructive",
-      });
-    } else {
-      toast({
-        title: "Signed in successfully",
-        description: "Welcome back!",
       });
     }
   };
@@ -144,7 +156,7 @@ export const LoginForm = () => {
           </Button>
         </div>
 
-        <SocialLoginButtons />
+        {userType === 'user' && <SocialLoginButtons />}
       </form>
     </Form>
   );
