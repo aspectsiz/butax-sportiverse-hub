@@ -13,6 +13,9 @@ import SignUp from "./pages/SignUp";
 import UserDashboard from "./pages/dashboards/UserDashboard";
 import AdminDashboard from "./pages/dashboards/AdminDashboard";
 import GymDealerDashboard from "./pages/dashboards/GymDealerDashboard";
+import Contact from "./pages/admin/Contact";
+import Franchise from "./pages/admin/Franchise";
+import About from "./pages/admin/About";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +43,9 @@ const App = () => (
               <Route path="/signup" element={<SignUp />} />
               <Route path="/dashboard/user" element={<UserDashboard />} />
               <Route path="/dashboard/admin" element={<AdminDashboard />} />
+              <Route path="/dashboard/admin/contact" element={<Contact />} />
+              <Route path="/dashboard/admin/franchise" element={<Franchise />} />
+              <Route path="/dashboard/admin/about" element={<About />} />
               <Route path="/dashboard/gymdealer" element={<GymDealerDashboard />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
