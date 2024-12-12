@@ -24,8 +24,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const handleAddToCart = () => {
     addItem(product);
     toast({
-      title: 'Added to cart',
-      description: `${product.name} has been added to your cart.`,
+      title: product.quoteOnly ? 'Added to quote request' : 'Added to cart',
+      description: `${product.name} has been added to your ${product.quoteOnly ? 'quote request' : 'cart'}.`,
     });
   };
 
@@ -47,7 +47,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
           alt={product.name}
           className="w-full h-48 object-cover rounded-md mb-4"
         />
-        <p className="text-2xl font-bold">${product.price.toFixed(2)}</p>
+        {!product.quoteOnly ? (
+          <p className="text-2xl font-bold">${product.price.toFixed(2)}</p>
+        ) : (
+          <p className="text-lg font-semibold text-accent">Request Quote</p>
+        )}
         <p className="text-sm text-muted-foreground mt-2">
           {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
         </p>
@@ -65,7 +69,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           className="flex-1"
           disabled={product.stock === 0}
         >
-          {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
+          {product.quoteOnly ? 'Request Quote' : (product.stock > 0 ? 'Add to Cart' : 'Out of Stock')}
         </Button>
       </CardFooter>
     </Card>

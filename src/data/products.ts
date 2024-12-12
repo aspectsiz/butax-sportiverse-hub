@@ -18,6 +18,7 @@ export const mockProducts: Product[] = [
     category: 'urban-furniture',
     imageUrl: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81',
     stock: 5,
+    quoteOnly: true,
   },
   {
     id: '3',
@@ -45,6 +46,7 @@ export const mockProducts: Product[] = [
     category: 'urban-furniture',
     imageUrl: 'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7',
     stock: 3,
+    quoteOnly: true,
   },
   {
     id: '6',
