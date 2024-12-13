@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { NavLinks } from "./navigation/NavLinks";
 import { AuthButtons } from "./auth/AuthButtons";
 import { useCart } from "@/store/useCart";
+import { ThemeToggle } from "./ThemeToggle";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,6 +32,7 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             <AuthButtons />
             <button 
               onClick={handleCartClick}

@@ -25,38 +25,32 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#1A1F2C",
-          foreground: "#F7FAFC",
+          DEFAULT: "#fb041c", // torch-red
+          foreground: "#ffffff",
         },
         secondary: {
-          DEFAULT: "#4A5568",
-          foreground: "#F7FAFC",
+          DEFAULT: "#1c1b1c", // thunder
+          foreground: "#ffffff",
         },
         accent: {
-          DEFAULT: "#0EA5E9",
-          foreground: "#F7FAFC",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "#2c6cf3", // dodger-blue
+          foreground: "#ffffff",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
+        // Additional theme colors
+        malachite: "#04c41c",
+        "electric-violet": "#8b04e4",
+        sun: "#fab014",
+        monarch: "#830c14",
+        "my-sin": "#fcb41c",
+        hopbush: "#cc648c",
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
         heading: ["Montserrat", "sans-serif"],
-      },
-      keyframes: {
-        "fade-in": {
-          "0%": { opacity: "0", transform: "translateY(10px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-      },
-      animation: {
-        "fade-in": "fade-in 0.5s ease-out",
       },
     },
   },
