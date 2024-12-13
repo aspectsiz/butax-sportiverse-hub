@@ -16,11 +16,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-primary text-primary-foreground fixed w-full z-50">
+    <nav className="bg-background border-b fixed top-0 left-0 right-0 z-50 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="font-heading text-xl font-bold">
+            <Link to="/" className="font-heading text-xl font-bold text-foreground">
               BUTAX
             </Link>
           </div>
@@ -36,7 +36,7 @@ const Navbar = () => {
             <AuthButtons />
             <button 
               onClick={handleCartClick}
-              className="hover:text-accent relative"
+              className="hover:text-accent relative text-foreground"
             >
               <ShoppingCart className="h-6 w-6" />
               {items.length > 0 && (
@@ -49,7 +49,7 @@ const Navbar = () => {
             <div className="md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md hover:text-accent focus:outline-none"
+                className="inline-flex items-center justify-center p-2 rounded-md text-foreground hover:text-accent focus:outline-none"
               >
                 {isOpen ? (
                   <X className="h-6 w-6" />
@@ -64,7 +64,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden">
+        <div className="md:hidden bg-background border-t">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <NavLinks onClick={() => setIsOpen(false)} />
           </div>
