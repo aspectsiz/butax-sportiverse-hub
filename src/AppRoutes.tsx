@@ -10,6 +10,7 @@ import ProductDetail from "@/pages/ProductDetail";
 import AdminDashboard from "@/pages/dashboards/AdminDashboard";
 import GymDealerDashboard from "@/pages/dashboards/GymDealerDashboard";
 import UserDashboard from "@/pages/dashboards/UserDashboard";
+import Checkout from "@/components/shop/Checkout";
 
 const AppRoutes = () => {
   return (
@@ -21,7 +22,8 @@ const AppRoutes = () => {
       <Route path="/franchise" element={<Franchise />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/product/:id" element={<ProductDetail />} />
+      <Route path="/shop/:id" element={<ProductDetail />} />
+      <Route path="/checkout" element={<Checkout />} />
       <Route path="/admin/dashboard" element={<AdminDashboard />} />
       <Route path="/dealer/dashboard" element={<GymDealerDashboard />} />
       <Route path="/user/dashboard" element={<UserDashboard />} />
