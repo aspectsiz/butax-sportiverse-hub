@@ -31,11 +31,31 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground min-h-screen w-full font-sans;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-semibold;
+  }
+
+  /* Ensure all main content containers take full width */
+  main, .container, .content-wrapper {
+    @apply w-full min-h-screen bg-background text-foreground;
+  }
+
+  /* Ensure proper contrast for cards and sections */
+  .card, section, article {
+    @apply bg-background text-foreground border-border;
+  }
+
+  /* Ensure proper contrast for form elements */
+  input, textarea, select {
+    @apply bg-background text-foreground border-border;
+  }
+
+  /* Ensure proper contrast for buttons */
+  button {
+    @apply text-foreground;
   }
 }
 
@@ -63,7 +83,7 @@
 }
 
 .hero-pattern {
-  background-color: #1c1b1c;
+  @apply bg-secondary;
   background-image: radial-gradient(at 40% 20%, rgba(251, 4, 28, 0.1) 0px, transparent 50%),
                     radial-gradient(at 80% 0%, rgba(139, 4, 228, 0.1) 0px, transparent 50%),
                     radial-gradient(at 0% 50%, rgba(251, 4, 28, 0.1) 0px, transparent 50%);
