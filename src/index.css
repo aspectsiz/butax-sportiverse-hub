@@ -40,7 +40,7 @@
 
   /* Ensure all main content containers take full width */
   main, .container, .content-wrapper {
-    @apply w-full min-h-screen bg-background text-foreground;
+    @apply w-full bg-background text-foreground;
   }
 
   /* Ensure proper contrast for cards and sections */
