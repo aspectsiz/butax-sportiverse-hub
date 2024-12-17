@@ -15,7 +15,7 @@ export const NavLinks = ({ onClick }: { onClick?: () => void }) => {
         <Link
           key={to}
           to={to}
-          className="hover:text-accent px-3 py-2 rounded-md text-sm font-medium"
+          className="hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
           onClick={onClick}
         >
           {label}

@@ -33,7 +33,7 @@ export default {
           foreground: "#ffffff",
         },
         accent: {
-          DEFAULT: "#2c6cf3", // dodger-blue
+          DEFAULT: "#fb041c", // Changed from blue to match primary red
           foreground: "#ffffff",
         },
         muted: {
