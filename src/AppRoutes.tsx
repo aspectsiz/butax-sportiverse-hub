@@ -12,6 +12,7 @@ import GymDealerDashboard from "@/pages/dashboards/GymDealerDashboard";
 import UserDashboard from "@/pages/dashboards/UserDashboard";
 import Checkout from "@/components/shop/Checkout";
 import MainLayout from "@/components/layout/MainLayout";
+import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 
 const AppRoutes = () => {
   return (
@@ -25,9 +26,31 @@ const AppRoutes = () => {
       <Route path="/signup" element={<SignUp />} />
       <Route path="/shop/:id" element={<MainLayout><ProductDetail /></MainLayout>} />
       <Route path="/checkout" element={<MainLayout><Checkout /></MainLayout>} />
-      <Route path="/admin/dashboard" element={<AdminDashboard />} />
-      <Route path="/dealer/dashboard" element={<GymDealerDashboard />} />
-      <Route path="/user/dashboard" element={<UserDashboard />} />
+      
+      <Route 
+        path="/admin/dashboard" 
+        element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <AdminDashboard />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/dealer/dashboard" 
+        element={
+          <ProtectedRoute allowedRoles={['gym_dealer']}>
+            <GymDealerDashboard />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/user/dashboard" 
+        element={
+          <ProtectedRoute allowedRoles={['user']}>
+            <UserDashboard />
+          </ProtectedRoute>
+        } 
+      />
     </Routes>
   );
 };

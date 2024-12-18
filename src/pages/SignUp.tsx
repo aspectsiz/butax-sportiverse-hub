@@ -12,29 +12,41 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useAuth } from "@/contexts/AuthContext";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useAuth, UserRole } from "@/contexts/AuthContext";
 import { useToast } from "@/components/ui/use-toast";
 import { Eye, EyeOff, Facebook, Mail } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const signUpSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
+  role: z.enum(["user", "gym_dealer", "admin"] as const),
 });
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { signUp, signIn } = useAuth();
   const { toast } = useToast();
+  const navigate = useNavigate();
+  
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
       email: "",
       password: "",
+      role: "user",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof signUpSchema>) => {
-    const { error } = await signUp(values.email, values.password);
+    const { error } = await signUp(values.email, values.password, values.role as UserRole);
     if (error) {
       toast({
         title: "Error signing up",
@@ -46,6 +58,7 @@ const SignUp = () => {
         title: "Account created successfully",
         description: "Please check your email to verify your account.",
       });
+      navigate('/signin');
     }
   };
 
@@ -152,6 +165,29 @@ const SignUp = () => {
                           </button>
                         </div>
                       </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="role"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Account Type</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select your account type" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="user">User</SelectItem>
+                          <SelectItem value="gym_dealer">Gym Dealer</SelectItem>
+                          <SelectItem value="admin">Admin</SelectItem>
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}
