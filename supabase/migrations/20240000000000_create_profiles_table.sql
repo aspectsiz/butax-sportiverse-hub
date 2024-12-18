@@ -1,3 +1,6 @@
+-- Enable the moddatetime extension first
+CREATE EXTENSION IF NOT EXISTS moddatetime;
+
 -- Create profiles table
 CREATE TABLE public.profiles (
     id UUID REFERENCES auth.users ON DELETE CASCADE PRIMARY KEY,
