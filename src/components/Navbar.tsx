@@ -5,11 +5,14 @@ import { NavLinks } from "./navigation/NavLinks";
 import { AuthButtons } from "./auth/AuthButtons";
 import { useCart } from "@/store/useCart";
 import { ThemeToggle } from "./ThemeToggle";
+import { ProfileDropdown } from "./auth/ProfileDropdown";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const { items } = useCart();
+  const { user } = useAuth();
 
   const handleCartClick = () => {
     navigate('/checkout');
@@ -33,7 +36,11 @@ const Navbar = () => {
 
           <div className="flex items-center gap-4">
             <ThemeToggle />
-            <AuthButtons />
+            {user ? (
+              <ProfileDropdown />
+            ) : (
+              <AuthButtons />
+            )}
             <button 
               onClick={handleCartClick}
               className="hover:text-accent relative text-foreground"
