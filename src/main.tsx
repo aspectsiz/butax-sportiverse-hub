@@ -17,13 +17,13 @@ if (!supabaseUrl || !supabaseAnonKey) {
 const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <SessionContextProvider supabaseClient={supabase}>
+  <SessionContextProvider supabaseClient={supabase}>
+    <BrowserRouter>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <AuthProvider>
           <App />
         </AuthProvider>
-      </SessionContextProvider>
-    </ThemeProvider>
-  </BrowserRouter>
+      </ThemeProvider>
+    </BrowserRouter>
+  </SessionContextProvider>
 );
