@@ -5,12 +5,28 @@ import { UserProfile } from '@/types/auth';
 
 export type UserRole = 'user' | 'admin' | 'gym_dealer';
 
+interface AuthError {
+  message: string;
+}
+
+interface AuthResponse {
+  error: AuthError | null;
+}
+
+interface SignInMethods {
+  email: (email: string, password: string) => Promise<AuthResponse>;
+  google: () => Promise<AuthResponse>;
+  facebook: () => Promise<AuthResponse>;
+}
+
 interface AuthContextType {
   session: Session | null;
   user: User | null;
   userProfile: UserProfile | null;
   setUserProfile: (profile: UserProfile | null) => void;
-  signOut: () => Promise<void>;
+  signOut: () => Promise<AuthResponse>;
+  signUp: (email: string, password: string, role: UserRole) => Promise<AuthResponse>;
+  signIn: SignInMethods;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -18,7 +34,13 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   userProfile: null,
   setUserProfile: () => {},
-  signOut: async () => {},
+  signOut: async () => ({ error: null }),
+  signUp: async () => ({ error: null }),
+  signIn: {
+    email: async () => ({ error: null }),
+    google: async () => ({ error: null }),
+    facebook: async () => ({ error: null }),
+  },
 });
 
 export const useAuth = () => {
@@ -47,9 +69,43 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return () => subscription.unsubscribe();
   }, [supabase]);
 
-  const signOut = async () => {
-    await supabase.auth.signOut();
+  const signOut = async (): Promise<AuthResponse> => {
+    const { error } = await supabase.auth.signOut();
     setUserProfile(null);
+    return { error: error ? { message: error.message } : null };
+  };
+
+  const signUp = async (email: string, password: string, role: UserRole): Promise<AuthResponse> => {
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { role },
+      },
+    });
+    return { error: error ? { message: error.message } : null };
+  };
+
+  const signIn = {
+    email: async (email: string, password: string): Promise<AuthResponse> => {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      return { error: error ? { message: error.message } : null };
+    },
+    google: async (): Promise<AuthResponse> => {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+      });
+      return { error: error ? { message: error.message } : null };
+    },
+    facebook: async (): Promise<AuthResponse> => {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'facebook',
+      });
+      return { error: error ? { message: error.message } : null };
+    },
   };
 
   const value = {
@@ -58,6 +114,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     userProfile,
     setUserProfile,
     signOut,
+    signUp,
+    signIn,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
