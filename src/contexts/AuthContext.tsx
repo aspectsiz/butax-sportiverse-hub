@@ -85,12 +85,20 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const signUp = async (email: string, password: string, role: UserRole) => {
-    const { error: signUpError, data } = await supabase.auth.signUp({
-      email,
-      password,
-    });
+    try {
+      const { error: signUpError, data } = await supabase.auth.signUp({
+        email,
+        password,
+      });
 
-    if (!signUpError && data.user) {
+      if (signUpError) {
+        return { error: signUpError };
+      }
+
+      if (!data.user) {
+        return { error: new AuthError('Failed to create user', 400) };
+      }
+
       const { error: profileError } = await supabase.from('profiles').insert([
         {
           id: data.user.id,
@@ -100,11 +108,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       ]);
 
       if (profileError) {
-        return { error: profileError };
+        // Convert PostgrestError to AuthError
+        return { 
+          error: new AuthError(profileError.message, 400)
+        };
       }
-    }
 
-    return { error: signUpError };
+      return { error: null };
+    } catch (error) {
+      return { 
+        error: new AuthError('An unexpected error occurred', 500)
+      };
+    }
   };
 
   const signOut = async () => {
