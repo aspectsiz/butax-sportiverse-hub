@@ -6,6 +6,7 @@ export type UserRole = 'user' | 'gym_dealer' | 'admin';
 export interface UserProfile {
   id: string;
   role: UserRole;
+  email?: string;
   name?: string;
   phone?: string;
   bio?: string;
