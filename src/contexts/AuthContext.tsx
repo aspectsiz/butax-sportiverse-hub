@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 import { AuthError } from '@supabase/supabase-js';
-import { AuthContextType, UserRole } from '@/types/auth';
+import { AuthContextType, UserRole, UserProfile } from '@/types/auth';
 import { useAuthState } from '@/hooks/useAuthState';
 import { updateUserProfile, uploadUserAvatar } from '@/services/authService';
 
