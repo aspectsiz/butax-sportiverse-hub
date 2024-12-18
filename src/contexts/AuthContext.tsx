@@ -45,14 +45,35 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, [session]);
 
   const fetchUserProfile = async (userId: string) => {
-    const { data, error } = await supabase
+    // First try to get the existing profile
+    const { data: existingProfile, error: fetchError } = await supabase
       .from('profiles')
       .select('*')
       .eq('id', userId)
       .single();
 
-    if (!error && data) {
-      setUserProfile(data);
+    if (existingProfile) {
+      setUserProfile(existingProfile);
+      return;
+    }
+
+    // If no profile exists, create one
+    if (fetchError && user?.email) {
+      const { data: newProfile, error: createError } = await supabase
+        .from('profiles')
+        .insert([
+          {
+            id: userId,
+            role: 'user',
+            email: user.email,
+          }
+        ])
+        .select()
+        .single();
+
+      if (!createError && newProfile) {
+        setUserProfile(newProfile);
+      }
     }
   };
 
