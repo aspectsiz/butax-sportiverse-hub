@@ -1,12 +1,9 @@
 import { ArrowRight, DumbbellIcon, Sofa, Users } from "lucide-react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
 
 const Index = () => {
   return (
-    <div className="min-h-screen w-full bg-background">
-      <Navbar />
-      
+    <>
       {/* Hero Section */}
       <section className="hero-pattern pt-24 pb-16 px-4 sm:px-6 lg:px-8 w-full">
         <div className="max-w-7xl mx-auto text-center">
@@ -81,7 +78,7 @@ const Index = () => {
           </Link>
         </div>
       </section>
-    </div>
+    </>
   );
 };
 

@@ -11,19 +11,20 @@ import AdminDashboard from "@/pages/dashboards/AdminDashboard";
 import GymDealerDashboard from "@/pages/dashboards/GymDealerDashboard";
 import UserDashboard from "@/pages/dashboards/UserDashboard";
 import Checkout from "@/components/shop/Checkout";
+import MainLayout from "@/components/layout/MainLayout";
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Index />} />
-      <Route path="/shop" element={<Shop />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/franchise" element={<Franchise />} />
+      <Route path="/" element={<MainLayout><Index /></MainLayout>} />
+      <Route path="/shop" element={<MainLayout><Shop /></MainLayout>} />
+      <Route path="/about" element={<MainLayout><About /></MainLayout>} />
+      <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />
+      <Route path="/franchise" element={<MainLayout><Franchise /></MainLayout>} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/shop/:id" element={<ProductDetail />} />
-      <Route path="/checkout" element={<Checkout />} />
+      <Route path="/shop/:id" element={<MainLayout><ProductDetail /></MainLayout>} />
+      <Route path="/checkout" element={<MainLayout><Checkout /></MainLayout>} />
       <Route path="/admin/dashboard" element={<AdminDashboard />} />
       <Route path="/dealer/dashboard" element={<GymDealerDashboard />} />
       <Route path="/user/dashboard" element={<UserDashboard />} />
