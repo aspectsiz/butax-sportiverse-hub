@@ -12,7 +12,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const { items } = useCart();
-  const { user, userProfile } = useAuth();
+  const { user } = useAuth();
 
   const handleCartClick = () => {
     navigate('/checkout');
