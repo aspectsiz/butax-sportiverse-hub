@@ -41,22 +41,6 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
     },
   });
 
-  const handleSuccessfulLogin = () => {
-    switch (userType) {
-      case 'user':
-        navigate('/dashboard/user');
-        break;
-      case 'admin':
-        navigate('/dashboard/admin');
-        break;
-      case 'gym':
-        navigate('/dashboard/gymdealer');
-        break;
-      default:
-        navigate('/');
-    }
-  };
-
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     try {
       const { error } = await signIn.email(values.email, values.password);
@@ -71,7 +55,7 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
           title: "Signed in successfully",
           description: "Welcome back!",
         });
-        handleSuccessfulLogin();
+        navigate('/'); // Redirect to index page after successful login
       }
     } catch (error) {
       toast({

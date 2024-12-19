@@ -2,9 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
+import { Card } from "@/components/ui/card";
+import { Package, DollarSign, Users, Star, Store, LineChart } from "lucide-react";
 
 const GymDealerDashboard = () => {
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -12,30 +14,62 @@ const GymDealerDashboard = () => {
     navigate('/signin');
   };
 
+  const stats = [
+    { icon: Package, title: "Total Products", value: "45" },
+    { icon: DollarSign, title: "Monthly Revenue", value: "$12,450" },
+    { icon: Users, title: "Active Customers", value: "89" },
+  ];
+
+  const quickActions = [
+    { icon: Store, title: "Manage Products", description: "Update your inventory" },
+    { icon: Star, title: "Reviews", description: "Check customer feedback" },
+    { icon: LineChart, title: "Analytics", description: "View performance metrics" },
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
-        <div className="bg-white rounded-lg shadow-xl p-6">
-          <h1 className="text-2xl font-bold text-gray-900 mb-6">Gym Dealer Dashboard</h1>
+        <div className="space-y-8">
+          <div>
+            <h1 className="text-2xl font-bold text-foreground mb-2">Welcome back, {user?.email}</h1>
+            <p className="text-muted-foreground">Here's your business overview.</p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-orange-50 p-6 rounded-lg">
-              <h2 className="text-lg font-semibold mb-2">Inventory</h2>
-              <p className="text-gray-600">Manage your gym equipment</p>
-            </div>
-            <div className="bg-teal-50 p-6 rounded-lg">
-              <h2 className="text-lg font-semibold mb-2">Orders</h2>
-              <p className="text-gray-600">View and manage orders</p>
-            </div>
-            <div className="bg-pink-50 p-6 rounded-lg">
-              <h2 className="text-lg font-semibold mb-2">Reports</h2>
-              <p className="text-gray-600">Access sales reports</p>
-            </div>
+            {stats.map((stat, index) => (
+              <Card key={index} className="p-6">
+                <div className="flex items-center gap-4">
+                  <div className="p-2 bg-accent/10 rounded-lg">
+                    <stat.icon className="h-6 w-6 text-accent" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">{stat.title}</p>
+                    <p className="text-2xl font-bold">{stat.value}</p>
+                  </div>
+                </div>
+              </Card>
+            ))}
           </div>
-          <div className="mt-6">
-            <Button onClick={handleSignOut} variant="outline">
-              Sign Out
-            </Button>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {quickActions.map((action, index) => (
+              <Card key={index} className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
+                <div className="flex items-start gap-4">
+                  <div className="p-2 bg-accent/10 rounded-lg">
+                    <action.icon className="h-6 w-6 text-accent" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">{action.title}</h3>
+                    <p className="text-sm text-muted-foreground">{action.description}</p>
+                  </div>
+                </div>
+              </Card>
+            ))}
           </div>
+
+          <Button onClick={handleSignOut} variant="outline" className="mt-8">
+            Sign Out
+          </Button>
         </div>
       </div>
     </div>
