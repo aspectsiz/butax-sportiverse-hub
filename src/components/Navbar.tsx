@@ -52,7 +52,7 @@ const Navbar = () => {
                 </button>
               </div>
             ) : (
-              <>
+              <div className="flex items-center gap-4">
                 <AuthButtons />
                 <button 
                   onClick={handleCartClick}
@@ -65,7 +65,7 @@ const Navbar = () => {
                     </span>
                   )}
                 </button>
-              </>
+              </div>
             )}
             
             <div className="md:hidden">
@@ -89,6 +89,11 @@ const Navbar = () => {
         <div className="md:hidden bg-background border-t">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <NavLinks onClick={() => setIsOpen(false)} />
+            {!user && (
+              <div className="pt-4">
+                <AuthButtons />
+              </div>
+            )}
           </div>
         </div>
       )}
