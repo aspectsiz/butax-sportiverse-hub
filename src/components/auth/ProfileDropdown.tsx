@@ -37,7 +37,8 @@ export const ProfileDropdown = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
-  if (!user || !userProfile) return null;
+  // Remove this early return to ensure the component renders when user exists
+  if (!userProfile) return null;
 
   const handleSignOut = async () => {
     try {
@@ -98,13 +99,13 @@ export const ProfileDropdown = () => {
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger className="flex items-center gap-2 outline-none">
         <Avatar className="h-8 w-8">
-          <AvatarImage src={user.user_metadata?.avatar_url} />
+          <AvatarImage src={user?.user_metadata?.avatar_url} />
           <AvatarFallback>
-            {user.email?.charAt(0).toUpperCase()}
+            {user?.email?.charAt(0).toUpperCase()}
           </AvatarFallback>
         </Avatar>
         <span className="hidden md:inline-block text-sm font-medium">
-          {user.email}
+          {user?.email}
         </span>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end">
