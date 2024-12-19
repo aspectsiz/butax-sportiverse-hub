@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -34,22 +34,24 @@ import { useToast } from "@/components/ui/use-toast";
 export const ProfileDropdown = () => {
   const { user, userProfile, signOut } = useAuth();
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   if (!user || !userProfile) return null;
 
   const handleSignOut = async () => {
-    const { error } = await signOut();
-    if (error) {
-      toast({
-        title: "Error signing out",
-        description: error.message,
-        variant: "destructive",
-      });
-    } else {
+    try {
+      await signOut();
       toast({
         title: "Signed out successfully",
         description: "You have been signed out of your account.",
+      });
+      navigate('/');
+    } catch (error) {
+      toast({
+        title: "Error signing out",
+        description: "An error occurred while signing out.",
+        variant: "destructive",
       });
     }
     setIsOpen(false);

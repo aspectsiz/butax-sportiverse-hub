@@ -24,7 +24,7 @@ interface AuthContextType {
   user: User | null;
   userProfile: UserProfile | null;
   setUserProfile: (profile: UserProfile | null) => void;
-  signOut: () => Promise<AuthResponse>;
+  signOut: () => Promise<void>;
   signUp: (email: string, password: string, role: UserRole) => Promise<AuthResponse>;
   signIn: SignInMethods;
 }
@@ -34,7 +34,7 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   userProfile: null,
   setUserProfile: () => {},
-  signOut: async () => ({ error: null }),
+  signOut: async () => {},
   signUp: async () => ({ error: null }),
   signIn: {
     email: async () => ({ error: null }),
@@ -69,10 +69,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return () => subscription.unsubscribe();
   }, [supabase]);
 
-  const signOut = async (): Promise<AuthResponse> => {
+  const signOut = async (): Promise<void> => {
     const { error } = await supabase.auth.signOut();
+    if (error) throw error;
     setUserProfile(null);
-    return { error: error ? { message: error.message } : null };
   };
 
   const signUp = async (email: string, password: string, role: UserRole): Promise<AuthResponse> => {
