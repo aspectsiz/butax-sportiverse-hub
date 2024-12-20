@@ -47,6 +47,11 @@ export default {
         monarch: "#830c14",
         "my-sin": "#fcb41c",
         hopbush: "#cc648c",
+        // Light theme specific colors
+        "auth-background": "#ffffff",
+        "auth-foreground": "#1c1b1c",
+        "auth-muted": "#f3f4f6",
+        "auth-border": "#e5e7eb",
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],

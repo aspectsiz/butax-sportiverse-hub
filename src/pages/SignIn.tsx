@@ -30,12 +30,12 @@ const SignIn = () => {
   }, [userProfile, navigate]);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-auth-muted flex flex-col items-center justify-center auth-layout">
       <main className="container max-w-3xl mx-auto px-4 py-8">
-        <div className="bg-white p-6 rounded-lg shadow-xl">
+        <div className="auth-card p-6 rounded-lg">
           <LoginHeader />
           <LoginTabs activeTab={activeTab} onTabChange={setActiveTab} />
-          <p className="text-gray-600 mb-6">
+          <p className="text-auth-foreground/80 mb-6">
             Enter your credentials to access your account. If you don't remember your password,
             you can reset it using your verified phone number.
           </p>

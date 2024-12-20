@@ -38,25 +38,26 @@
     @apply font-heading font-semibold;
   }
 
-  /* Ensure all main content containers take full width */
-  main, .container, .content-wrapper {
-    @apply w-full bg-background text-foreground;
+  /* Auth pages specific styles */
+  .auth-layout {
+    @apply bg-auth-background text-auth-foreground;
   }
 
-  /* Ensure proper contrast for cards and sections */
-  .card, section, article {
-    @apply bg-background text-foreground border-border;
+  .auth-layout input,
+  .auth-layout select,
+  .auth-layout textarea {
+    @apply bg-auth-background text-auth-foreground border-auth-border;
   }
 
-  /* Ensure proper contrast for form elements */
-  input, textarea, select {
-    @apply bg-background text-foreground border-border;
+  .auth-layout button {
+    @apply text-auth-foreground;
   }
 
-  /* Ensure proper contrast for buttons */
-  button {
-    @apply text-foreground;
+  .auth-card {
+    @apply bg-auth-background border-auth-border shadow-sm;
   }
+
+  /* ... keep existing code */
 }
 
 /* Add smooth transitions for theme changes */

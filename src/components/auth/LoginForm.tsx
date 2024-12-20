@@ -55,7 +55,7 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
           title: "Signed in successfully",
           description: "Welcome back!",
         });
-        navigate('/'); // Redirect to index page after successful login
+        navigate('/');
       }
     } catch (error) {
       toast({
@@ -74,21 +74,21 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-gray-700 font-medium">
+              <FormLabel className="text-auth-foreground/90 font-medium">
                 Email
               </FormLabel>
               <div className="relative">
                 <FormControl>
                   <Input
                     type="email"
-                    className="pr-20 border-gray-300 focus:border-[#4284be] focus:ring-[#4284be]"
+                    className="pr-20 border-auth-border bg-auth-background text-auth-foreground focus:border-primary focus:ring-primary"
                     {...field}
                   />
                 </FormControl>
                 <div className="absolute right-3 top-2.5 flex gap-2">
                   <button
                     type="button"
-                    className="text-gray-400 hover:text-gray-500"
+                    className="text-auth-foreground/40 hover:text-auth-foreground/60"
                   >
                     <Keyboard className="h-5 w-5" />
                   </button>
@@ -104,14 +104,14 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-gray-700 font-medium">
+              <FormLabel className="text-auth-foreground/90 font-medium">
                 Password
               </FormLabel>
               <div className="relative">
                 <FormControl>
                   <Input
                     type={showPassword ? "text" : "password"}
-                    className="pr-20 border-gray-300 focus:border-[#4284be] focus:ring-[#4284be]"
+                    className="pr-20 border-auth-border bg-auth-background text-auth-foreground focus:border-primary focus:ring-primary"
                     {...field}
                   />
                 </FormControl>
@@ -119,7 +119,7 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="text-gray-400 hover:text-gray-500"
+                    className="text-auth-foreground/40 hover:text-auth-foreground/60"
                   >
                     {showPassword ? (
                       <EyeOff className="h-5 w-5" />
@@ -129,7 +129,7 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
                   </button>
                   <button
                     type="button"
-                    className="text-gray-400 hover:text-gray-500"
+                    className="text-auth-foreground/40 hover:text-auth-foreground/60"
                   >
                     <Keyboard className="h-5 w-5" />
                   </button>
@@ -141,7 +141,7 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
         />
 
         <div className="flex justify-end">
-          <a href="#" className="text-sm text-[#4284be] hover:underline">
+          <a href="#" className="text-sm text-primary hover:underline">
             Forgot Password?
           </a>
         </div>
@@ -150,12 +150,12 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
           <Button
             type="button"
             variant="outline"
-            className="w-full"
+            className="w-full border-auth-border text-auth-foreground hover:bg-auth-muted"
             onClick={() => window.history.back()}
           >
             Cancel
           </Button>
-          <Button type="submit" className="w-full bg-[#4284be] hover:bg-[#3674aa]">
+          <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
             Sign In
           </Button>
         </div>
