@@ -11,12 +11,12 @@ export const LoginHeader = () => (
             className="h-16"
           />
           <div>
-            <h1 className="text-3xl font-semibold text-[#4284be] tracking-widest">BUTAX</h1>
+            <h1 className="text-3xl font-semibold text-[#fb041c] tracking-widest">BUTAX</h1>
             <p className="text-sm text-gray-600">Kimlik Doğrulama Sistemi</p>
           </div>
         </div>
         <div className="text-right">
-          <p className="text-[#4284be] font-medium">BUTAX</p>
+          <p className="text-[#121212] font-medium">BUTAX</p>
           <p className="text-sm text-gray-600">https://www.butaks.com</p>
         </div>
       </div>
