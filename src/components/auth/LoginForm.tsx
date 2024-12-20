@@ -150,12 +150,15 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
           <Button
             type="button"
             variant="outline"
-            className="w-full border-auth-border text-auth-foreground hover:bg-auth-muted"
+            className="w-full border-auth-border bg-auth-background text-auth-foreground hover:bg-auth-muted"
             onClick={() => window.history.back()}
           >
             Cancel
           </Button>
-          <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
+          <Button 
+            type="submit" 
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+          >
             Sign In
           </Button>
         </div>

@@ -49,10 +49,10 @@ export const SocialLoginButtons = () => {
     <div className="space-y-4 mt-4">
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
+          <span className="w-full border-t border-auth-border" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-white px-2 text-gray-500">
+          <span className="bg-auth-background px-2 text-auth-foreground/60">
             Or continue with
           </span>
         </div>
@@ -61,7 +61,7 @@ export const SocialLoginButtons = () => {
         <Button
           variant="outline"
           onClick={handleGoogleSignIn}
-          className="w-full"
+          className="w-full border-auth-border bg-auth-background text-auth-foreground hover:bg-auth-muted"
         >
           <Mail className="mr-2 h-4 w-4" />
           Sign in with Google
@@ -69,7 +69,7 @@ export const SocialLoginButtons = () => {
         <Button
           variant="outline"
           onClick={handleFacebookSignIn}
-          className="w-full"
+          className="w-full border-auth-border bg-auth-background text-auth-foreground hover:bg-auth-muted"
         >
           <Facebook className="mr-2 h-4 w-4" />
           Sign in with Facebook
