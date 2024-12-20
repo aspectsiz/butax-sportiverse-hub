@@ -12,11 +12,13 @@ const signUpSchema = z.object({
   password: z.string().min(6),
 });
 
+type SignUpFormData = z.infer<typeof signUpSchema>;
+
 export const SignUpForm = () => {
   const { signUp } = useAuth();
   const { toast } = useToast();
   
-  const form = useForm<z.infer<typeof signUpSchema>>({
+  const form = useForm<SignUpFormData>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
       email: "",
@@ -24,7 +26,7 @@ export const SignUpForm = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof signUpSchema>) => {
+  const onSubmit = async (values: SignUpFormData) => {
     const { error } = await signUp(values.email, values.password, "user");
     if (error) {
       toast({

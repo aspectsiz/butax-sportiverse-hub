@@ -7,12 +7,17 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { z } from "zod";
+
+const signUpSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(6),
+});
+
+type SignUpFormData = z.infer<typeof signUpSchema>;
 
 interface SignUpFieldsProps {
-  form: UseFormReturn<{
-    email: string;
-    password: string;
-  }>;
+  form: UseFormReturn<SignUpFormData>;
 }
 
 export const SignUpFields = ({ form }: SignUpFieldsProps) => {
