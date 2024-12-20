@@ -3,20 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Eye, EyeOff, Keyboard } from "lucide-react";
+import { Form } from "@/components/ui/form";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/components/ui/use-toast";
 import { SocialLoginButtons } from "./SocialLoginButtons";
+import { EmailField } from "./login/EmailField";
+import { PasswordField } from "./login/PasswordField";
+import { FormActions } from "./login/FormActions";
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -69,75 +62,11 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-auth-foreground/90 font-medium">
-                Email
-              </FormLabel>
-              <div className="relative">
-                <FormControl>
-                  <Input
-                    type="email"
-                    className="pr-20 border-auth-border bg-auth-background text-auth-foreground focus:border-primary focus:ring-primary"
-                    {...field}
-                  />
-                </FormControl>
-                <div className="absolute right-3 top-2.5 flex gap-2">
-                  <button
-                    type="button"
-                    className="text-auth-foreground/40 hover:text-auth-foreground/60"
-                  >
-                    <Keyboard className="h-5 w-5" />
-                  </button>
-                </div>
-              </div>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-auth-foreground/90 font-medium">
-                Password
-              </FormLabel>
-              <div className="relative">
-                <FormControl>
-                  <Input
-                    type={showPassword ? "text" : "password"}
-                    className="pr-20 border-auth-border bg-auth-background text-auth-foreground focus:border-primary focus:ring-primary"
-                    {...field}
-                  />
-                </FormControl>
-                <div className="absolute right-3 top-2.5 flex gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="text-auth-foreground/40 hover:text-auth-foreground/60"
-                  >
-                    {showPassword ? (
-                      <EyeOff className="h-5 w-5" />
-                    ) : (
-                      <Eye className="h-5 w-5" />
-                    )}
-                  </button>
-                  <button
-                    type="button"
-                    className="text-auth-foreground/40 hover:text-auth-foreground/60"
-                  >
-                    <Keyboard className="h-5 w-5" />
-                  </button>
-                </div>
-              </div>
-              <FormMessage />
-            </FormItem>
-          )}
+        <EmailField form={form} />
+        <PasswordField 
+          form={form}
+          showPassword={showPassword}
+          setShowPassword={setShowPassword}
         />
 
         <div className="flex justify-end">
@@ -146,22 +75,7 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
           </a>
         </div>
 
-        <div className="flex gap-4">
-          <Button
-            type="button"
-            variant="outline"
-            className="w-full border-auth-border bg-auth-background text-auth-foreground hover:bg-auth-muted"
-            onClick={() => window.history.back()}
-          >
-            Cancel
-          </Button>
-          <Button 
-            type="submit" 
-            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
-          >
-            Sign In
-          </Button>
-        </div>
+        <FormActions onCancel={() => window.history.back()} />
 
         {userType === 'user' && <SocialLoginButtons />}
       </form>
