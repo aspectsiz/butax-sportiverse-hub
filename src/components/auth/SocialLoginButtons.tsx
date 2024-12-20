@@ -63,16 +63,16 @@ export const SocialLoginButtons = () => {
           onClick={handleGoogleSignIn}
           className="w-full border-auth-border bg-auth-background text-auth-foreground hover:bg-auth-muted"
         >
-          <Mail className="mr-2 h-4 w-4" />
-          Sign in with Google
+          <Mail className="h-4 w-4" />
+          <span className="hidden md:inline ml-2">Sign in with Google</span>
         </Button>
         <Button
           variant="outline"
           onClick={handleFacebookSignIn}
           className="w-full border-auth-border bg-auth-background text-auth-foreground hover:bg-auth-muted"
         >
-          <Facebook className="mr-2 h-4 w-4" />
-          Sign in with Facebook
+          <Facebook className="h-4 w-4" />
+          <span className="hidden md:inline ml-2">Sign in with Facebook</span>
         </Button>
       </div>
     </div>
