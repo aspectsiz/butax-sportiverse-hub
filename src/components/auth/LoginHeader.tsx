@@ -11,7 +11,7 @@ export const LoginHeader = () => (
             className="h-16"
           />
           <div>
-            <h1 className="text-3xl font-semibold text-[#fb041c] tracking-widest">BUTAX</h1>
+            <h1 className="text-left text-3xl font-semibold text-[#fb041c] tracking-widest">BUTAX</h1>
             <p className="text-sm text-gray-600">Kimlik Doğrulama Sistemi</p>
           </div>
         </div>
