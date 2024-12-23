@@ -46,8 +46,8 @@ const Contact = () => {
             {/* Google Maps Section */}
             <div className="relative w-full h-[300px] rounded-lg overflow-hidden">
               <iframe
-                className="absolute top-0 left-0 w-full h-full"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3056.616026031276!2d32.50755840000001!3d39.9946854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d32f89bf751355%3A0x9e571493744bca2e!2sYenikent%2C%2026.%20Cad.%20No%3A11%2C%2006946%20Sincan%2FAnkara!5e0!3m2!1sen!2str!4v1710861720245!5m2!1sen!2str"
+                className="absolute top-0 left-0 w-full h-full"
                 style={{ border: 0 }}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
