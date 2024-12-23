@@ -17,7 +17,7 @@ const Franchise = () => {
       <Navbar />
       <div className="w-full">
         {/* Hero Section */}
-        <div className="hero-pattern text-primary-foreground py-20 w-full">
+        <div className="hero-pattern pt-24 pb-16 px-4 sm:px-6 lg:px-8 w-full text-primary-foreground text-primary-foreground">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">BUTAX Franchise Opportunities</h1>
             <p className="text-lg text-center max-w-2xl mx-auto">
