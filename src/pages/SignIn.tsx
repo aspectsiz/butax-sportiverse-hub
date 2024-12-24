@@ -32,7 +32,7 @@ const SignIn = () => {
   return (
     <div className="min-h-screen bg-auth-muted flex flex-col items-center justify-center auth-layout">
       <main className="container max-w-3xl mx-auto px-4 py-8">
-        <div className="auth-card p-6 rounded-lg">
+        <div className="shadow-3xl auth-card p-6 rounded-lg">
           <LoginHeader />
           <LoginTabs activeTab={activeTab} onTabChange={setActiveTab} />
           <p className="text-auth-foreground/80 mb-6">
