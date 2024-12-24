@@ -11,7 +11,7 @@ const About = () => {
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">About BUTAX</h1>
             <p className="text-lg text-center max-w-2xl mx-auto">
-              Empowering fitness enthusiasts and gym owners with innovative solutions for a healthier tomorrow.
+               Our job is to create environments where you can do sports in a healthy and correct way.
             </p>
           </div>
         </div>
@@ -23,7 +23,7 @@ const About = () => {
               <div className="bg-background p-8 rounded-lg shadow-md">
                 <div className="flex items-center mb-4">
                   <Info className="w-6 h-6 text-primary mr-2" />
-                  <h2 className="text-2xl font-bold">Our Mission</h2>
+                  <h2 className="text-2xl font-bold">The idea of Outdoor Fitness</h2>
                 </div>
                 <p className="text-foreground">
                   To revolutionize the fitness industry by providing cutting-edge technology and solutions that make gym management seamless and workout experiences exceptional.
@@ -32,7 +32,7 @@ const About = () => {
               <div className="bg-background p-8 rounded-lg shadow-md">
                 <div className="flex items-center mb-4">
                   <Trophy className="w-6 h-6 text-primary mr-2" />
-                  <h2 className="text-2xl font-bold">Our Vision</h2>
+                  <h2 className="text-2xl font-bold">From Science to Inspiration BUTAX</h2>
                 </div>
                 <p className="text-foreground">
                   To become the global leader in fitness technology solutions, creating a more connected and healthier world.
