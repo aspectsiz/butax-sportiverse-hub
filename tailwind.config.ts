@@ -57,9 +57,6 @@ export default {
         sans: ["Inter", "sans-serif"],
         heading: ["Montserrat", "sans-serif"],
       },
-      boxShadow: {
-        'shadow-3xl': '0 20px 25px -5px rgb(0 0 0 / .1), 0 10px 50px 15px rgb(0 0 0 / .1)',
-      },
     },
   },
   plugins: [require("tailwindcss-animate")],
