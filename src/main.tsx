@@ -14,7 +14,33 @@ if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error('Missing Supabase environment variables')
 }
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey)
+const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: true,
+    storage: {
+      getItem: (key) => {
+        try {
+          const item = localStorage.getItem(key)
+          return item
+        } catch {
+          return null
+        }
+      },
+      setItem: (key, value) => {
+        try {
+          localStorage.setItem(key, value)
+        } catch {}
+      },
+      removeItem: (key) => {
+        try {
+          localStorage.removeItem(key)
+        } catch {}
+      },
+    },
+  },
+})
 
 createRoot(document.getElementById("root")!).render(
   <SessionContextProvider supabaseClient={supabase}>
