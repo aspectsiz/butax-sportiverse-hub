@@ -20,22 +20,22 @@ const About = () => {
         <div className="bg-background w-full">
           <div className="container mx-auto px-4 py-16">
             <div className="grid md:grid-cols-2 gap-12">
-              <div className="bg-background p-8 rounded-lg shadow-md">
+              <div className="bg-background p-8 rounded-lg shadow-3xl">
                 <div className="flex items-center mb-4">
                   <Info className="w-6 h-6 text-primary mr-2" />
-                  <h2 className="text-2xl font-bold">The idea of Outdoor Fitness</h2>
+                  <h2 className="text-2xl font-bold uppercase">The idea of Outdoor Fitness</h2>
                 </div>
-                <p className="text-foreground">
-                  To revolutionize the fitness industry by providing cutting-edge technology and solutions that make gym management seamless and workout experiences exceptional.
+                <p className="text-foreground text-left">
+                BUTAX is an innovative brand that produces indoor and outdoor fitness equipment, combining sports and technology. Our founders have been involved in bodybuilding for many years and have observed the lack of accurate and sufficient resources on sports in Turkey. This observation marked the starting point of BUTAX's founding journey. In 2024, with the launch of the research project titled 'Supporting Urban Development by Increasing the Usage Potential of Sports and Recreation Facilities,' BUTAX's mission has become even more defined.
                 </p>
               </div>
-              <div className="bg-background p-8 rounded-lg shadow-md">
+              <div className="bg-background p-8 rounded-lg shadow-3xl">
                 <div className="flex items-center mb-4">
-                  <Trophy className="w-6 h-6 text-primary mr-2" />
-                  <h2 className="text-2xl font-bold">From Science to Inspiration BUTAX</h2>
+                  <Trophy className="w-6 h-6 text-primary mr-2 uppercase" />
+                  <h2 className="text-2xl font-bold">From Science to Inspiration Outdoor Fitness</h2>
                 </div>
-                <p className="text-foreground">
-                  To become the global leader in fitness technology solutions, creating a more connected and healthier world.
+                <p className="text-foreground text-left">
+                Within the scope of this project, it has been aimed to systematically research and develop the usage potentials of sports and equipment facilities in the Konak-Alsancak region of İzmir. The project examined the sustainability and suitability of these facilities and equipment against vandalism, and developed sustainability recommendations that include both physical and managerial measures. As a TÜBİTAK project, it enabled BUTAX to take its first step into the academic and business world. Our founders adopted the knowledge and experience gained from this initiative as a fundamental building block for BUTAX's future. With its innovation vision, BUTAX aims to improve user experience by integrating sports equipment with technology and to create a more efficient fitness process. BUTAX strives to offer innovative solutions to make sports more accessible, enjoyable, and efficient for everyone.
                 </p>
               </div>
             </div>

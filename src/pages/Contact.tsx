@@ -15,7 +15,7 @@ const Contact = () => {
               </p>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-6 text-left">
               <div className="flex items-start space-x-4">
                 <MapPin className="w-6 h-6 text-accent mt-1" />
                 <div>
