@@ -3,18 +3,27 @@ import ContactForm from "@/components/contact/ContactForm";
 
 const Contact = () => {
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="min-h-screen bg-background">
+
+   {/* Hero Section */}
+    <div className="w-full hero-pattern">
+      <div className="container mx-auto px-4 pt-24 pb-10">
+        <div className="grid md:grid-cols-2 gap-12">
+          <div className="text-primary-foreground text-left">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">BUTAX is here</h1>
+            <p className="text-lg max-w-2xl mx-auto">
+               Our door is always open for a good cup of coffe.
+            </p>
+          </div>
+         </div>
+       </div>
+    </div>
+
+  {/* Contact Information */}
+    <div className="container mx-auto px-4 py-4">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Contact Information */}
           <div className="space-y-8">
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
-              <p className="text-muted-foreground">
-                We'd love to hear from you. Please fill out this form or reach out using the contact details below.
-              </p>
-            </div>
-
             <div className="space-y-6 text-left">
               <div className="flex items-start space-x-4">
                 <MapPin className="w-6 h-6 text-accent mt-1" />
@@ -64,6 +73,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
