@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import Navbar from '@/components/Navbar';
+import MainLayout from '@/components/layout/MainLayout';
 import ProductGrid from '@/components/shop/ProductGrid';
 import ProductFilters from '@/components/shop/ProductFilters';
 import { mockProducts } from '@/data/products';
+import { useState } from 'react';
 
 const Shop = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -18,8 +18,7 @@ const Shop = () => {
   });
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <MainLayout>
       <main className="container mx-auto px-4 pt-24 pb-8">
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-4">Shop Our Products</h1>
@@ -37,7 +36,7 @@ const Shop = () => {
 
         <ProductGrid products={filteredProducts} />
       </main>
-    </div>
+    </MainLayout>
   );
 };
 

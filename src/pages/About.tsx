@@ -1,12 +1,10 @@
 import { Users, BrainCircuit, Lightbulb } from "lucide-react";
-import Navbar from "@/components/Navbar";
+import MainLayout from "@/components/layout/MainLayout";
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <MainLayout>
       <div className="w-full">
-
         {/* Hero Section */}
         <div className="hero-pattern pt-24 pb-16 px-4 sm:px-6 lg:px-8 w-full text-primary-foreground">
           <div className="container mx-auto px-4">
@@ -108,7 +106,7 @@ const About = () => {
           </div>
         </div>
       </div>
-    </div>
+    </MainLayout>
   );
 };
 

@@ -1,6 +1,6 @@
 import { Building, Users, MapPin, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/Navbar";
+import MainLayout from "@/components/layout/MainLayout";
 
 const Franchise = () => {
   const benefits = [
@@ -13,21 +13,15 @@ const Franchise = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full bg-background">
-      <Navbar />
+    <MainLayout>
       <div className="w-full">
         {/* Hero Section */}
-        <div className="hero-pattern pt-24 pb-16 px-4 sm:px-6 lg:px-8 w-full text-primary-foreground text-primary-foreground">
+        <div className="hero-pattern pt-24 pb-16 px-4 sm:px-6 lg:px-8 w-full text-primary-foreground">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">BUTAX Franchise Opportunities</h1>
             <p className="text-lg text-center max-w-2xl mx-auto">
               Join the future of fitness with a BUTAX franchise. Be part of a growing network of successful gym owners.
             </p>
-            <div className="text-center mt-8">
-              <Button size="lg" className="bg-primary hover:bg-primary/90">
-                Request Franchise Information
-              </Button>
-            </div>
           </div>
         </div>
 
@@ -89,7 +83,7 @@ const Franchise = () => {
           </div>
         </div>
       </div>
-    </div>
+    </MainLayout>
   );
 };
 

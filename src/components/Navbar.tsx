@@ -40,7 +40,7 @@ const Navbar = () => {
       isBordered 
       isMenuOpen={isMenuOpen} 
       onMenuOpenChange={setIsMenuOpen}
-      className="bg-background"
+      className="bg-background/70 backdrop-blur-md backdrop-saturate-150 z-50"
       maxWidth="2xl"
     >
       <NavbarContent className="sm:hidden" justify="start">
@@ -136,7 +136,7 @@ const Navbar = () => {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu className="bg-background pt-6">
+      <NavbarMenu className="bg-background/70 backdrop-blur-md backdrop-saturate-150 pt-6">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item.name}-${index}`}>
             <Link
