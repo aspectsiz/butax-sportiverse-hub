@@ -14,7 +14,6 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-  Link as NextUILink,
   Button,
 } from "@nextui-org/react";
 
@@ -69,7 +68,7 @@ const Navbar = () => {
         ))}
       </NavbarContent>
 
-      <NavbarContent justify="end">
+      <NavbarContent justify="end" className="hidden sm:flex">
         <NavbarItem>
           <ThemeToggle />
         </NavbarItem>
@@ -119,7 +118,25 @@ const Navbar = () => {
         )}
       </NavbarContent>
 
-      <NavbarMenu className="bg-background">
+      <NavbarContent className="sm:hidden" justify="end">
+        <NavbarItem>
+          <Button
+            isIconOnly
+            variant="light"
+            onClick={handleCartClick}
+            className="relative"
+          >
+            <ShoppingCart className="h-6 w-6" />
+            {items.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-accent text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                {items.length}
+              </span>
+            )}
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
+
+      <NavbarMenu className="bg-background pt-6">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item.name}-${index}`}>
             <Link
@@ -131,11 +148,19 @@ const Navbar = () => {
             </Link>
           </NavbarMenuItem>
         ))}
+        <NavbarMenuItem>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+          </div>
+        </NavbarMenuItem>
         {!user && (
           <NavbarMenuItem>
-            <div className="mt-4">
-              <AuthButtons />
-            </div>
+            <AuthButtons />
+          </NavbarMenuItem>
+        )}
+        {user && (
+          <NavbarMenuItem>
+            <ProfileDropdown />
           </NavbarMenuItem>
         )}
       </NavbarMenu>
