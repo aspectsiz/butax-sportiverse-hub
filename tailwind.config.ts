@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { nextui } from "@nextui-org/react";
 
 export default {
   darkMode: ["class"],
@@ -7,6 +8,7 @@ export default {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   prefix: "",
   theme: {
@@ -25,29 +27,27 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#fb041c", // torch-red
+          DEFAULT: "#fb041c",
           foreground: "#ffffff",
         },
         secondary: {
-          DEFAULT: "#1c1b1c", // thunder
+          DEFAULT: "#1c1b1c",
           foreground: "#ffffff",
         },
         accent: {
-          DEFAULT: "#fb041c", // Changed from blue to match primary red
+          DEFAULT: "#fb041c",
           foreground: "#ffffff",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
-        // Additional theme colors
         malachite: "#04c41c",
         "electric-violet": "#8b04e4",
         sun: "#fab014",
         monarch: "#830c14",
         "my-sin": "#fcb41c",
         hopbush: "#cc648c",
-        // Light theme specific colors
         "auth-background": "#ffffff",
         "auth-foreground": "#1c1b1c",
         "auth-muted": "#f3f4f6",
@@ -59,5 +59,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), nextui()],
 } satisfies Config;

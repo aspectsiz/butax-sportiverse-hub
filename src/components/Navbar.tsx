@@ -1,103 +1,145 @@
 import { useState } from "react";
-import { Menu, X, ShoppingCart } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { NavLinks } from "./navigation/NavLinks";
-import { AuthButtons } from "./auth/AuthButtons";
 import { useCart } from "@/store/useCart";
+import { useAuth } from "@/contexts/AuthContext";
 import { ThemeToggle } from "./ThemeToggle";
 import { ProfileDropdown } from "./auth/ProfileDropdown";
-import { useAuth } from "@/contexts/AuthContext";
+import { AuthButtons } from "./auth/AuthButtons";
+import { ShoppingCart } from "lucide-react";
+import {
+  Navbar as NextUINavbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
+  Link as NextUILink,
+  Button,
+} from "@nextui-org/react";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { items } = useCart();
   const { user } = useAuth();
+
+  const menuItems = [
+    { name: "Home", href: "/" },
+    { name: "Shop", href: "/shop" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
+    { name: "Franchise", href: "/franchise" },
+  ];
 
   const handleCartClick = () => {
     navigate('/checkout');
   };
 
   return (
-    <nav className="bg-background border-b fixed top-0 left-0 right-0 z-50 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <Link to="/" className="font-heading text-xl font-bold text-foreground">
-              BUTAX
+    <NextUINavbar 
+      isBordered 
+      isMenuOpen={isMenuOpen} 
+      onMenuOpenChange={setIsMenuOpen}
+      className="bg-background"
+      maxWidth="2xl"
+    >
+      <NavbarContent className="sm:hidden" justify="start">
+        <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
+      </NavbarContent>
+
+      <NavbarContent className="pr-3" justify="center">
+        <NavbarBrand>
+          <Link to="/" className="font-heading text-xl font-bold text-foreground">
+            BUTAX
+          </Link>
+        </NavbarBrand>
+      </NavbarContent>
+
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        {menuItems.map((item) => (
+          <NavbarItem key={item.name}>
+            <Link 
+              to={item.href}
+              className="text-foreground hover:text-accent transition-colors"
+            >
+              {item.name}
             </Link>
-          </div>
-          
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              <NavLinks />
-            </div>
-          </div>
+          </NavbarItem>
+        ))}
+      </NavbarContent>
 
-          <div className="flex items-center gap-4">
-            <ThemeToggle />
-            {user ? (
-              <div className="flex items-center gap-4">
-                <ProfileDropdown />
-                <button 
-                  onClick={handleCartClick}
-                  className="hover:text-accent relative text-foreground"
-                >
-                  <ShoppingCart className="h-6 w-6" />
-                  {items.length > 0 && (
-                    <span className="absolute -top-2 -right-2 bg-accent text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                      {items.length}
-                    </span>
-                  )}
-                </button>
-              </div>
-            ) : (
-              <div className="flex items-center gap-4">
-                <AuthButtons />
-                <button 
-                  onClick={handleCartClick}
-                  className="hover:text-accent relative text-foreground"
-                >
-                  <ShoppingCart className="h-6 w-6" />
-                  {items.length > 0 && (
-                    <span className="absolute -top-2 -right-2 bg-accent text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                      {items.length}
-                    </span>
-                  )}
-                </button>
-              </div>
-            )}
-            
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-foreground hover:text-accent focus:outline-none"
+      <NavbarContent justify="end">
+        <NavbarItem>
+          <ThemeToggle />
+        </NavbarItem>
+        
+        {user ? (
+          <>
+            <NavbarItem>
+              <ProfileDropdown />
+            </NavbarItem>
+            <NavbarItem>
+              <Button
+                isIconOnly
+                variant="light"
+                onClick={handleCartClick}
+                className="relative"
               >
-                {isOpen ? (
-                  <X className="h-6 w-6" />
-                ) : (
-                  <Menu className="h-6 w-6" />
+                <ShoppingCart className="h-6 w-6" />
+                {items.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-accent text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                    {items.length}
+                  </span>
                 )}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+              </Button>
+            </NavbarItem>
+          </>
+        ) : (
+          <>
+            <NavbarItem>
+              <AuthButtons />
+            </NavbarItem>
+            <NavbarItem>
+              <Button
+                isIconOnly
+                variant="light"
+                onClick={handleCartClick}
+                className="relative"
+              >
+                <ShoppingCart className="h-6 w-6" />
+                {items.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-accent text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                    {items.length}
+                  </span>
+                )}
+              </Button>
+            </NavbarItem>
+          </>
+        )}
+      </NavbarContent>
 
-      {/* Mobile menu */}
-      {isOpen && (
-        <div className="md:hidden bg-background border-t">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <NavLinks onClick={() => setIsOpen(false)} />
-            {!user && (
-              <div className="pt-4">
-                <AuthButtons />
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-    </nav>
+      <NavbarMenu className="bg-background">
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item.name}-${index}`}>
+            <Link
+              to={item.href}
+              className="w-full text-foreground hover:text-accent transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.name}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+        {!user && (
+          <NavbarMenuItem>
+            <div className="mt-4">
+              <AuthButtons />
+            </div>
+          </NavbarMenuItem>
+        )}
+      </NavbarMenu>
+    </NextUINavbar>
   );
 };
 
