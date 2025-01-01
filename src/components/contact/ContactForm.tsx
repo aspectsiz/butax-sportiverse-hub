@@ -127,7 +127,7 @@ const ContactForm = () => {
         <div className="flex justify-center my-4">
           <ReCAPTCHA
             ref={recaptchaRef}
-            sitekey="6LcERncqAAAAAIZfd99hXQNWuQu6chykOiXz5pW5"
+            sitekey="6Ld6RXcqAAAAALjEUvo_It8cCM1tW2r2J8akn0gy"
           />
         </div>
 
