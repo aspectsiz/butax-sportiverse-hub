@@ -39,17 +39,21 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     if (isLoading) return;
     
-    setIsLoading(true);
     try {
+      setIsLoading(true);
+      console.log("Attempting login with:", values.email);
+      
       const { error } = await signIn.email(values.email, values.password);
       
       if (error) {
+        console.error("Detailed login error:", error);
+        
         let displayMessage = "Invalid login credentials";
         
         if (error.message.includes("Email not confirmed")) {
           displayMessage = "Please verify your email address before logging in";
         } else if (error.message.includes("Invalid login credentials")) {
-          displayMessage = "The email or password you entered is incorrect";
+          displayMessage = "The email or password you entered is incorrect. Please check your credentials and try again.";
         }
         
         toast({
@@ -57,11 +61,10 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
           description: displayMessage,
           variant: "destructive",
         });
-        
-        console.error("Login error:", error);
         return;
       }
       
+      console.log("Login successful");
       toast({
         title: "Success",
         description: "Welcome back!",
