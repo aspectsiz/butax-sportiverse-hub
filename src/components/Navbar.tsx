@@ -1,55 +1,173 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '@/contexts/AuthContext';
-import { NavLinks } from './navigation/NavLinks';
-import { ThemeToggle } from './ThemeToggle';
-import { Button } from './ui/button';
-import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
-import { Menu } from 'lucide-react';
-import { UserMenu } from './auth/UserMenu';
-import { LoginDialog } from './auth/LoginDialog';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useCart } from "@/store/useCart";
+import { useAuth } from "@/contexts/AuthContext";
+import { ThemeToggle } from "./ThemeToggle";
+import { ProfileDropdown } from "./auth/ProfileDropdown";
+import { AuthButtons } from "./auth/AuthButtons";
+import { ShoppingCart } from "lucide-react";
+import {
+  Navbar as NextUINavbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
+  Button,
+} from "@nextui-org/react";
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const { items } = useCart();
   const { user } = useAuth();
 
+  const menuItems = [
+    { name: "Home", href: "/" },
+    { name: "Shop", href: "/shop" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
+    { name: "Franchise", href: "/franchise" },
+  ];
+
+  const handleCartClick = () => {
+    navigate('/checkout');
+  };
+
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
-        <div className="mr-4 hidden md:flex">
-          <Link to="/" className="mr-6 flex items-center space-x-2">
-            <img src="/lovable-uploads/butax-logo.png" alt="Butax Logo" className="h-8" />
+    <NextUINavbar 
+      isBordered 
+      isMenuOpen={isMenuOpen} 
+      onMenuOpenChange={setIsMenuOpen}
+      className="fixed top-0 left-0 right-0 bg-background/70 backdrop-blur-md backdrop-saturate-150 z-50"
+      maxWidth="2xl"
+    >
+      <NavbarContent className="sm:hidden" justify="start">
+        <NavbarMenuToggle 
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"} 
+          className="text-foreground"
+        />
+      </NavbarContent>
+
+      <NavbarContent className="pr-3" justify="center">
+        <NavbarBrand>
+          <Link to="/" className="font-heading text-xl font-bold text-foreground">
+            BUTAX
           </Link>
-          <NavLinks />
-        </div>
-        
-        <Sheet>
-          <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon" className="mr-2">
-              <Menu className="h-5 w-5" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="w-[80%] sm:w-[385px]">
-            <Link to="/" className="flex items-center space-x-2 mb-4">
-              <img src="/lovable-uploads/butax-logo.png" alt="Butax Logo" className="h-8" />
+        </NavbarBrand>
+      </NavbarContent>
+
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        {menuItems.map((item) => (
+          <NavbarItem key={item.name}>
+            <Link 
+              to={item.href}
+              className="text-foreground hover:text-accent transition-colors"
+            >
+              {item.name}
             </Link>
-            <div className="flex flex-col space-y-4">
-              <NavLinks />
-            </div>
-          </SheetContent>
-        </Sheet>
+          </NavbarItem>
+        ))}
+      </NavbarContent>
 
-        <Link to="/" className="mr-6 flex items-center space-x-2 md:hidden">
-          <img src="/lovable-uploads/butax-logo.png" alt="Butax Logo" className="h-8" />
-        </Link>
+      <NavbarContent justify="end" className="hidden sm:flex">
+        <NavbarItem>
+          <ThemeToggle />
+        </NavbarItem>
+        
+        {user ? (
+          <>
+            <NavbarItem>
+              <ProfileDropdown />
+            </NavbarItem>
+            <NavbarItem>
+              <Button
+                isIconOnly
+                variant="light"
+                onClick={handleCartClick}
+                className="relative"
+              >
+                <ShoppingCart className="h-6 w-6" />
+                {items.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-accent text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                    {items.length}
+                  </span>
+                )}
+              </Button>
+            </NavbarItem>
+          </>
+        ) : (
+          <>
+            <NavbarItem>
+              <AuthButtons />
+            </NavbarItem>
+            <NavbarItem>
+              <Button
+                isIconOnly
+                variant="light"
+                onClick={handleCartClick}
+                className="relative"
+              >
+                <ShoppingCart className="h-6 w-6" />
+                {items.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-accent text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                    {items.length}
+                  </span>
+                )}
+              </Button>
+            </NavbarItem>
+          </>
+        )}
+      </NavbarContent>
 
-        <div className="flex flex-1 items-center justify-end space-x-4">
-          <nav className="flex items-center space-x-2">
+      <NavbarContent className="sm:hidden" justify="end">
+        <NavbarItem>
+          <Button
+            isIconOnly
+            variant="light"
+            onClick={handleCartClick}
+            className="relative"
+          >
+            <ShoppingCart className="h-6 w-6" />
+            {items.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-accent text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                {items.length}
+              </span>
+            )}
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
+
+      <NavbarMenu className="fixed top-[var(--navbar-height)] left-0 right-0 bottom-0 bg-background/70 backdrop-blur-md backdrop-saturate-150 pt-6">
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item.name}-${index}`}>
+            <Link
+              to={item.href}
+              className="w-full text-foreground hover:text-accent transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.name}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+        <NavbarMenuItem>
+          <div className="flex items-center gap-2">
             <ThemeToggle />
-            {user ? <UserMenu /> : <LoginDialog />}
-          </nav>
-        </div>
-      </div>
-    </nav>
+          </div>
+        </NavbarMenuItem>
+        {!user && (
+          <NavbarMenuItem>
+            <AuthButtons />
+          </NavbarMenuItem>
+        )}
+        {user && (
+          <NavbarMenuItem>
+            <ProfileDropdown />
+          </NavbarMenuItem>
+        )}
+      </NavbarMenu>
+    </NextUINavbar>
   );
 };
 

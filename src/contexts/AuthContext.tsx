@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { Session, User, SupabaseClient } from '@supabase/supabase-js';
+import { Session, User } from '@supabase/supabase-js';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { UserProfile } from '@/types/auth';
 
@@ -27,10 +27,9 @@ interface AuthContextType {
   signOut: () => Promise<void>;
   signUp: (email: string, password: string, role: UserRole) => Promise<AuthResponse>;
   signIn: SignInMethods;
-  supabase: SupabaseClient<any, "public", any>;
 }
 
-export const AuthContext = createContext<AuthContextType>({
+const AuthContext = createContext<AuthContextType>({
   session: null,
   user: null,
   userProfile: null,
@@ -42,15 +41,10 @@ export const AuthContext = createContext<AuthContextType>({
     google: async () => ({ error: null }),
     facebook: async () => ({ error: null }),
   },
-  supabase: {} as SupabaseClient<any, "public", any>,
 });
 
 export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
+  return useContext(AuthContext);
 };
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -122,7 +116,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     signOut,
     signUp,
     signIn,
-    supabase,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
