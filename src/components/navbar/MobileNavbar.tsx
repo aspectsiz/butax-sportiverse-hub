@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { NavbarContent, NavbarItem, NavbarMenuItem, Button } from "@nextui-org/react";
+import { Link, useNavigate } from "react-router-dom";
+import { NavbarContent, NavbarItem, NavbarMenuItem, Button, NavbarMenu } from "@nextui-org/react";
 import { ShoppingCart, LogIn, UserPlus } from "lucide-react";
 import { ProfileDropdown } from "../auth/ProfileDropdown";
 import { ThemeToggle } from "../ThemeToggle";
@@ -14,6 +14,8 @@ interface MobileNavbarProps {
 export const MobileNavbar = ({ setIsMenuOpen }: MobileNavbarProps) => {
   const { user } = useAuth();
   const { items } = useCart();
+  const navigate = useNavigate();
+  
   const handleCartClick = () => {
     navigate('/checkout');
   };
@@ -43,7 +45,7 @@ export const MobileNavbar = ({ setIsMenuOpen }: MobileNavbarProps) => {
         )}
       </NavbarContent>
 
-      <NavbarMenu className="fixed top-[var(--navbar-height)] left-0 right-0 bottom-0 bg-background/70 backdrop-blur-md backdrop-saturate-150 pt-6">
+      <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item.name}-${index}`}>
             <Link

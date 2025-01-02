@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { NavbarContent, NavbarItem, Button } from "@nextui-org/react";
 import { ShoppingCart } from "lucide-react";
 import { ThemeToggle } from "../ThemeToggle";
@@ -9,6 +9,8 @@ import { useCart } from "@/store/useCart";
 export const NavbarActions = () => {
   const { user } = useAuth();
   const { items } = useCart();
+  const navigate = useNavigate();
+  
   const handleCartClick = () => {
     navigate('/checkout');
   };
