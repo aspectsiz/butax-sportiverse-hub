@@ -34,74 +34,74 @@ const Footer = () => {
   return (
     <footer className="bg-secondary mt-auto w-full">
       <div className="max-w-7xl mx-auto px-4 py-12 md:py-16">
-        {/* Mobile View with Accordion */}
-        <div className="md:hidden">
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="info">
-              <AccordionTrigger className="text-xl font-semibold text-white">
-                Info
-              </AccordionTrigger>
-              <AccordionContent>
-                <ul className="space-y-2">
-                  {footerLinks.info.map((link) => (
-                    <li key={link.label}>
-                      <Link
-                        to={link.to}
-                        className="text-gray-300 hover:text-white transition-colors"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Mobile View with Accordion */}
+          <div className="md:hidden col-span-1">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="info">
+                <AccordionTrigger className="text-xl font-semibold text-white">
+                  Info
+                </AccordionTrigger>
+                <AccordionContent>
+                  <ul className="space-y-2">
+                    {footerLinks.info.map((link) => (
+                      <li key={link.label}>
+                        <Link
+                          to={link.to}
+                          className="text-gray-300 hover:text-white transition-colors"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
 
-            <AccordionItem value="explore">
-              <AccordionTrigger className="text-xl font-semibold text-white">
-                Explore
-              </AccordionTrigger>
-              <AccordionContent>
-                <ul className="space-y-2">
-                  {footerLinks.explore.map((link) => (
-                    <li key={link.label}>
-                      <Link
-                        to={link.to}
-                        className="text-gray-300 hover:text-white transition-colors"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
+              <AccordionItem value="explore">
+                <AccordionTrigger className="text-xl font-semibold text-white">
+                  Explore
+                </AccordionTrigger>
+                <AccordionContent>
+                  <ul className="space-y-2">
+                    {footerLinks.explore.map((link) => (
+                      <li key={link.label}>
+                        <Link
+                          to={link.to}
+                          className="text-gray-300 hover:text-white transition-colors"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
 
-            <AccordionItem value="legal">
-              <AccordionTrigger className="text-xl font-semibold text-white">
-                Legal
-              </AccordionTrigger>
-              <AccordionContent>
-                <ul className="space-y-2">
-                  {footerLinks.legal.map((link) => (
-                    <li key={link.label}>
-                      <Link
-                        to={link.to}
-                        className="text-gray-300 hover:text-white transition-colors"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
+              <AccordionItem value="legal">
+                <AccordionTrigger className="text-xl font-semibold text-white">
+                  Legal
+                </AccordionTrigger>
+                <AccordionContent>
+                  <ul className="space-y-2">
+                    {footerLinks.legal.map((link) => (
+                      <li key={link.label}>
+                        <Link
+                          to={link.to}
+                          className="text-gray-300 hover:text-white transition-colors"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
 
-        {/* Desktop View */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-          <div>
+          {/* Desktop View */}
+          <div className="hidden md:block">
             <h4 className="text-xl font-semibold text-white mb-4">Info</h4>
             <ul className="space-y-2">
               {footerLinks.info.map((link) => (
@@ -117,7 +117,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
+          <div className="hidden md:block">
             <h4 className="text-xl font-semibold text-white mb-4">Explore</h4>
             <ul className="space-y-2">
               {footerLinks.explore.map((link) => (
@@ -133,7 +133,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
+          <div className="hidden md:block">
             <h4 className="text-xl font-semibold text-white mb-4">Legal</h4>
             <ul className="space-y-2">
               {footerLinks.legal.map((link) => (
@@ -149,7 +149,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
+          {/* Newsletter Section - Visible in both mobile and desktop */}
+          <div className="col-span-1 md:col-span-1">
             <h4 className="text-xl font-semibold text-white mb-4">Newsletter</h4>
             <p className="text-gray-300 mb-4">
               Subscribe to our newsletter for updates and exclusive offers.
