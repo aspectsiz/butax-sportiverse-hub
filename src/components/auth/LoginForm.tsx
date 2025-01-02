@@ -10,6 +10,7 @@ import { SocialLoginButtons } from "./SocialLoginButtons";
 import { EmailField } from "./login/EmailField";
 import { PasswordField } from "./login/PasswordField";
 import { FormActions } from "./login/FormActions";
+import { Link } from 'react-router-dom';
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -22,6 +23,7 @@ interface LoginFormProps {
 
 export const LoginForm = ({ userType }: LoginFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { signIn } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
@@ -36,26 +38,41 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
 
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     try {
+      setIsLoading(true);
       const { error } = await signIn.email(values.email, values.password);
+      
       if (error) {
+        let errorMessage = "Invalid login credentials";
+        
+        if (error.message.includes("Email not confirmed")) {
+          errorMessage = "Please verify your email address before logging in";
+        } else if (error.message.includes("Invalid login credentials")) {
+          errorMessage = "The email or password you entered is incorrect";
+        }
+        
         toast({
-          title: "Error signing in",
-          description: error.message,
+          title: "Login failed",
+          description: errorMessage,
           variant: "destructive",
         });
+        
+        console.error("Login error:", error);
       } else {
         toast({
-          title: "Signed in successfully",
+          title: "Success",
           description: "Welcome back!",
         });
         navigate('/');
       }
     } catch (error) {
+      console.error("Unexpected error during login:", error);
       toast({
-        title: "Error signing in",
-        description: "An unexpected error occurred",
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
         variant: "destructive",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -69,13 +86,19 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
           setShowPassword={setShowPassword}
         />
 
-        <div className="flex justify-end">
-          <a href="#" className="text-sm text-primary hover:underline">
+        <div className="flex justify-between items-center">
+          <Link to="/signup" className="text-sm text-primary hover:underline">
+            Don't have an account? Sign up
+          </Link>
+          <Link to="/forgot-password" className="text-sm text-primary hover:underline">
             Forgot Password?
-          </a>
+          </Link>
         </div>
 
-        <FormActions onCancel={() => window.history.back()} />
+        <FormActions 
+          onCancel={() => window.history.back()} 
+          isLoading={isLoading}
+        />
 
         {userType === 'user' && <SocialLoginButtons />}
       </form>
