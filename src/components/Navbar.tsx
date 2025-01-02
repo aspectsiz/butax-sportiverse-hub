@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   Navbar as NextUINavbar,
@@ -17,7 +18,7 @@ import { UserMenu } from "./auth/UserMenu";
 const Navbar = () => {
   const location = useLocation();
   const { isAuthenticated, user } = useAuth();
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
     { name: "Home", href: "/" },
@@ -78,7 +79,7 @@ const Navbar = () => {
         </NavbarItem>
         <NavbarItem>
           {isAuthenticated && user ? (
-            <UserMenu user={user} />
+            <UserMenu />
           ) : (
             <AuthButtons />
           )}
