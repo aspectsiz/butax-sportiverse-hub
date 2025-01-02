@@ -5,15 +5,14 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
+  NavbarMenuToggle,
 } from "@nextui-org/react";
-import { ThemeToggle } from "./ThemeToggle";
-import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuthState";
-import { AuthButtons } from "./auth/AuthButtons";
+import { NavLinks } from "./navigation/NavLinks";
 import { UserMenu } from "./auth/UserMenu";
+import { AuthButtons } from "./auth/AuthButtons";
 
 const Navbar = () => {
   const location = useLocation();
@@ -23,60 +22,52 @@ const Navbar = () => {
   const menuItems = [
     { name: "Home", href: "/" },
     { name: "Shop", href: "/shop" },
+    { name: "Blog", href: "/blog" },
+    { name: "Franchise", href: "/franchise" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
-    { name: "Franchise", href: "/franchise" },
   ];
 
   return (
     <NextUINavbar
-      isBordered
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
-      className="fixed top-0 left-0 right-0 bg-background/70 backdrop-blur-md backdrop-saturate-150 z-[100]"
-      maxWidth="2xl"
+      className="fixed w-full"
+      maxWidth="xl"
+      position="sticky"
     >
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="text-foreground"
         />
       </NavbarContent>
 
-      <NavbarContent className="pr-3" justify="center">
+      <NavbarContent className="sm:hidden pr-3" justify="center">
         <NavbarBrand>
-          <Link to="/" className="font-bold text-inherit flex gap-1">
+          <Link to="/" className="flex items-center gap-3">
             <img
               src="/lovable-uploads/butax-logo.png"
-              alt="BUTAX Logo"
-              className="h-8 w-auto"
+              alt="Butax Logo"
+              className="h-8"
             />
           </Link>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        {menuItems.map((item, index) => (
-          <NavbarItem
-            key={`${item}-${index}`}
-            isActive={location.pathname === item.href}
-          >
-            <Link
-              to={item.href}
-              className={`text-foreground/90 hover:text-foreground ${
-                location.pathname === item.href ? "font-semibold" : ""
-              }`}
-            >
-              {item.name}
-            </Link>
-          </NavbarItem>
-        ))}
+        <NavbarBrand>
+          <Link to="/" className="flex items-center gap-3">
+            <img
+              src="/lovable-uploads/butax-logo.png"
+              alt="Butax Logo"
+              className="h-8"
+            />
+          </Link>
+        </NavbarBrand>
+        <NavLinks />
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <NavbarItem className="hidden sm:flex">
-          <ThemeToggle />
-        </NavbarItem>
         <NavbarItem>
           {isAuthenticated && user ? (
             <UserMenu />
@@ -86,13 +77,15 @@ const Navbar = () => {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu className="fixed top-[64px] left-0 right-0 bottom-0 bg-background/70 backdrop-blur-md backdrop-saturate-150 pt-6 z-[99]">
+      <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item.name}-${index}`}>
             <Link
               to={item.href}
-              className={`w-full text-foreground/90 hover:text-foreground ${
-                location.pathname === item.href ? "font-semibold" : ""
+              className={`w-full ${
+                location.pathname === item.href
+                  ? "text-primary"
+                  : "text-foreground/70"
               }`}
               onClick={() => setIsMenuOpen(false)}
             >
@@ -100,9 +93,6 @@ const Navbar = () => {
             </Link>
           </NavbarMenuItem>
         ))}
-        <NavbarMenuItem>
-          <ThemeToggle />
-        </NavbarMenuItem>
       </NavbarMenu>
     </NextUINavbar>
   );

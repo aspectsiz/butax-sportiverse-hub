@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Session, useSupabaseClient, useSession } from '@supabase/auth-helpers-react';
+import { useEffect, useState } from 'react';
+import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { User } from '@supabase/supabase-js';
 import { UserProfile } from '@/types/auth';
 import { fetchUserProfile } from '@/services/authService';
@@ -20,11 +20,12 @@ export const useAuth = () => {
           setUserProfile(profile);
         }
       });
+    } else {
+      setUserProfile(null);
     }
   }, [session]);
 
   return {
-    session,
     user,
     userProfile,
     setUserProfile,

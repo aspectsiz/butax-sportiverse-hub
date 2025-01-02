@@ -1,49 +1,49 @@
+import { Link } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/contexts/AuthContext";
-import { UserCircle } from "lucide-react";
-import { useToast } from "@/components/ui/use-toast";
+import { useAuth } from "@/hooks/useAuthState";
 
 export const UserMenu = () => {
-  const { user, signOut } = useAuth();
-  const { toast } = useToast();
+  const { user, supabase } = useAuth();
 
   const handleSignOut = async () => {
-    try {
-      await signOut();
-      toast({
-        title: "Signed out successfully",
-        description: "You have been signed out of your account.",
-      });
-    } catch (error) {
-      toast({
-        title: "Error signing out",
-        description: "An error occurred while signing out.",
-        variant: "destructive",
-      });
-    }
+    await supabase.auth.signOut();
   };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative">
-          <UserCircle className="h-5 w-5" />
-          <span className="sr-only">User menu</span>
+        <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+          <img
+            src={user?.user_metadata?.avatar_url || "/placeholder.svg"}
+            alt="User avatar"
+            className="h-8 w-8 rounded-full"
+          />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem className="font-medium">
-          {user?.email}
+      <DropdownMenuContent className="w-56" align="end" forceMount>
+        <DropdownMenuLabel className="font-normal">
+          <div className="flex flex-col space-y-1">
+            <p className="text-sm font-medium leading-none">
+              {user?.user_metadata?.full_name || user?.email}
+            </p>
+            <p className="text-xs leading-none text-muted-foreground">
+              {user?.email}
+            </p>
+          </div>
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+          <Link to="/user/profile">Profile</Link>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={handleSignOut}>
-          Sign out
-        </DropdownMenuItem>
+        <DropdownMenuItem onClick={handleSignOut}>Sign out</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
