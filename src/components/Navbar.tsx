@@ -40,11 +40,14 @@ const Navbar = () => {
       isBordered 
       isMenuOpen={isMenuOpen} 
       onMenuOpenChange={setIsMenuOpen}
-      className="bg-background/70 backdrop-blur-md backdrop-saturate-150 z-50"
+      className="fixed top-0 left-0 right-0 bg-background/70 backdrop-blur-md backdrop-saturate-150 z-50"
       maxWidth="2xl"
     >
       <NavbarContent className="sm:hidden" justify="start">
-        <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
+        <NavbarMenuToggle 
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"} 
+          className="text-foreground"
+        />
       </NavbarContent>
 
       <NavbarContent className="pr-3" justify="center">
@@ -136,7 +139,7 @@ const Navbar = () => {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu className="bg-background/70 backdrop-blur-md backdrop-saturate-150 pt-6">
+      <NavbarMenu className="fixed top-[var(--navbar-height)] left-0 right-0 bottom-0 bg-background/70 backdrop-blur-md backdrop-saturate-150 pt-6">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item.name}-${index}`}>
             <Link
