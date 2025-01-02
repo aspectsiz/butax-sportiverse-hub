@@ -1,11 +1,4 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useCart } from "@/store/useCart";
-import { useAuth } from "@/contexts/AuthContext";
-import { ThemeToggle } from "./ThemeToggle";
-import { ProfileDropdown } from "./auth/ProfileDropdown";
-import { AuthButtons } from "./auth/AuthButtons";
-import { ShoppingCart } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import {
   Navbar as NextUINavbar,
   NavbarBrand,
@@ -14,14 +7,17 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-  Button,
 } from "@nextui-org/react";
+import { ThemeToggle } from "./ThemeToggle";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuthState";
+import { AuthButtons } from "./auth/AuthButtons";
+import { UserMenu } from "./auth/UserMenu";
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate();
-  const { items } = useCart();
-  const { user } = useAuth();
+  const location = useLocation();
+  const { isAuthenticated, user } = useAuth();
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
     { name: "Home", href: "/" },
@@ -31,39 +27,44 @@ const Navbar = () => {
     { name: "Franchise", href: "/franchise" },
   ];
 
-  const handleCartClick = () => {
-    navigate('/checkout');
-  };
-
   return (
-    <NextUINavbar 
-      isBordered 
-      isMenuOpen={isMenuOpen} 
+    <NextUINavbar
+      isBordered
+      isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
-      className="fixed top-0 left-0 right-0 bg-background/70 backdrop-blur-md backdrop-saturate-150 z-50"
+      className="fixed top-0 left-0 right-0 bg-background/70 backdrop-blur-md backdrop-saturate-150 z-[100]"
       maxWidth="2xl"
     >
       <NavbarContent className="sm:hidden" justify="start">
-        <NavbarMenuToggle 
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"} 
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="text-foreground"
         />
       </NavbarContent>
 
       <NavbarContent className="pr-3" justify="center">
         <NavbarBrand>
-          <Link to="/" className="font-heading text-xl font-bold text-foreground">
-            BUTAX
+          <Link to="/" className="font-bold text-inherit flex gap-1">
+            <img
+              src="/lovable-uploads/butax-logo.png"
+              alt="BUTAX Logo"
+              className="h-8 w-auto"
+            />
           </Link>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        {menuItems.map((item) => (
-          <NavbarItem key={item.name}>
-            <Link 
+        {menuItems.map((item, index) => (
+          <NavbarItem
+            key={`${item}-${index}`}
+            isActive={location.pathname === item.href}
+          >
+            <Link
               to={item.href}
-              className="text-foreground hover:text-accent transition-colors"
+              className={`text-foreground/90 hover:text-foreground ${
+                location.pathname === item.href ? "font-semibold" : ""
+              }`}
             >
               {item.name}
             </Link>
@@ -71,80 +72,27 @@ const Navbar = () => {
         ))}
       </NavbarContent>
 
-      <NavbarContent justify="end" className="hidden sm:flex">
-        <NavbarItem>
+      <NavbarContent justify="end">
+        <NavbarItem className="hidden sm:flex">
           <ThemeToggle />
         </NavbarItem>
-        
-        {user ? (
-          <>
-            <NavbarItem>
-              <ProfileDropdown />
-            </NavbarItem>
-            <NavbarItem>
-              <Button
-                isIconOnly
-                variant="light"
-                onClick={handleCartClick}
-                className="relative"
-              >
-                <ShoppingCart className="h-6 w-6" />
-                {items.length > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-accent text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                    {items.length}
-                  </span>
-                )}
-              </Button>
-            </NavbarItem>
-          </>
-        ) : (
-          <>
-            <NavbarItem>
-              <AuthButtons />
-            </NavbarItem>
-            <NavbarItem>
-              <Button
-                isIconOnly
-                variant="light"
-                onClick={handleCartClick}
-                className="relative"
-              >
-                <ShoppingCart className="h-6 w-6" />
-                {items.length > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-accent text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                    {items.length}
-                  </span>
-                )}
-              </Button>
-            </NavbarItem>
-          </>
-        )}
-      </NavbarContent>
-
-      <NavbarContent className="sm:hidden" justify="end">
         <NavbarItem>
-          <Button
-            isIconOnly
-            variant="light"
-            onClick={handleCartClick}
-            className="relative"
-          >
-            <ShoppingCart className="h-6 w-6" />
-            {items.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-accent text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                {items.length}
-              </span>
-            )}
-          </Button>
+          {isAuthenticated && user ? (
+            <UserMenu user={user} />
+          ) : (
+            <AuthButtons />
+          )}
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu className="fixed top-[var(--navbar-height)] left-0 right-0 bottom-0 bg-background/70 backdrop-blur-md backdrop-saturate-150 pt-6">
+      <NavbarMenu className="fixed top-[64px] left-0 right-0 bottom-0 bg-background/70 backdrop-blur-md backdrop-saturate-150 pt-6 z-[99]">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item.name}-${index}`}>
             <Link
               to={item.href}
-              className="w-full text-foreground hover:text-accent transition-colors"
+              className={`w-full text-foreground/90 hover:text-foreground ${
+                location.pathname === item.href ? "font-semibold" : ""
+              }`}
               onClick={() => setIsMenuOpen(false)}
             >
               {item.name}
@@ -152,20 +100,8 @@ const Navbar = () => {
           </NavbarMenuItem>
         ))}
         <NavbarMenuItem>
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
-          </div>
+          <ThemeToggle />
         </NavbarMenuItem>
-        {!user && (
-          <NavbarMenuItem>
-            <AuthButtons />
-          </NavbarMenuItem>
-        )}
-        {user && (
-          <NavbarMenuItem>
-            <ProfileDropdown />
-          </NavbarMenuItem>
-        )}
       </NavbarMenu>
     </NextUINavbar>
   );
