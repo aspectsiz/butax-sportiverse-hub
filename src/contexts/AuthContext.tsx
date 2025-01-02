@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { Session, User } from '@supabase/supabase-js';
+import { Session, User, SupabaseClient } from '@supabase/supabase-js';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { UserProfile } from '@/types/auth';
 
@@ -27,7 +27,7 @@ interface AuthContextType {
   signOut: () => Promise<void>;
   signUp: (email: string, password: string, role: UserRole) => Promise<AuthResponse>;
   signIn: SignInMethods;
-  supabase: ReturnType<typeof useSupabaseClient>;
+  supabase: SupabaseClient<any, "public", any>;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -42,7 +42,7 @@ export const AuthContext = createContext<AuthContextType>({
     google: async () => ({ error: null }),
     facebook: async () => ({ error: null }),
   },
-  supabase: {} as ReturnType<typeof useSupabaseClient>,
+  supabase: {} as SupabaseClient<any, "public", any>,
 });
 
 export const useAuth = () => {
