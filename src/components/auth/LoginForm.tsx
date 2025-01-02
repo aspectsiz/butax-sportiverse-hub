@@ -37,34 +37,37 @@ export const LoginForm = ({ userType }: LoginFormProps) => {
   });
 
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
-      const { error } = await signIn.email(values.email, values.password);
+      const response = await signIn.email(values.email, values.password);
       
-      if (error) {
-        let errorMessage = "Invalid login credentials";
+      if (response.error) {
+        const errorMessage = response.error.message;
+        let displayMessage = "Invalid login credentials";
         
-        if (error.message.includes("Email not confirmed")) {
-          errorMessage = "Please verify your email address before logging in";
-        } else if (error.message.includes("Invalid login credentials")) {
-          errorMessage = "The email or password you entered is incorrect";
+        if (errorMessage.includes("Email not confirmed")) {
+          displayMessage = "Please verify your email address before logging in";
+        } else if (errorMessage.includes("Invalid login credentials")) {
+          displayMessage = "The email or password you entered is incorrect";
         }
         
         toast({
           title: "Login failed",
-          description: errorMessage,
+          description: displayMessage,
           variant: "destructive",
         });
         
-        console.error("Login error:", error);
-      } else {
-        toast({
-          title: "Success",
-          description: "Welcome back!",
-        });
-        navigate('/');
+        console.error("Login error:", response.error);
+        return;
       }
-    } catch (error) {
+      
+      toast({
+        title: "Success",
+        description: "Welcome back!",
+      });
+      navigate('/');
+      
+    } catch (error: any) {
       console.error("Unexpected error during login:", error);
       toast({
         title: "Error",
