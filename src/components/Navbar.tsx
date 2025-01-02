@@ -4,8 +4,7 @@ import { useCart } from "@/store/useCart";
 import { useAuth } from "@/contexts/AuthContext";
 import { ThemeToggle } from "./ThemeToggle";
 import { ProfileDropdown } from "./auth/ProfileDropdown";
-import { AuthButtons } from "./auth/AuthButtons";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, LogIn, UserPlus } from "lucide-react";
 import {
   Navbar as NextUINavbar,
   NavbarBrand,
@@ -100,7 +99,20 @@ const Navbar = () => {
         ) : (
           <>
             <NavbarItem>
-              <AuthButtons />
+              <Link 
+                to="/signin" 
+                className="text-foreground hover:text-[#006fee] transition-colors"
+              >
+                Sign In
+              </Link>
+            </NavbarItem>
+            <NavbarItem>
+              <Link 
+                to="/signup"
+                className="text-foreground hover:text-accent transition-colors"
+              >
+                Sign Up
+              </Link>
             </NavbarItem>
             <NavbarItem>
               <Button
@@ -127,7 +139,7 @@ const Navbar = () => {
             isIconOnly
             variant="light"
             onClick={handleCartClick}
-            className="relative"
+            className="relative mr-2"
           >
             <ShoppingCart className="h-6 w-6" />
             {items.length > 0 && (
@@ -137,6 +149,11 @@ const Navbar = () => {
             )}
           </Button>
         </NavbarItem>
+        {user && (
+          <NavbarItem>
+            <ProfileDropdown />
+          </NavbarItem>
+        )}
       </NavbarContent>
 
       <NavbarMenu className="fixed top-[var(--navbar-height)] left-0 right-0 bottom-0 bg-background/70 backdrop-blur-md backdrop-saturate-150 pt-6">
@@ -151,21 +168,35 @@ const Navbar = () => {
             </Link>
           </NavbarMenuItem>
         ))}
+        {!user && (
+          <>
+            <NavbarMenuItem>
+              <Link
+                to="/signin"
+                className="w-full flex items-center gap-2 text-foreground hover:text-[#006fee] transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <LogIn className="h-4 w-4" />
+                Sign In
+              </Link>
+            </NavbarMenuItem>
+            <NavbarMenuItem>
+              <Link
+                to="/signup"
+                className="w-full flex items-center gap-2 text-foreground hover:text-accent transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <UserPlus className="h-4 w-4" />
+                Sign Up
+              </Link>
+            </NavbarMenuItem>
+          </>
+        )}
         <NavbarMenuItem>
           <div className="flex items-center gap-2">
             <ThemeToggle />
           </div>
         </NavbarMenuItem>
-        {!user && (
-          <NavbarMenuItem>
-            <AuthButtons />
-          </NavbarMenuItem>
-        )}
-        {user && (
-          <NavbarMenuItem>
-            <ProfileDropdown />
-          </NavbarMenuItem>
-        )}
       </NavbarMenu>
     </NextUINavbar>
   );
