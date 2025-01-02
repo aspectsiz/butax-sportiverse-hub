@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '@/hooks/useAuthState';
+import { useAuth } from '@/contexts/AuthContext';
 import { NavLinks } from './navigation/NavLinks';
 import { ThemeToggle } from './ThemeToggle';
 import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { Menu } from 'lucide-react';
-import UserMenu from './auth/UserMenu';
-import LoginDialog from './auth/LoginDialog';
+import { UserMenu } from './auth/UserMenu';
+import { LoginDialog } from './auth/LoginDialog';
 
 const Navbar = () => {
   const { user } = useAuth();

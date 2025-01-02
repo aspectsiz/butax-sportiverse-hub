@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/hooks/useAuthState";
+import { useAuth } from "@/contexts/AuthContext";
 
 export const UserMenu = () => {
   const { user, supabase } = useAuth();

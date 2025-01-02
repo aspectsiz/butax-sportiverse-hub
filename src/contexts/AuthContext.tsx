@@ -27,9 +27,10 @@ interface AuthContextType {
   signOut: () => Promise<void>;
   signUp: (email: string, password: string, role: UserRole) => Promise<AuthResponse>;
   signIn: SignInMethods;
+  supabase: ReturnType<typeof useSupabaseClient>;
 }
 
-const AuthContext = createContext<AuthContextType>({
+export const AuthContext = createContext<AuthContextType>({
   session: null,
   user: null,
   userProfile: null,
@@ -41,10 +42,15 @@ const AuthContext = createContext<AuthContextType>({
     google: async () => ({ error: null }),
     facebook: async () => ({ error: null }),
   },
+  supabase: {} as ReturnType<typeof useSupabaseClient>,
 });
 
 export const useAuth = () => {
-  return useContext(AuthContext);
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
 };
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -116,6 +122,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     signOut,
     signUp,
     signIn,
+    supabase,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
