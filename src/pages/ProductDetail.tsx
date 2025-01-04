@@ -4,6 +4,8 @@ import { useCart } from '@/store/useCart';
 import { useToast } from '@/components/ui/use-toast';
 import { mockProducts } from '@/data/products';
 import ProductSchema from '@/components/shop/ProductSchema';
+import { ProductImageCarousel } from '@/components/shop/ProductImageCarousel';
+import { ProductSpecs } from '@/components/shop/ProductSpecs';
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -13,13 +15,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Link } from 'react-router-dom';
-import { ArrowLeftIcon, DumbbellIcon, SofaIcon, ShirtIcon } from 'lucide-react';
-
-const categoryIcons = {
-  'sports-equipment': <DumbbellIcon className="w-6 h-6" />,
-  'urban-furniture': <SofaIcon className="w-6 h-6" />,
-  'sportswear': <ShirtIcon className="w-6 h-6" />,
-};
+import { Star } from 'lucide-react';
 
 const ProductDetail = () => {
   const { category, slug } = useParams();
@@ -40,7 +36,7 @@ const ProductDetail = () => {
           onClick={() => navigate('/shop')}
           className="mb-4"
         >
-          <ArrowLeftIcon className="mr-2 h-4 w-4" /> Back to Shop
+          Back to Shop
         </Button>
         <div className="text-center py-12">
           <p className="text-lg text-muted-foreground">Product not found.</p>
@@ -57,71 +53,78 @@ const ProductDetail = () => {
     });
   };
 
+  // Mock multiple images for the carousel
+  const productImages = [
+    product.imageUrl,
+    product.imageUrl, // In a real app, you'd have multiple different images
+    product.imageUrl,
+  ];
+
   return (
     <main className="container mx-auto px-4 pt-24 pb-8">
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <Link to="/" className="transition-colors hover:text-foreground">Home</Link>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <Link to="/shop" className="transition-colors hover:text-foreground">Shop</Link>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <Link 
-              to={`/shop/${category}`}
-              className="transition-colors hover:text-foreground"
-            >
-              {category?.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
-            </Link>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>{product.name}</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
-      <Button
-        variant="ghost"
-        onClick={() => navigate('/shop')}
-        className="mb-8"
-      >
-        <ArrowLeftIcon className="mr-2 h-4 w-4" /> Back to Shop
-      </Button>
+      <div className="mb-8">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <Link to="/" className="text-muted-foreground hover:text-foreground">
+                Home
+              </Link>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <Link to="/shop" className="text-muted-foreground hover:text-foreground">
+                Shop
+              </Link>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <Link 
+                to={`/shop/${category}`}
+                className="text-muted-foreground hover:text-foreground"
+              >
+                {category?.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+              </Link>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{product.name}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
 
       <div className="grid md:grid-cols-2 gap-8">
         <div>
-          <img
-            src={product.imageUrl}
-            alt={product.name}
-            className="w-full rounded-lg shadow-lg"
+          <ProductImageCarousel 
+            images={productImages}
+            productName={product.name}
           />
         </div>
 
-        <div className="space-y-6">
-          <div className="flex items-center gap-2">
-            {categoryIcons[product.category]}
-            <span className="text-sm text-muted-foreground capitalize">
-              {product.category.split('-').join(' ')}
-            </span>
+        <div className="space-y-8">
+          <div>
+            <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="flex">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <Star
+                    key={star}
+                    className="w-5 h-5 fill-primary text-primary"
+                  />
+                ))}
+              </div>
+              <span className="text-sm text-muted-foreground">(4.8/5)</span>
+            </div>
+            <p className="text-lg text-muted-foreground">{product.description}</p>
           </div>
 
-          <h1 className="text-4xl font-bold">{product.name}</h1>
-          <p className="text-lg text-muted-foreground">{product.description}</p>
+          {!product.quoteOnly && (
+            <div className="text-3xl font-bold">
+              ${product.price.toFixed(2)}
+            </div>
+          )}
 
-          <div className="flex items-center justify-between">
-            {!product.quoteOnly ? (
-              <p className="text-3xl font-bold">${product.price.toFixed(2)}</p>
-            ) : (
-              <p className="text-2xl font-semibold text-accent">Request Quote</p>
-            )}
-            <p className="text-sm text-muted-foreground">
-              {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
-            </p>
-          </div>
+          <ProductSpecs product={product} />
 
           <Button
             onClick={handleAddToCart}
@@ -136,7 +139,7 @@ const ProductDetail = () => {
 
       <ProductSchema 
         product={product}
-        url={`https://yourwebsite.com/shop/${category}/${slug}`}
+        url={`${window.location.origin}/shop/${category}/${slug}`}
       />
     </main>
   );

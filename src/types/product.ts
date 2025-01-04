@@ -3,14 +3,24 @@ export interface Product {
   name: string;
   description: string;
   price: number;
-  category: 'sports-equipment' | 'urban-furniture' | 'sportswear';
+  category: string;
   imageUrl: string;
   stock: number;
   quoteOnly?: boolean;
-}
-
-export interface CartItem extends Product {
-  quantity: number;
+  specifications?: {
+    dimensions?: {
+      length: number;
+      width: number;
+      height: number;
+    };
+    weight?: number;
+    material?: string;
+    minUserHeight?: number;
+    safetyArea?: number;
+    installation?: string;
+    standard?: string;
+    origin?: string;
+  };
 }
 
 export interface CheckoutFormData {
