@@ -20,12 +20,12 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<MainLayout><Index /></MainLayout>} />
       <Route path="/shop" element={<MainLayout><Shop /></MainLayout>} />
+      <Route path="/shop/:category/:slug" element={<MainLayout><ProductDetail /></MainLayout>} />
       <Route path="/about" element={<MainLayout><About /></MainLayout>} />
       <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />
       <Route path="/franchise" element={<MainLayout><Franchise /></MainLayout>} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/shop/:id" element={<MainLayout><ProductDetail /></MainLayout>} />
       <Route path="/checkout" element={<MainLayout><Checkout /></MainLayout>} />
       
       {/* Protected Admin Routes */}
