@@ -29,6 +29,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
     });
   };
 
+  const getProductUrl = (product: Product) => {
+    const slug = product.name.toLowerCase().replace(/\s+/g, '-');
+    return `/shop/${product.category}/${slug}`;
+  };
+
   return (
     <Card className="flex flex-col">
       <CardHeader>
@@ -58,7 +63,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       </CardContent>
       <CardFooter className="flex gap-2">
         <Button
-          onClick={() => navigate(`/shop/${product.id}`)}
+          onClick={() => navigate(getProductUrl(product))}
           variant="outline"
           className="flex-1"
         >
