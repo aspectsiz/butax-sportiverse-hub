@@ -62,17 +62,20 @@ const ProductDetail = () => {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink as={Link} to="/">Home</BreadcrumbLink>
+            <Link to="/" className="transition-colors hover:text-foreground">Home</Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink as={Link} to="/shop">Shop</BreadcrumbLink>
+            <Link to="/shop" className="transition-colors hover:text-foreground">Shop</Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink as={Link} to={`/shop/${category}`}>
+            <Link 
+              to={`/shop/${category}`}
+              className="transition-colors hover:text-foreground"
+            >
               {category?.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
-            </BreadcrumbLink>
+            </Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
