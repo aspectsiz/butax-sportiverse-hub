@@ -1,7 +1,11 @@
+import { seoData } from '@/data/seoData';
+import { useSEO } from '@/hooks/useSEO';
 import { ArrowRight, DumbbellIcon, Sofa, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
+  useSEO(seoData.home);
+
   return (
     <>
       {/* Hero Section */}
