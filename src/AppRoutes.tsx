@@ -7,6 +7,7 @@ import Index from "@/pages/Index";
 import SignIn from "@/pages/SignIn";
 import SignUp from "@/pages/SignUp";
 import ProductDetail from "@/pages/ProductDetail";
+import CategoryPage from "@/pages/CategoryPage";
 import AdminDashboard from "@/pages/dashboards/AdminDashboard";
 import GymDealerDashboard from "@/pages/dashboards/GymDealerDashboard";
 import UserDashboard from "@/pages/dashboards/UserDashboard";
@@ -20,6 +21,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<MainLayout><Index /></MainLayout>} />
       <Route path="/shop" element={<MainLayout><Shop /></MainLayout>} />
+      <Route path="/shop/:category" element={<MainLayout><CategoryPage /></MainLayout>} />
       <Route path="/shop/:category/:slug" element={<MainLayout><ProductDetail /></MainLayout>} />
       <Route path="/about" element={<MainLayout><About /></MainLayout>} />
       <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />

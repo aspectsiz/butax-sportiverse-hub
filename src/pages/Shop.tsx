@@ -29,6 +29,14 @@ const Shop = () => {
     return matchesSearch && matchesCategory;
   });
 
+  const handleCategoryChange = (newCategory: string) => {
+    if (newCategory !== 'all') {
+      window.location.href = `/shop/${newCategory}`;
+    } else {
+      setCategory(newCategory);
+    }
+  };
+
   return (
     <main className="container mx-auto px-4 pt-24 pb-8">
       <Breadcrumb>
@@ -54,7 +62,7 @@ const Shop = () => {
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
         category={category}
-        onCategoryChange={setCategory}
+        onCategoryChange={handleCategoryChange}
       />
 
       <ProductGrid products={filteredProducts} />

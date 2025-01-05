@@ -35,5 +35,20 @@ export const seoData: SEODataMap = {
     title: "Contact BUTAX - Get in Touch",
     description: "Contact BUTAX for inquiries about our sports equipment, urban furniture, or franchise opportunities. We're here to help.",
     keywords: ["contact BUTAX", "customer support", "sales inquiry", "franchise information", "location"],
-  }
+  },
+  'sports-equipment': {
+    title: "Sports Equipment - BUTAX Sports",
+    description: "Discover our premium collection of sports equipment. Professional-grade fitness solutions for every workout need.",
+    keywords: ["sports equipment", "fitness equipment", "gym equipment", "workout gear", "BUTAX sports"],
+  },
+  'urban-furniture': {
+    title: "Urban Furniture - BUTAX Sports",
+    description: "Browse our modern urban furniture collection. Durable and stylish solutions for public spaces.",
+    keywords: ["urban furniture", "outdoor furniture", "public space furniture", "street furniture", "BUTAX furniture"],
+  },
+  'sportswear': {
+    title: "Sportswear - BUTAX Sports",
+    description: "Shop high-quality sportswear for maximum performance. Comfortable and durable athletic clothing.",
+    keywords: ["sportswear", "athletic wear", "gym clothes", "workout clothing", "BUTAX sportswear"],
+  },
 };
