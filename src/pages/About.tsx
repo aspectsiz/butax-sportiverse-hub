@@ -1,22 +1,20 @@
 import { Users, BrainCircuit, Lightbulb } from "lucide-react";
-import MainLayout from "@/components/layout/MainLayout";
 
 const About = () => {
   return (
-    <MainLayout>
-      <div className="w-full">
-        {/* Hero Section */}
-        <div className="hero-pattern pt-24 pb-16 px-4 sm:px-6 lg:px-8 w-full text-primary-foreground">
-          <div className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">About BUTAX</h1>
-            <p className="text-lg text-center max-w-2xl mx-auto">
-              Empowering fitness enthusiasts and gym owners with innovative solutions for a healthier tomorrow.
-            </p>
-          </div>
+    <div className="w-full">
+      {/* Hero Section */}
+      <div className="hero-pattern pt-24 pb-16 px-4 sm:px-6 lg:px-8 w-full text-primary-foreground">
+        <div className="container mx-auto px-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">About BUTAX</h1>
+          <p className="text-lg text-center max-w-2xl mx-auto">
+            Empowering fitness enthusiasts and gym owners with innovative solutions for a healthier tomorrow.
+          </p>
         </div>
+      </div>
 
-        {/* Mission & Vision */}
-        <div className="bg-background w-full py-16">
+      {/* Mission & Vision */}
+      <div className="bg-background w-full py-16">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-4">
               <div className="bg-background p-8 text-right">
@@ -81,10 +79,10 @@ const About = () => {
               </div>
             </div>
           </div>
-        </div>
+      </div>
 
-        {/* Team Section */}
-        <div className="hero-pattern py-16">
+      {/* Team Section */}
+      <div className="hero-pattern py-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 text-primary-foreground">Our Team</h2>
@@ -104,9 +102,8 @@ const About = () => {
               ))}
             </div>
           </div>
-        </div>
       </div>
-    </MainLayout>
+    </div>
   );
 };
 
