@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'next-themes'
 import { createClient } from '@supabase/supabase-js'
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AuthProvider } from './contexts/AuthContext'
 import App from './App'
 import './index.css'
@@ -42,14 +43,26 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   },
 })
 
+// Create a client
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000, // 1 minute
+      retry: 1,
+    },
+  },
+})
+
 createRoot(document.getElementById("root")!).render(
-  <SessionContextProvider supabaseClient={supabase}>
-    <BrowserRouter>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
-      </ThemeProvider>
-    </BrowserRouter>
-  </SessionContextProvider>
+  <QueryClientProvider client={queryClient}>
+    <SessionContextProvider supabaseClient={supabase}>
+      <BrowserRouter>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <AuthProvider>
+            <App />
+          </AuthProvider>
+        </ThemeProvider>
+      </BrowserRouter>
+    </SessionContextProvider>
+  </QueryClientProvider>
 );
