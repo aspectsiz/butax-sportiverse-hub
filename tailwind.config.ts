@@ -38,6 +38,10 @@ export default {
           DEFAULT: "#fb041c",
           foreground: "#ffffff",
         },
+        popover: {
+          DEFAULT: "#ffffff",
+          foreground: "#1c1b1c",
+        },
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
