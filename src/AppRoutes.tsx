@@ -12,6 +12,7 @@ import AdminDashboard from "@/pages/dashboards/AdminDashboard";
 import GymDealerDashboard from "@/pages/dashboards/GymDealerDashboard";
 import UserDashboard from "@/pages/dashboards/UserDashboard";
 import UserProfile from "@/pages/UserProfile";
+import OrdersPage from "@/pages/user/OrdersPage";
 import Checkout from "@/components/shop/Checkout";
 import MainLayout from "@/components/layout/MainLayout";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
@@ -65,6 +66,16 @@ const AppRoutes = () => {
           <ProtectedRoute allowedRoles={['user', 'admin', 'gym_dealer']}>
             <MainLayout>
               <UserProfile />
+            </MainLayout>
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/user/orders" 
+        element={
+          <ProtectedRoute allowedRoles={['user', 'admin', 'gym_dealer']}>
+            <MainLayout>
+              <OrdersPage />
             </MainLayout>
           </ProtectedRoute>
         } 
