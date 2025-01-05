@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ProductGrid from '@/components/shop/ProductGrid';
 import ProductFilters from '@/components/shop/ProductFilters';
 import { mockProducts } from '@/data/products';
@@ -17,6 +18,7 @@ import { Link, useParams } from 'react-router-dom';
 
 const CategoryPage = () => {
   const { category } = useParams();
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   
   // Get the formatted category name for display
@@ -35,6 +37,15 @@ const CategoryPage = () => {
   const filteredProducts = categoryProducts.filter((product) => {
     return product.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
+
+  // Handle category change
+  const handleCategoryChange = (newCategory: string) => {
+    if (newCategory === 'all') {
+      navigate('/shop');
+    } else {
+      navigate(`/shop/${newCategory}`);
+    }
+  };
 
   // Use SEO data for the category
   useSEO(seoData[category as keyof typeof seoData] || seoData.shop);
@@ -68,7 +79,7 @@ const CategoryPage = () => {
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
         category={category || ''}
-        onCategoryChange={() => {}}
+        onCategoryChange={handleCategoryChange}
       />
 
       <ProductGrid products={filteredProducts} />
