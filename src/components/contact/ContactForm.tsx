@@ -8,54 +8,53 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
+    from_name: "",
+    from_telephone: "",
+    from_email: "",
     subject: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
-  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => { //React.FormEvent deleted
     e.preventDefault();
     
     const recaptchaValue = recaptchaRef.current?.getValue();
     if (!recaptchaValue) {
-      toast.error("Please complete the reCAPTCHA verification");
+      toast.error("Lütfen reCAPTCHA doğrulamasını yapın.");
       return;
     }
 
     setIsSubmitting(true);
 
     try {
-      await emailjs.sendForm(
-        'service_7asx2wr',
-        'template_etcz4o2',
-        formRef.current!,
-        'M2IlryvIugq40vxvc'
-      );
+        await emailjs.sendForm(
+          'service_7asx2wr',
+          'template_etcz4o2',
+          e.target, // e.target instead of formRef.current!
+          'M2IlryvIugq40vxvc'
+        );
 
-      toast.success("Thank you! We will get back to you shortly.");
+      toast.success("Thank you! We will get back to you as soon as possible.");
       setFormData({
-        name: "",
-        phone: "",
-        email: "",
+        from_name: "",
+        from_telephone: "",
+        from_email: "",
         subject: "",
         message: ""
       });
       recaptchaRef.current?.reset();
     } catch (error) {
       console.error('EmailJS Error:', error);
-      toast.error("Oops! Something went wrong. Please try again.");
+      toast.error("An error has occurred. Please try again or call us.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -65,7 +64,7 @@ const ContactForm = () => {
   };
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6"> {/*formRef deleted*/}
       <div>
         <h2 className="text-3xl font-bold mb-6">Send us a Message</h2>
       </div>
@@ -73,9 +72,10 @@ const ContactForm = () => {
       <div className="space-y-4">
         <div>
           <Input
+            type="text"
             placeholder="Your Name"
-            name="name"
-            value={formData.name}
+            name="from_name"
+            value={formData.from_name}
             onChange={handleChange}
             required
           />
@@ -85,8 +85,8 @@ const ContactForm = () => {
           <Input
             type="tel"
             placeholder="Your Phone Number"
-            name="phone"
-            value={formData.phone}
+            name="from_telephone"
+            value={formData.from_telephone}
             onChange={handleChange}
             required
           />
@@ -96,8 +96,8 @@ const ContactForm = () => {
           <Input
             type="email"
             placeholder="Your Email"
-            name="email"
-            value={formData.email}
+            name="from_email"
+            value={formData.from_email}
             onChange={handleChange}
             required
           />
@@ -127,7 +127,7 @@ const ContactForm = () => {
         <div className="flex justify-center my-4">
           <ReCAPTCHA
             ref={recaptchaRef}
-            sitekey="6Ld6RXcqAAAAALjEUvo_It8cCM1tW2r2J8akn0gy"
+            sitekey="6LcERncqAAAAAIZfd99hXQNWuQu6chykOiXz5pW5"
           />
         </div>
 
@@ -136,7 +136,7 @@ const ContactForm = () => {
           className="w-full"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Sending..." : "Send Message"}
+          {isSubmitting ? "Gönderiliyor..." : "Mesajı Gönder"}
         </Button>
       </div>
     </form>

@@ -103,7 +103,7 @@ const ProductDetail = () => {
 
         <div className="space-y-8">
           <div>
-            <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+            <h1 className="text-left text-3xl font-bold mb-4">{product.name}</h1>
             <div className="flex items-center gap-2 mb-4">
               <div className="flex">
                 {[1, 2, 3, 4, 5].map((star) => (
@@ -115,11 +115,11 @@ const ProductDetail = () => {
               </div>
               <span className="text-sm text-muted-foreground">(4.8/5)</span>
             </div>
-            <p className="text-lg text-muted-foreground">{product.description}</p>
+            <p className="text-left text-lg text-muted-foreground">{product.description}</p>
           </div>
 
           {!product.quoteOnly && (
-            <div className="text-3xl font-bold">
+            <div className="text-left text-3xl font-bold">
               ${product.price.toFixed(2)}
             </div>
           )}

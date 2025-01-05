@@ -32,7 +32,7 @@ export const ProductImageCarousel = ({ images, productName }: ProductImageCarous
         <Button
           variant="outline"
           size="icon"
-          className="h-8 w-8 rounded-full bg-white/70"
+          className="h-10 w-10 rounded-full bg-white/70"
           onClick={previousImage}
         >
           <ChevronLeft className="h-4 w-4" />
@@ -40,14 +40,14 @@ export const ProductImageCarousel = ({ images, productName }: ProductImageCarous
         <Button
           variant="outline"
           size="icon"
-          className="h-8 w-8 rounded-full bg-white/70"
+          className="h-10 w-10 rounded-full bg-white/70"
           onClick={nextImage}
         >
-          <ChevronRight className="h-4 w-4" />
+          <ChevronRight className="h- w-4" />
         </Button>
       </div>
 
-      <div className="mt-4 flex gap-4 overflow-auto">
+      <div className="mt-4 flex gap-4 overflow-auto justify-center">
         {images.map((image, index) => (
           <button
             key={index}
@@ -59,7 +59,7 @@ export const ProductImageCarousel = ({ images, productName }: ProductImageCarous
             <img
               src={image}
               alt={`${productName} thumbnail ${index + 1}`}
-              className="h-20 w-20 rounded-lg object-cover object-center"
+              className="h-36 w-20 rounded-lg object-cover object-center"
             />
           </button>
         ))}
