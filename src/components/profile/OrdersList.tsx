@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/contexts/AuthContext";
 import {
@@ -9,25 +9,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { ReviewModal } from "@/components/shop/ReviewModal";
-
-interface Order {
-  id: string;
-  created_at: string;
-  total: number;
-  status: "pending" | "completed" | "quote_requested";
-  items: {
-    id: string;
-    name: string;
-    quantity: number;
-    price: number;
-    quoteOnly: boolean;
-    imageUrl: string;
-  }[];
-}
+import { OrderStatusBadge } from "./OrderStatusBadge";
+import { useReviewedItems } from "@/hooks/useReviewedItems";
+import { Order } from "@/types/order";
 
 const mockOrders: Order[] = [
   {
@@ -72,14 +59,8 @@ export const OrdersList = () => {
     productImage: string;
     orderId: string;
   } | null>(null);
-  const [reviewedItems, setReviewedItems] = useState<Set<string>>(new Set());
 
-  useEffect(() => {
-    // Load reviewed items from localStorage
-    const reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
-    const reviewedSet = new Set(reviews.map((review: any) => `${review.orderId}-${review.productId}`));
-    setReviewedItems(reviewedSet);
-  }, []);
+  const { isItemReviewed, handleReviewSubmitted } = useReviewedItems();
 
   const { data: orders, isLoading } = useQuery({
     queryKey: ["orders", user?.id],
@@ -97,20 +78,6 @@ export const OrdersList = () => {
     );
   }
 
-  const getStatusBadge = (status: Order["status"]) => {
-    const variants = {
-      completed: "bg-green-500",
-      pending: "bg-yellow-500",
-      quote_requested: "bg-blue-500",
-    };
-
-    return (
-      <Badge className={`${variants[status]} text-white`}>
-        {status.replace("_", " ").toUpperCase()}
-      </Badge>
-    );
-  };
-
   const handleReviewClick = (item: Order["items"][0], orderId: string) => {
     setSelectedItem({
       productId: item.id,
@@ -118,18 +85,6 @@ export const OrdersList = () => {
       productImage: item.imageUrl,
       orderId,
     });
-  };
-
-  const handleReviewSubmitted = (orderId: string, productId: string) => {
-    setReviewedItems(prev => {
-      const newSet = new Set(prev);
-      newSet.add(`${orderId}-${productId}`);
-      return newSet;
-    });
-  };
-
-  const isItemReviewed = (orderId: string, productId: string) => {
-    return reviewedItems.has(`${orderId}-${productId}`);
   };
 
   return (
@@ -171,7 +126,9 @@ export const OrdersList = () => {
                     ? "Quote Requested"
                     : `$${order.total.toFixed(2)}`}
                 </TableCell>
-                <TableCell>{getStatusBadge(order.status)}</TableCell>
+                <TableCell>
+                  <OrderStatusBadge status={order.status} />
+                </TableCell>
                 <TableCell>
                   {order.items.map((item) => {
                     const reviewed = isItemReviewed(order.id, item.id);
