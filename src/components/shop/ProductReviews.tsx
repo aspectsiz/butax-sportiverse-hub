@@ -31,29 +31,6 @@ interface ProductReviewsProps {
   productId: string;
 }
 
-// Mock reviews data - in production this would come from an API
-const mockReviews: Review[] = [
-  {
-    id: "1",
-    productId: "1",
-    orderId: "order1",
-    rating: 5,
-    comment: "Great product, very durable!",
-    createdAt: "2024-01-05T10:00:00Z",
-    userEmail: "user1@example.com",
-  },
-  {
-    id: "2",
-    productId: "1",
-    orderId: "order2",
-    rating: 4,
-    comment: "Good quality but a bit pricey",
-    createdAt: "2024-01-04T15:30:00Z",
-    userEmail: "user2@example.com",
-  },
-  // Add more mock reviews as needed
-];
-
 export const ProductReviews = ({ productId }: ProductReviewsProps) => {
   const [pageSize, setPageSize] = useState("3");
   const [currentPage, setCurrentPage] = useState(1);
@@ -61,9 +38,9 @@ export const ProductReviews = ({ productId }: ProductReviewsProps) => {
   const { data: reviews, isLoading } = useQuery({
     queryKey: ["reviews", productId],
     queryFn: async () => {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      return mockReviews.filter((review) => review.productId === productId);
+      // Get reviews from localStorage
+      const allReviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+      return allReviews.filter((review: Review) => review.productId === productId);
     },
   });
 

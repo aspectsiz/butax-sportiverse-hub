@@ -50,10 +50,10 @@ export const ReviewModal = ({
       return;
     }
 
-    // Mock review submission - in production this would be an API call
     const review = {
       id: Math.random().toString(36).substr(2, 9),
       productId,
+      productName, // Add product name to the review
       orderId,
       rating,
       comment,
@@ -61,7 +61,7 @@ export const ReviewModal = ({
       userEmail: user.email,
     };
 
-    // Store review in localStorage for demonstration
+    // Store review in localStorage
     const existingReviews = JSON.parse(localStorage.getItem('reviews') || '[]');
     localStorage.setItem('reviews', JSON.stringify([...existingReviews, review]));
     
@@ -70,6 +70,8 @@ export const ReviewModal = ({
       description: "Thank you for your feedback!",
     });
     
+    setRating(0);
+    setComment("");
     onReviewSubmitted();
     onClose();
   };
