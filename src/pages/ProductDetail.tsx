@@ -6,6 +6,7 @@ import { mockProducts } from '@/data/products';
 import ProductSchema from '@/components/shop/ProductSchema';
 import { ProductImageCarousel } from '@/components/shop/ProductImageCarousel';
 import { ProductSpecs } from '@/components/shop/ProductSpecs';
+import { ReviewForm } from '@/components/shop/ReviewForm';
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -16,6 +17,33 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Link } from 'react-router-dom';
 import { Star } from 'lucide-react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+// Mock reviews data - in a real app, this would come from an API
+const mockReviews = [
+  {
+    id: "1",
+    userId: "user1",
+    rating: 4,
+    comment: "Great product, very durable!",
+    createdAt: "2024-01-05T10:00:00Z",
+    userEmail: "user1@example.com",
+  },
+  {
+    id: "2",
+    userId: "user2",
+    rating: 5,
+    comment: "Perfect for my needs",
+    createdAt: "2024-01-04T15:30:00Z",
+    userEmail: "user2@example.com",
+  },
+];
 
 const ProductDetail = () => {
   const { category, slug } = useParams();
@@ -51,6 +79,11 @@ const ProductDetail = () => {
       title: product.quoteOnly ? 'Added to quote request' : 'Added to cart',
       description: `${product.name} has been added to your ${product.quoteOnly ? 'quote request' : 'cart'}.`,
     });
+  };
+
+  const handleReviewSubmitted = () => {
+    // In a real app, this would refresh the reviews from the API
+    console.log("Review submitted, refreshing reviews...");
   };
 
   // Mock multiple images for the carousel
@@ -134,6 +167,46 @@ const ProductDetail = () => {
           >
             {product.quoteOnly ? 'Request Quote' : (product.stock > 0 ? 'Add to Cart' : 'Out of Stock')}
           </Button>
+        </div>
+      </div>
+
+      <div className="mt-16 space-y-8">
+        <h2 className="text-2xl font-bold">Customer Reviews</h2>
+        
+        <div className="grid gap-6">
+          {mockReviews.map((review) => (
+            <Card key={review.id}>
+              <CardHeader>
+                <CardTitle className="text-lg">{review.userEmail}</CardTitle>
+                <CardDescription>
+                  {new Date(review.createdAt).toLocaleDateString()}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center gap-1 mb-2">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star
+                      key={star}
+                      className={`w-4 h-4 ${
+                        star <= review.rating
+                          ? "fill-yellow-400 text-yellow-400"
+                          : "text-gray-300"
+                      }`}
+                    />
+                  ))}
+                </div>
+                <p className="text-muted-foreground">{review.comment}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <div className="mt-8">
+          <h3 className="text-xl font-semibold mb-4">Write a Review</h3>
+          <ReviewForm 
+            productId={product.id} 
+            onReviewSubmitted={handleReviewSubmitted}
+          />
         </div>
       </div>
 
