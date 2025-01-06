@@ -35,7 +35,7 @@ export const UserReviews = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between pt-24 w-full">
         <h2 className="text-2xl font-bold">Your Reviews</h2>
         <span className="text-muted-foreground">
           {reviews.length} reviews

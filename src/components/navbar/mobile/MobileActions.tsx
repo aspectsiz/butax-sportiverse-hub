@@ -16,7 +16,7 @@ export const MobileActions = ({ user, items, handleCartClick }: MobileActionsPro
           isIconOnly
           variant="light"
           onClick={handleCartClick}
-          className="relative mr-2"
+          className="relative mr-2 overflow-visible"
         >
           <ShoppingCart className="h-6 w-6" />
           {items.length > 0 && (

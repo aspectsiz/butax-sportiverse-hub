@@ -22,7 +22,7 @@ export const DesktopActions = ({ user, items, handleCartClick }: DesktopActionsP
               isIconOnly
               variant="light"
               onClick={handleCartClick}
-              className="relative"
+              className="relative overflow-visible"
             >
               <ShoppingCart className="h-6 w-6" />
               {items.length > 0 && (
@@ -56,7 +56,7 @@ export const DesktopActions = ({ user, items, handleCartClick }: DesktopActionsP
               isIconOnly
               variant="light"
               onClick={handleCartClick}
-              className="relative"
+              className="relative overflow-visible"
             >
               <ShoppingCart className="h-6 w-6" />
               {items.length > 0 && (

@@ -15,10 +15,10 @@ export const UserProfileHeader = () => {
         </AvatarFallback>
       </Avatar>
       <div>
-        <h1 className="text-2xl font-bold text-foreground">
+        <h1 className="text-xl font-bold text-foreground">
           {user.user_metadata?.full_name || user.email}
         </h1>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground text-left">
           Member since {new Date(user.created_at).toLocaleDateString()}
         </p>
       </div>

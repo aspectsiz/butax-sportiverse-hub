@@ -89,7 +89,7 @@ export const OrdersList = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center pt-24 w-full">
         <h2 className="text-2xl font-bold">Orders & Quotes</h2>
       </div>
 

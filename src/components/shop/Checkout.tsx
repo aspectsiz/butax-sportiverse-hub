@@ -53,7 +53,7 @@ const Checkout = () => {
 
   if (items.length === 0) {
     return (
-      <div className="text-center py-12">
+      <div className="text-center py-12 pt-24 w-full">
         <p className="text-lg text-muted-foreground">Your cart is empty</p>
         <Button onClick={() => navigate('/shop')} className="mt-4">
           Continue Shopping
@@ -64,7 +64,7 @@ const Checkout = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-6">Checkout</h2>
+      <h2 className="text-2xl font-bold mb-6 pt-24 w-full">Checkout</h2>
       
       <div className="mb-8">
         <h3 className="text-lg font-semibold mb-4">Cart Summary</h3>
