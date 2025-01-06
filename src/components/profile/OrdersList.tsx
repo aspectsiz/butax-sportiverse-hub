@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/contexts/AuthContext";
 import {
@@ -9,7 +10,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
+import { ReviewModal } from "@/components/shop/ReviewModal";
 
 interface Order {
   id: string;
@@ -22,6 +25,7 @@ interface Order {
     quantity: number;
     price: number;
     quoteOnly: boolean;
+    imageUrl: string;
   }[];
 }
 
@@ -38,6 +42,7 @@ const mockOrders: Order[] = [
         quantity: 1,
         price: 299.99,
         quoteOnly: false,
+        imageUrl: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
       },
     ],
   },
@@ -53,6 +58,7 @@ const mockOrders: Order[] = [
         quantity: 1,
         price: 0,
         quoteOnly: true,
+        imageUrl: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
       },
     ],
   },
@@ -60,13 +66,17 @@ const mockOrders: Order[] = [
 
 export const OrdersList = () => {
   const { user } = useAuth();
+  const [selectedItem, setSelectedItem] = useState<{
+    productId: string;
+    productName: string;
+    productImage: string;
+    orderId: string;
+  } | null>(null);
 
   const { data: orders, isLoading } = useQuery({
     queryKey: ["orders", user?.id],
     queryFn: async () => {
-      // In a real application, this would fetch from your backend
-      // For now, we'll use mock data
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate network delay
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       return mockOrders;
     },
   });
@@ -93,6 +103,15 @@ export const OrdersList = () => {
     );
   };
 
+  const handleReviewClick = (item: Order["items"][0], orderId: string) => {
+    setSelectedItem({
+      productId: item.id,
+      productName: item.name,
+      productImage: item.imageUrl,
+      orderId,
+    });
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -108,6 +127,7 @@ export const OrdersList = () => {
               <TableHead>Items</TableHead>
               <TableHead>Total</TableHead>
               <TableHead>Status</TableHead>
+              <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -132,11 +152,38 @@ export const OrdersList = () => {
                     : `$${order.total.toFixed(2)}`}
                 </TableCell>
                 <TableCell>{getStatusBadge(order.status)}</TableCell>
+                <TableCell>
+                  {order.items.map((item) => (
+                    <Button
+                      key={item.id}
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleReviewClick(item, order.id)}
+                    >
+                      Review
+                    </Button>
+                  ))}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </div>
+
+      {selectedItem && (
+        <ReviewModal
+          isOpen={!!selectedItem}
+          onClose={() => setSelectedItem(null)}
+          productId={selectedItem.productId}
+          productName={selectedItem.productName}
+          productImage={selectedItem.productImage}
+          orderId={selectedItem.orderId}
+          onReviewSubmitted={() => {
+            // This would trigger a refetch of reviews in production
+            console.log("Review submitted, refreshing reviews...");
+          }}
+        />
+      )}
     </div>
   );
 };

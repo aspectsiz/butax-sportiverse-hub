@@ -1,49 +1,22 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/store/useCart';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 import { mockProducts } from '@/data/products';
 import ProductSchema from '@/components/shop/ProductSchema';
 import { ProductImageCarousel } from '@/components/shop/ProductImageCarousel';
 import { ProductSpecs } from '@/components/shop/ProductSpecs';
-import { ReviewForm } from '@/components/shop/ReviewForm';
+import { ProductReviews } from '@/components/shop/ProductReviews';
 import {
   Breadcrumb,
   BreadcrumbList,
   BreadcrumbItem,
   BreadcrumbLink,
-  BreadcrumbPage,
   BreadcrumbSeparator,
+  BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
 import { Link } from 'react-router-dom';
 import { Star } from 'lucide-react';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-
-// Mock reviews data - in a real app, this would come from an API
-const mockReviews = [
-  {
-    id: "1",
-    userId: "user1",
-    rating: 4,
-    comment: "Great product, very durable!",
-    createdAt: "2024-01-05T10:00:00Z",
-    userEmail: "user1@example.com",
-  },
-  {
-    id: "2",
-    userId: "user2",
-    rating: 5,
-    comment: "Perfect for my needs",
-    createdAt: "2024-01-04T15:30:00Z",
-    userEmail: "user2@example.com",
-  },
-];
 
 const ProductDetail = () => {
   const { category, slug } = useParams();
@@ -81,15 +54,10 @@ const ProductDetail = () => {
     });
   };
 
-  const handleReviewSubmitted = () => {
-    // In a real app, this would refresh the reviews from the API
-    console.log("Review submitted, refreshing reviews...");
-  };
-
   // Mock multiple images for the carousel
   const productImages = [
     product.imageUrl,
-    product.imageUrl, // In a real app, you'd have multiple different images
+    product.imageUrl,
     product.imageUrl,
   ];
 
@@ -170,44 +138,8 @@ const ProductDetail = () => {
         </div>
       </div>
 
-      <div className="mt-16 space-y-8">
-        <h2 className="text-2xl font-bold">Customer Reviews</h2>
-        
-        <div className="grid gap-6">
-          {mockReviews.map((review) => (
-            <Card key={review.id}>
-              <CardHeader>
-                <CardTitle className="text-lg">{review.userEmail}</CardTitle>
-                <CardDescription>
-                  {new Date(review.createdAt).toLocaleDateString()}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center gap-1 mb-2">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star
-                      key={star}
-                      className={`w-4 h-4 ${
-                        star <= review.rating
-                          ? "fill-yellow-400 text-yellow-400"
-                          : "text-gray-300"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <p className="text-muted-foreground">{review.comment}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        <div className="mt-8">
-          <h3 className="text-xl font-semibold mb-4">Write a Review</h3>
-          <ReviewForm 
-            productId={product.id} 
-            onReviewSubmitted={handleReviewSubmitted}
-          />
-        </div>
+      <div className="mt-16">
+        <ProductReviews productId={product.id} />
       </div>
 
       <ProductSchema 
