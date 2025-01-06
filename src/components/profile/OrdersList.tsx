@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/contexts/AuthContext";
 import {
@@ -72,6 +72,14 @@ export const OrdersList = () => {
     productImage: string;
     orderId: string;
   } | null>(null);
+  const [reviewedItems, setReviewedItems] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    // Load reviewed items from localStorage
+    const reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+    const reviewedSet = new Set(reviews.map((review: any) => `${review.orderId}-${review.productId}`));
+    setReviewedItems(reviewedSet);
+  }, []);
 
   const { data: orders, isLoading } = useQuery({
     queryKey: ["orders", user?.id],
@@ -110,6 +118,18 @@ export const OrdersList = () => {
       productImage: item.imageUrl,
       orderId,
     });
+  };
+
+  const handleReviewSubmitted = (orderId: string, productId: string) => {
+    setReviewedItems(prev => {
+      const newSet = new Set(prev);
+      newSet.add(`${orderId}-${productId}`);
+      return newSet;
+    });
+  };
+
+  const isItemReviewed = (orderId: string, productId: string) => {
+    return reviewedItems.has(`${orderId}-${productId}`);
   };
 
   return (
@@ -153,16 +173,20 @@ export const OrdersList = () => {
                 </TableCell>
                 <TableCell>{getStatusBadge(order.status)}</TableCell>
                 <TableCell>
-                  {order.items.map((item) => (
-                    <Button
-                      key={item.id}
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleReviewClick(item, order.id)}
-                    >
-                      Review
-                    </Button>
-                  ))}
+                  {order.items.map((item) => {
+                    const reviewed = isItemReviewed(order.id, item.id);
+                    return (
+                      <Button
+                        key={item.id}
+                        variant={reviewed ? "secondary" : "outline"}
+                        size="sm"
+                        onClick={() => handleReviewClick(item, order.id)}
+                        disabled={reviewed}
+                      >
+                        {reviewed ? "Reviewed" : "Review"}
+                      </Button>
+                    );
+                  })}
                 </TableCell>
               </TableRow>
             ))}
@@ -178,9 +202,9 @@ export const OrdersList = () => {
           productName={selectedItem.productName}
           productImage={selectedItem.productImage}
           orderId={selectedItem.orderId}
+          hasReviewed={isItemReviewed(selectedItem.orderId, selectedItem.productId)}
           onReviewSubmitted={() => {
-            // This would trigger a refetch of reviews in production
-            console.log("Review submitted, refreshing reviews...");
+            handleReviewSubmitted(selectedItem.orderId, selectedItem.productId);
           }}
         />
       )}

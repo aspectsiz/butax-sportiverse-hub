@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface ReviewModalProps {
   isOpen: boolean;
@@ -18,6 +19,7 @@ interface ReviewModalProps {
   productImage: string;
   orderId: string;
   onReviewSubmitted: () => void;
+  hasReviewed?: boolean;
 }
 
 export const ReviewModal = ({
@@ -28,11 +30,15 @@ export const ReviewModal = ({
   productImage,
   orderId,
   onReviewSubmitted,
+  hasReviewed = false,
 }: ReviewModalProps) => {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [comment, setComment] = useState("");
   const { toast } = useToast();
+  const { user } = useAuth();
+
+  if (!user) return null;
 
   const handleSubmit = async () => {
     if (rating === 0) {
@@ -44,7 +50,7 @@ export const ReviewModal = ({
       return;
     }
 
-    // For now, using mock data - this would be an API call in production
+    // Mock review submission - in production this would be an API call
     const review = {
       id: Math.random().toString(36).substr(2, 9),
       productId,
@@ -52,9 +58,12 @@ export const ReviewModal = ({
       rating,
       comment,
       createdAt: new Date().toISOString(),
+      userEmail: user.email,
     };
 
-    console.log("Submitting review:", review);
+    // Store review in localStorage for demonstration
+    const existingReviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+    localStorage.setItem('reviews', JSON.stringify([...existingReviews, review]));
     
     toast({
       title: "Review submitted",
@@ -88,6 +97,7 @@ export const ReviewModal = ({
                 onMouseEnter={() => setHoverRating(star)}
                 onMouseLeave={() => setHoverRating(0)}
                 className="focus:outline-none"
+                disabled={hasReviewed}
               >
                 <Star
                   className={`w-6 h-6 ${
@@ -105,13 +115,16 @@ export const ReviewModal = ({
             onChange={(e) => setComment(e.target.value)}
             placeholder="Write your review here..."
             className="min-h-[100px]"
+            disabled={hasReviewed}
           />
           
           <div className="flex justify-end gap-2">
             <Button variant="outline" onClick={onClose}>
               Cancel
             </Button>
-            <Button onClick={handleSubmit}>Submit Review</Button>
+            <Button onClick={handleSubmit} disabled={hasReviewed}>
+              Submit Review
+            </Button>
           </div>
         </div>
       </DialogContent>

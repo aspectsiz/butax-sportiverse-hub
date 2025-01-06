@@ -7,29 +7,29 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useEffect, useState } from "react";
 
-// Mock data - in a real app, this would come from an API
-const mockReviews = [
-  {
-    id: "1",
-    productId: "1",
-    rating: 4,
-    comment: "Great product, very durable!",
-    createdAt: "2024-01-05T10:00:00Z",
-    productName: "Professional Dumbbell Set",
-  },
-  {
-    id: "2",
-    productId: "3",
-    rating: 5,
-    comment: "Perfect fit and comfortable",
-    createdAt: "2024-01-04T15:30:00Z",
-    productName: "Performance T-Shirt",
-  },
-];
+interface Review {
+  id: string;
+  productId: string;
+  orderId: string;
+  rating: number;
+  comment: string;
+  createdAt: string;
+  productName: string;
+  userEmail?: string;
+}
 
 export const UserReviews = () => {
   const { user } = useAuth();
+  const [reviews, setReviews] = useState<Review[]>([]);
+
+  useEffect(() => {
+    // Load reviews from localStorage
+    const allReviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+    const userReviews = allReviews.filter((review: Review) => review.userEmail === user?.email);
+    setReviews(userReviews);
+  }, [user?.email]);
 
   if (!user) return null;
 
@@ -38,12 +38,12 @@ export const UserReviews = () => {
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold">Your Reviews</h2>
         <span className="text-muted-foreground">
-          {mockReviews.length} reviews
+          {reviews.length} reviews
         </span>
       </div>
 
       <div className="grid gap-4">
-        {mockReviews.map((review) => (
+        {reviews.map((review) => (
           <Card key={review.id}>
             <CardHeader>
               <CardTitle className="text-lg">{review.productName}</CardTitle>
