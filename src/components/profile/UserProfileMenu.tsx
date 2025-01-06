@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 
 const menuItems = [
   { icon: ShoppingBag, label: "All Orders", path: "/user/orders" },
-  { icon: Star, label: "Reviews", path: "/user/reviews", component: "UserReviews" },
+  { icon: Star, label: "My Reviews", path: "/user/reviews" },
   { icon: MessageSquare, label: "Seller Messages", path: "/user/messages" },
   { icon: CreditCard, label: "Credits", path: "/user/credits" },
   { icon: Gift, label: "Lucky Draws", path: "/user/lucky-draws" },
