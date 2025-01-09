@@ -20,26 +20,9 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     persistSession: true,
     autoRefreshToken: true,
     detectSessionInUrl: true,
-    storage: {
-      getItem: (key) => {
-        try {
-          const item = localStorage.getItem(key)
-          return item
-        } catch {
-          return null
-        }
-      },
-      setItem: (key, value) => {
-        try {
-          localStorage.setItem(key, value)
-        } catch {}
-      },
-      removeItem: (key) => {
-        try {
-          localStorage.removeItem(key)
-        } catch {}
-      },
-    },
+    storage: window.localStorage,
+    storageKey: 'supabase.auth.token',
+    flowType: 'pkce'
   },
 })
 
