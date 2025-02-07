@@ -1,40 +1,15 @@
 import { seoData } from '@/data/seoData';
 import { useSEO } from '@/hooks/useSEO';
-import { ArrowRight, DumbbellIcon, Sofa, Users } from "lucide-react";
+import { DumbbellIcon, Sofa, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import { HeroSlider } from '@/components/home/HeroSlider';
 
 const Index = () => {
   useSEO(seoData.home);
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="hero-pattern pt-24 pb-16 px-4 sm:px-6 lg:px-8 w-full">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 animate-fade-in">
-            Transform Your Space <br className="hidden sm:block" />
-            Elevate Your Fitness
-          </h1>
-          <p className="text-lg sm:text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto animate-fade-in">
-            Premium sports equipment and urban furniture for modern living and fitness excellence.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
-            <Link
-              to="/shop"
-              className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-accent hover:bg-accent/90"
-            >
-              Shop Now
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-            <Link
-              to="/franchise"
-              className="inline-flex items-center justify-center px-6 py-3 border border-white text-base font-medium rounded-md text-white hover:bg-white/10"
-            >
-              Franchise Opportunities
-            </Link>
-          </div>
-        </div>
-      </section>
+      <HeroSlider />
 
       {/* Features Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-background w-full">
