@@ -1,3 +1,5 @@
+// src/pages/Blog.tsx
+
 
 import { blogPosts } from '@/data/blogData';
 import BlogCard from '@/components/blog/BlogCard';

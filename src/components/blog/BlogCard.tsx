@@ -1,8 +1,11 @@
+// src/components/blog/BlogCard.tsx
 
+import React from 'react';
+import { Card, CardFooter, Image, Button, User, Link } from "@heroui/react"; // HeroUI'dan User ve Link'i de içe aktar
 import { BlogPost } from '@/types/blog';
-import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { tr } from 'date-fns/locale';
+import { Link as RouterLink } from 'react-router-dom';
 
 interface BlogCardProps {
   post: BlogPost;
@@ -10,37 +13,48 @@ interface BlogCardProps {
 
 const BlogCard = ({ post }: BlogCardProps) => {
   return (
-    <article className="flex flex-col overflow-hidden rounded-lg shadow-lg transition-transform hover:scale-[1.02]">
-      <Link to={`/blog/${post.slug}`} className="relative">
-        <img
-          src={post.imageUrl}
-          alt={post.title}
-          className="h-48 w-full object-cover"
-        />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
-          <span className="text-sm text-white">
+    <Card isFooterBlurred className="border-none w-full" radius="lg">
+      <Image
+        alt={post.title}
+        className="object-cover"
+        height={300}
+        src={post.imageUrl}
+      />
+      <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
+        <div className="flex flex-col items-start w-full"> {/* Yazar bilgisini sola yaslamak ve genişliği kontrol etmek için */}
+          <User
+            avatarProps={{
+              src: post.authorAvatar, // Yazarın avatar URL'sini kullan
+            }}
+            name={post.authorName} // Yazarın adını kullan
+            description={
+              <RouterLink to={`/author/${post.authorSlug}`} className="text-primary"> {/* Yazar profiline bağlantı ve kırmızı renk */}
+                {post.authorUsername} {/* Yazarın kullanıcı adı */}
+              </RouterLink>
+            }
+          />
+          <div className="w-full"> {/* Başlığın her zaman sola yaslanmasını sağlamak için */}
+            <RouterLink to={`/blog/${post.slug}`}> {/* React Router Link'i ile başlığa bağlantı */}
+              <p className="text-small text-left text-primary-foreground">{post.title}</p> {/* Başlık */}
+            </RouterLink>
+          </div>
+          <p className="text-tiny text-primary-foreground">
             {format(new Date(post.date), 'd MMMM yyyy', { locale: tr })}
-          </span>
+          </p>
         </div>
-      </Link>
-      <div className="flex flex-1 flex-col p-6 bg-card">
-        <Link to={`/blog/${post.slug}`}>
-          <h3 className="text-xl font-semibold text-foreground mb-2 hover:text-primary transition-colors">
-            {post.title}
-          </h3>
-        </Link>
-        <p className="text-muted-foreground mb-4 flex-1">{post.excerpt}</p>
-        <div className="flex items-center justify-between">
-          <span className="text-sm text-muted-foreground">{post.author}</span>
-          <Link
-            to={`/blog/${post.slug}`}
-            className="text-sm font-medium text-primary hover:text-primary/80"
+        <RouterLink to={`/blog/${post.slug}`}> {/* React Router Link'i ile "Devamını Oku" butonuna bağlantı */}
+          <Button
+            className="text-tiny text-foreground bg-black/20"
+            color="default"
+            radius="lg"
+            size="sm"
+            variant="flat"
           >
-            Devamını Oku →
-          </Link>
-        </div>
-      </div>
-    </article>
+            Devamını Oku
+          </Button>
+        </RouterLink>
+      </CardFooter>
+    </Card>
   );
 };
 

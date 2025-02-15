@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 import { NavbarContent, NavbarItem } from "@nextui-org/react";
 
 const menuItems = [
-  { name: "Home", href: "/" },
-  { name: "Shop", href: "/shop" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
-  { name: "Franchise", href: "/franchise" },
+  { name: "Anasayfa", href: "/" },
+  { name: "Hakkimizda", href: "/about" },
+  { name: "Ürünlerimiz", href: "/shop" },
+  { name: "Medya Merkezi", href: "/blog" },
+  { name: "Referanslar", href: "/ref" },
+  { name: "İletişim", href: "/contact" },
+  { name: "Bayilik", href: "/franchise" },
 ];
 
 export const NavbarMenuItems = () => {

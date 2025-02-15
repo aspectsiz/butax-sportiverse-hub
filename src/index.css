@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -75,5 +75,10 @@
     background-image: radial-gradient(at 40% 20%, rgba(251, 4, 28, 0.1) 0px, transparent 50%),
                     radial-gradient(at 80% 0%, rgba(139, 4, 228, 0.1) 0px, transparent 50%),
                     radial-gradient(at 0% 50%, rgba(251, 4, 28, 0.1) 0px, transparent 50%);
+  }
+
+  /* Oswald fontunu kullanmak için */
+  .font-oswald {
+    font-family: 'Oswald', sans-serif;
   }
 }

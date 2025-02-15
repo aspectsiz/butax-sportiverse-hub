@@ -1,10 +1,11 @@
+// src/data/blogData.ts
 
 import { BlogPost } from '@/types/blog';
 
 export const blogPosts: BlogPost[] = [
   {
     id: '1',
-    title: 'Evde Fitness: Başlangıç Rehberi',
+    title: 'Evde Fitness: Başlangıç ',
     excerpt: 'Ev ortamında etkili egzersiz rutinleri oluşturmak için temel ipuçları ve öneriler.',
     content: `<p>Evde fitness yapmak, sağlıklı bir yaşam için harika bir başlangıç noktasıdır. İşte size yardımcı olacak temel bilgiler:</p>
 
@@ -26,8 +27,11 @@ export const blogPosts: BlogPost[] = [
     </ul>`,
     imageUrl: '/assets/kasli-adam-barfiks-çekiyor.webp',
     date: '2024-03-15',
-    author: 'Ahmet Yılmaz',
-    slug: 'evde-fitness-baslangic-rehberi'
+    authorName: 'Ahmet Yılmaz',
+    authorUsername: '@ahmet_yilmaz', // Örnek kullanıcı adı
+    authorAvatar: '/assets/ahmet-yilmaz-avatar.jpg', // Örnek avatar URL'si
+    authorSlug: 'ahmet-yilmaz',
+    slug: 'evde-fitness-baslangic-rehberi',
   },
   {
     id: '2',
@@ -63,8 +67,11 @@ export const blogPosts: BlogPost[] = [
     </ul>`,
     imageUrl: '/assets/duygusal-sporcu-kadın-gücünü-gösteriyor.webp',
     date: '2024-03-10',
-    author: 'Ayşe Kaya',
-    slug: 'dogru-beslenme-maksimum-performans'
+    authorName: 'Ayşe Kaya',
+    authorUsername: '@ayse_kaya', // Örnek kullanıcı adı
+    authorAvatar: '/assets/ayse-kaya-avatar.jpg', // Örnek avatar URL'si
+    authorSlug: 'ayse-kaya',
+    slug: 'dogru-beslenme-maksimum-performans',
   },
   {
     id: '3',
@@ -90,7 +97,10 @@ export const blogPosts: BlogPost[] = [
     </ul>`,
     imageUrl: '/assets/zarif-kadin-pilates-yapiyor.webp',
     date: '2024-03-05',
-    author: 'Mehmet Demir',
-    slug: 'acik-alan-spor-ekipmanlari-bakim-rehberi'
-  }
+    authorName: 'Mehmet Demir',
+    authorUsername: '@mehmet_demir', // Örnek kullanıcı adı
+    authorAvatar: '/assets/mehmet-demir-avatar.jpg', // Örnek avatar URL'si
+    authorSlug: 'mehmet-demir',
+    slug: 'acik-alan-spor-ekipmanlari-bakim-rehberi',
+  },
 ];

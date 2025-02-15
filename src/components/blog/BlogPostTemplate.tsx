@@ -1,3 +1,4 @@
+// src/components/blog/BlogPostTemplate.tsx
 
 import { BlogPost } from '@/types/blog';
 import { format } from 'date-fns';
@@ -24,7 +25,7 @@ const BlogPostTemplate = ({ post }: BlogPostTemplateProps) => {
       <header className="mb-8">
         <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
         <div className="flex items-center text-muted-foreground">
-          <span>{post.author}</span>
+          <span>{post.authorName}</span>
           <span className="mx-2">•</span>
           <time dateTime={post.date}>
             {format(new Date(post.date), 'd MMMM yyyy', { locale: tr })}
