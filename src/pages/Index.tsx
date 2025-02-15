@@ -1,3 +1,4 @@
+
 import { seoData } from '@/data/seoData';
 import { useSEO } from '@/hooks/useSEO';
 import { DumbbellIcon, Sofa, Users } from "lucide-react";
@@ -19,22 +20,22 @@ const Index = () => {
               <div className="w-12 h-12 mx-auto mb-4 bg-primary/5 rounded-full flex items-center justify-center">
                 <DumbbellIcon className="h-6 w-6 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-foreground">Sports Equipment</h3>
-              <p className="text-muted-foreground">Professional-grade fitness equipment for every workout need.</p>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">Spor Ekipmanları</h3>
+              <p className="text-muted-foreground">Her türlü antrenman ihtiyacı için profesyonel fitness ekipmanları.</p>
             </div>
             <div className="text-center p-6">
               <div className="w-12 h-12 mx-auto mb-4 bg-primary/5 rounded-full flex items-center justify-center">
                 <Sofa className="h-6 w-6 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-foreground">Urban Furniture</h3>
-              <p className="text-muted-foreground">Modern, functional furniture designed for urban spaces.</p>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">Kent Mobilyaları</h3>
+              <p className="text-muted-foreground">Kent alanları için modern ve işlevsel mobilya tasarımları.</p>
             </div>
             <div className="text-center p-6">
               <div className="w-12 h-12 mx-auto mb-4 bg-primary/5 rounded-full flex items-center justify-center">
                 <Users className="h-6 w-6 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-foreground">Franchise Network</h3>
-              <p className="text-muted-foreground">Join our growing network of successful fitness franchises.</p>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">Bayilik Ağı</h3>
+              <p className="text-muted-foreground">Başarılı fitness bayilik ağımıza katılın.</p>
             </div>
           </div>
         </div>
@@ -44,16 +45,16 @@ const Index = () => {
       <section className="bg-primary py-16 px-4 sm:px-6 lg:px-8 w-full">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-primary-foreground mb-4">
-            Ready to Start Your Fitness Journey?
+            Fitness Yolculuğunuza Başlamaya Hazır mısınız?
           </h2>
           <p className="text-lg text-primary-foreground/80 mb-8">
-            Explore our collection of premium equipment or learn about franchise opportunities.
+            Premium ekipman koleksiyonumuzu keşfedin veya bayilik fırsatları hakkında bilgi alın.
           </p>
           <Link
             to="/contact"
             className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-white hover:bg-gray-100"
           >
-            Contact Us Today
+            Hemen İletişime Geçin
           </Link>
         </div>
       </section>

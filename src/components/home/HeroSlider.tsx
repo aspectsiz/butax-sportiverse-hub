@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -22,7 +21,7 @@ const slideData: SlideData[] = [
     title3: "CALISTHENICS FITNESS SETLERI",
     description: "",
     imageUrl: "/assets/kasli-adam-dips-yapıyor.webp",
-    buttonText: "DISCOVER",
+    buttonText: "KEŞFET",
     buttonLink: "/shop/leg-press",
   },
   {
@@ -32,7 +31,7 @@ const slideData: SlideData[] = [
     title3: "",
     description: "Evde veya stüdyoda pilates yaparken ihtiyaç duyacağınız tüm ekipmanlar BUTAX'ta!  Dayanıklı, güvenli ve ergonomik tasarımlı pilates aletlerimizle forma girin.",
     imageUrl: "/assets/zarif-kadin-pilates-yapiyor.webp",
-    buttonText: "DISCOVER",
+    buttonText: "KEŞFET",
     buttonLink: "/shop/leg-press",
   },
   {
@@ -40,12 +39,11 @@ const slideData: SlideData[] = [
     title: "BUTAX SPOR GİYİM",
     title2: "",
     title3: "",
-    description: "Yüksek performanslı, rahat ve şık spor giyim koleksiyonumuzla antrenmanlarınıza renk katın.  Ter tutmayan kumaşlar ve ergonomik tasarımlarla konforu deneyimleyin.",
+    description: "Yüksek performanslı, rahat ve şık spor giyim koleksiyonumuzla antrenmanlarınıza renk katın. Ter tutmayan kumaşlar ve ergonomik tasarımlarla konforu deneyimleyin.",
     imageUrl: "/assets/duygusal-sporcu-kadın-gücünü-gösteriyor.webp",
-    buttonText: "SHOW MORE",
+    buttonText: "DAHA FAZLA",
     buttonLink: "/shop/fp-130",
   },
-  // ... Add 10 more slides with similar structure
 ];
 
 export const HeroSlider = () => {
