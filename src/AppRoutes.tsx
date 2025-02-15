@@ -4,6 +4,8 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Franchise from "@/pages/Franchise";
 import Index from "@/pages/Index";
+import Blog from "@/pages/Blog";
+import BlogPost from "@/pages/BlogPost";
 import SignIn from "@/pages/SignIn";
 import SignUp from "@/pages/SignUp";
 import ProductDetail from "@/pages/ProductDetail";
@@ -31,6 +33,9 @@ const AppRoutes = () => {
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/checkout" element={<MainLayout><Checkout /></MainLayout>} />
+      
+      <Route path="/blog" element={<MainLayout><Blog /></MainLayout>} />
+      <Route path="/blog/:slug" element={<MainLayout><BlogPost /></MainLayout>} />
       
       {/* Protected Admin Routes */}
       <Route 
