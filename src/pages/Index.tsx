@@ -4,9 +4,14 @@ import { useSEO } from '@/hooks/useSEO';
 import { DumbbellIcon, Sofa, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { HeroSlider } from '@/components/home/HeroSlider';
+import BlogCard from '@/components/blog/BlogCard';
+import { blogPosts } from '@/data/blogData';
 
 const Index = () => {
   useSEO(seoData.home);
+
+  // Get the latest 3 blog posts
+  const latestPosts = blogPosts.slice(0, 3);
 
   return (
     <>
@@ -37,6 +42,31 @@ const Index = () => {
               <h3 className="text-xl font-semibold mb-2 text-foreground">Bayilik Ağı</h3>
               <p className="text-muted-foreground">Başarılı fitness bayilik ağımıza katılın.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Latest Blog Posts Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-secondary/5 w-full">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Son Blog Yazıları</h2>
+            <p className="text-lg text-muted-foreground">
+              Fitness dünyasından en güncel haberler ve öneriler
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {latestPosts.map((post) => (
+              <BlogCard key={post.id} post={post} />
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link
+              to="/blog"
+              className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors"
+            >
+              Tüm Yazıları Gör
+            </Link>
           </div>
         </div>
       </section>
