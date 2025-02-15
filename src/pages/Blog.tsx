@@ -18,9 +18,9 @@ const Blog = () => {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink as={Link} to="/">
+              <Link to="/" className="text-muted-foreground hover:text-foreground">
                 Ana Sayfa
-              </BreadcrumbLink>
+              </Link>
             </BreadcrumbItem>
             <BreadcrumbItem>
               <BreadcrumbPage>Blog</BreadcrumbPage>
