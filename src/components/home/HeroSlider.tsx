@@ -1,12 +1,13 @@
 
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface SlideData {
   id: number;
   title: string;
+  title2: string;
+  title3: string;
   description: string;
   imageUrl: string;
   buttonText: string;
@@ -16,19 +17,33 @@ interface SlideData {
 const slideData: SlideData[] = [
   {
     id: 1,
-    title: "FOREMAN FP-130 SQUATS",
-    description: "The machine allows to perform squats with less load on the lumbar spine",
-    imageUrl: "/public/lovable-uploads/6a304770-7a4f-429b-b92b-71f924068de3.png",
-    buttonText: "SHOW MORE",
-    buttonLink: "/shop/fp-130",
+    title: "AÇIK ALAN SPOR ALETLERİ",
+    title2: "PARK SPOR DONATILARI",
+    title3: "CALISTHENICS FITNESS SETLERI",
+    description: "",
+    imageUrl: "/assets/kasli-adam-dips-yapıyor.webp",
+    buttonText: "DISCOVER",
+    buttonLink: "/shop/leg-press",
   },
   {
     id: 2,
-    title: "PREMIUM LEG PRESS",
-    description: "Professional grade leg press for maximum muscle engagement",
-    imageUrl: "/equipment/leg-press.jpg",
+    title: "PİLATES ALETLERİ",
+    title2: "",
+    title3: "",
+    description: "Evde veya stüdyoda pilates yaparken ihtiyaç duyacağınız tüm ekipmanlar BUTAX'ta!  Dayanıklı, güvenli ve ergonomik tasarımlı pilates aletlerimizle forma girin.",
+    imageUrl: "/assets/zarif-kadin-pilates-yapiyor.webp",
     buttonText: "DISCOVER",
     buttonLink: "/shop/leg-press",
+  },
+  {
+    id: 10,
+    title: "BUTAX SPOR GİYİM",
+    title2: "",
+    title3: "",
+    description: "Yüksek performanslı, rahat ve şık spor giyim koleksiyonumuzla antrenmanlarınıza renk katın.  Ter tutmayan kumaşlar ve ergonomik tasarımlarla konforu deneyimleyin.",
+    imageUrl: "/assets/duygusal-sporcu-kadın-gücünü-gösteriyor.webp",
+    buttonText: "SHOW MORE",
+    buttonLink: "/shop/fp-130",
   },
   // ... Add 10 more slides with similar structure
 ];
@@ -45,16 +60,8 @@ export const HeroSlider = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const handlePrevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slideData.length) % slideData.length);
-  };
-
-  const handleNextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slideData.length);
-  };
-
   return (
-    <section className="relative h-[calc(100vh-4rem)] overflow-hidden bg-secondary">
+    <section className="relative h-[calc(100vh-10rem)] overflow-hidden bg-secondary">
       {slideData.map((slide, index) => (
         <div
           key={slide.id}
@@ -68,65 +75,57 @@ export const HeroSlider = () => {
             loading={index === 0 ? "eager" : "lazy"}
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/40">
+          <div className="absolute md:left-20 left-0 inset-0">
             <div className="container mx-auto px-4 h-full flex flex-col justify-center">
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 animate-fade-in">
-                {slide.title}
+              <h1 className="text-2xl text-left md:text-4xl font-bold text-white animate-fade-in break-words">
+                {slide.title}<br/>
+                {slide.title2}<br/>
+                {slide.title3}
               </h1>
-              <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl animate-fade-in">
+              <p className="text-md text-left md:text-xl text-white/90 mb-8 max-w-2xl animate-fade-in">
                 {slide.description}
               </p>
+              <div className='flex space-x-4'>
               <Link to={slide.buttonLink}>
                 <Button
                   variant="default"
                   size="lg"
-                  className="bg-accent hover:bg-accent/90 text-white"
+                  className="bg-zinc-700 text-white rounded-none "
                 >
                   {slide.buttonText}
                 </Button>
               </Link>
+              </div>
             </div>
           </div>
         </div>
       ))}
 
       {/* Navigation Buttons */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center space-x-4">
+      <div className="absolute md:bottom-20 bottom-5 md:left-[100px] left-4 flex items-start space-x-4">
         {slideData.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-colors ${
-              currentSlide === index ? 'bg-accent' : 'bg-white/50'
+            className={`w-3 h-3 transition-colors ${
+              currentSlide === index ? 'bg-zinc-800' : 'bg-white/50'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
 
-      {/* Arrow Navigation */}
-      <button
-        onClick={handlePrevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors"
-        aria-label="Previous slide"
-      >
-        <ArrowLeft className="w-6 h-6" />
-      </button>
-      <button
-        onClick={handleNextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors"
-        aria-label="Next slide"
-      >
-        <ArrowRight className="w-6 h-6" />
-      </button>
-
       {/* Logo */}
-      <div className="absolute bottom-8 right-8 w-32 h-32 bg-accent p-4 transform transition-transform hover:scale-105">
+      <div className="absolute bottom-14 right-8 bg-accent p-4 transform">
+        
         <img
-          src="/public/lovable-uploads/butax-logo.png"
+          src="/assets/butax-logo.webp"
           alt="Butax Logo"
           className="w-full h-full object-contain"
         />
+      </div>
+
+      <div className="absolute inset-x-0 bottom-0 h-14 bg-black/60 transform">
       </div>
     </section>
   );
