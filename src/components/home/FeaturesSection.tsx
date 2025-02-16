@@ -119,12 +119,21 @@ import {
       { id: 1, className: "col-span-12 sm:col-span-4 h-[300px]", headerContent: "Park Spor Donatilari" },
       { id: 2, className: "col-span-12 sm:col-span-4 h-[300px]", headerContent: "Stil ve Rahatlık" },
       { id: 3, className: "col-span-12 sm:col-span-4 h-[300px]", headerContent: "AR-GE ve ÜR-GE, Bilimsel Çalışmalar" },
-      { id: 4, className: "w-full h-[300px] col-span-12 sm:col-span-5", headerContent: "AKILLI BELEDİYELER İÇİN", isFooterBlurred: true, footerContent: <><div><p className="text-black text-tiny">Wifi desteği, Kablolu Kablosuz Şarz desteği</p><p className="text-black text-tiny">Esnek ve Hafif Güneş Panelli Akilli Sistemler</p></div><Button className="text-tiny ml-2" color="primary" radius="full" size="sm">Notify Me</Button></> },
-      { id: 5, className: "w-full h-[300px] col-span-12 sm:col-span-7", headerContent: "Antrenmani Kolaylastir", isFooterBlurred: true, footerContent: <div className="flex flex-grow gap-2 items-center"><Image alt="Breathing app icon" className="rounded-full w-10 h-11 bg-black" src="https://heroui.com/images/breathing-app-icon.jpeg" /><div className="flex flex-col"><p className="text-tiny text-muted-foreground text-left">Yediğiniz yemeklerin sadece resmini çekerek tüm değerlerini, kalori kısmında kayıt edip takip edebilirsiniz.</p><p className="text-tiny text-muted-foreground text-left"><span className="font-bold">BUTAFiT mobil uygulamasi yaptığınız hareketleri ve tekrar sayisini kontrol eder</span>ek Antrenman Takibi sağlar.</p></div><Button radius="full" size="sm">Get App</Button></div> },
+      { id: 4, className: "w-full h-[300px] col-span-12 sm:col-span-5", headerContent: "AKILLI BELEDİYELER İÇİN", isFooterBlurred: true, footerContent: <>
+      <div><p className="text-black text-tiny">Wifi desteği, Kablolu Kablosuz Şarz desteği</p>
+      <p className="text-black text-tiny">Esnek ve Hafif Güneş Panelli Akilli Sistemler</p></div>
+      <Button className="text-tiny ml-2" color="primary" radius="full" size="sm">İncele</Button></> },
+      { id: 5, className: "w-full h-[300px] col-span-12 sm:col-span-7", headerContent: "Antrenmani Kolaylastir", isFooterBlurred: true, footerContent: 
+      <div className="flex flex-grow gap-2 items-center">
+      <Image alt="Breathing app icon" className="rounded-full w-16 md:w-10 h-full bg-black" src="https://heroui.com/images/breathing-app-icon.jpeg" />
+      <div className="flex flex-col">
+      <p className="text-tiny text-muted-foreground text-left">Yediğiniz yemeklerin sadece resmini çekerek tüm değerlerini, kalori kısmında kayıt edip takip edebilirsiniz.</p>
+      <p className="text-tiny text-muted-foreground text-left"><span className="font-bold">BUTAFiT mobil uygulamasi yaptığınız hareketleri ve tekrar sayisini kontrol eder</span>ek Antrenman Takibi sağlar.</p>
+      </div><Button radius="full" size="sm">İndir</Button></div> },
     ];
   
     return (
-      <section className="w-full pt-24 pb-16">
+      <section className="w-full pt-24 pb-10 bg-secondary/5">
         <div className="gap-2 grid grid-cols-12 grid-rows-2 px-2">
           {cardData.map((card) => (
             <MyCard

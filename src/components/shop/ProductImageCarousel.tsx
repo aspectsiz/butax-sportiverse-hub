@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { LeftArrowIcon } from '@/components/ui/LeftArrowIcon';
+import { RightArrowIcon } from '@/components/ui/RightArrowIcon';
+import { Button } from "@heroui/react";
 
 interface ProductImageCarouselProps {
   images: string[];
@@ -19,50 +20,59 @@ export const ProductImageCarousel = ({ images, productName }: ProductImageCarous
   };
 
   return (
-    <div className="relative">
-      <div className="aspect-square overflow-hidden rounded-lg">
-        <img
-          src={images[currentImage]}
-          alt={`${productName} - Image ${currentImage + 1}`}
-          className="h-full w-full object-cover object-center"
-        />
-      </div>
-      
-      <div className="absolute inset-0 flex items-center justify-between p-4">
-        <Button
-          variant="outline"
-          size="icon"
-          className="h-10 w-10 rounded-full bg-white/70"
-          onClick={previousImage}
-        >
-          <ChevronLeft className="h-4 w-4" />
-        </Button>
-        <Button
-          variant="outline"
-          size="icon"
-          className="h-10 w-10 rounded-full bg-white/70"
-          onClick={nextImage}
-        >
-          <ChevronRight className="h- w-4" />
-        </Button>
+    <div>
+      <div className="relative">
+        <div className="absolute top-1/2 left-0 right-0 transform -translate-y-1/2 sm:flex justify-between p-2 hidden">
+          {/* sm:hidden ile mobil görünüsme gizlendi */}
+          <Button
+          radius="full"
+            isIconOnly
+            aria-label="Previous Image"
+            color="primary"
+            variant="faded"
+            onClick={previousImage}
+          >
+            <LeftArrowIcon fill="currentColor" />
+          </Button>
+          <Button
+          radius="full"
+            isIconOnly
+            aria-label="Next Image"
+            color="primary"
+            variant="faded"
+            onClick={nextImage}
+          >
+            <RightArrowIcon fill="currentColor" />
+          </Button>
+        </div>
+        <div className="sm:aspect-auto aspect-square overflow-hidden rounded-sm">
+          <img
+            src={images[currentImage]}
+            alt={`${productName} - Image ${currentImage + 1}`}
+            className="h-full w-full object-cover object-center"
+          />
+        </div>
       </div>
 
-      <div className="mt-4 flex gap-4 overflow-auto justify-center">
-        {images.map((image, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentImage(index)}
-            className={`relative flex-none ${
-              currentImage === index ? 'ring-2 ring-black dark:ring-white' : ''
-            }`}
-          >
-            <img
-              src={image}
-              alt={`${productName} thumbnail ${index + 1}`}
-              className="h-36 w-20 rounded-lg object-cover object-center"
-            />
-          </button>
-        ))}
+      <div className="relative">
+        <div className="mt-4 ml-2 sm:ml-0 flex gap-4  justify-left sm:justify-center">
+          {images.map((image, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentImage(index)}
+              className={`relative flex-none rounded-sm ${
+                currentImage === index ? 'ring ring-primary ring-offset-2' : ''
+              }`}
+            >
+              <img
+                src={image}
+                alt={`${productName} thumbnail ${index + 1}`}
+                className="sm:h-36 sm:w-20 h-16 w-16 rounded-2sm object-cover object-center"
+                 // h-24 w-16 olarak değiştirildi
+              />
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

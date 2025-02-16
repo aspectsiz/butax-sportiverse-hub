@@ -12,22 +12,22 @@ import {
 const Footer = () => {
   const footerLinks = {
     info: [
-      { to: "/about", label: "About Us" },
-      { to: "/shop", label: "Products" },
-      { to: "/franchise", label: "Franchise" },
-      { to: "/contact", label: "Contact" },
+      { to: "/hakkimizda", label: "Hakkimizda" },
+      { to: "/shop", label: "Ürünlerimiz" },
+      { to: "/franchise", label: "Bayilik" },
+      { to: "/contact", label: "İletişim" },
     ],
     explore: [
-      { to: "/shop", label: "Latest Products" },
-      { to: "/shop", label: "Popular Items" },
-      { to: "/shop", label: "New Arrivals" },
-      { to: "/shop", label: "Special Offers" },
+      { to: "/shop", label: "Yeni Ürünler" },
+      { to: "/shop", label: "Popüler Ürünler" },
+      { to: "/shop", label: "BUTAX Özel" },
+      { to: "/shop", label: "Sponsorluk" },
     ],
     legal: [
-      { to: "#", label: "Privacy Policy" },
-      { to: "#", label: "Terms of Service" },
-      { to: "#", label: "Cookie Policy" },
-      { to: "#", label: "GDPR" },
+      { to: "#", label: "Gizlilik Politikası" },
+      { to: "#", label: "Kullanım Şartları" },
+      { to: "#", label: "Çerez Politikası" },
+      { to: "#", label: "KVKK ve GDPR" },
     ],
   };
 
@@ -36,11 +36,11 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Mobile View with Accordion */}
-          <div className="md:hidden col-span-1">
+          <div className="md:hidden col-span-1 text-left">
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="info">
                 <AccordionTrigger className="text-xl font-semibold text-white">
-                  Info
+                  Bilgi
                 </AccordionTrigger>
                 <AccordionContent>
                   <ul className="space-y-2">
@@ -60,7 +60,7 @@ const Footer = () => {
 
               <AccordionItem value="explore">
                 <AccordionTrigger className="text-xl font-semibold text-white">
-                  Explore
+                Keşfet
                 </AccordionTrigger>
                 <AccordionContent>
                   <ul className="space-y-2">
@@ -80,7 +80,7 @@ const Footer = () => {
 
               <AccordionItem value="legal">
                 <AccordionTrigger className="text-xl font-semibold text-white">
-                  Legal
+                  Yasal
                 </AccordionTrigger>
                 <AccordionContent>
                   <ul className="space-y-2">
@@ -102,7 +102,7 @@ const Footer = () => {
 
           {/* Desktop View */}
           <div className="hidden md:block">
-            <h4 className="text-xl font-semibold text-white mb-4">Info</h4>
+            <h4 className="text-xl font-semibold text-white mb-4">Bilgi</h4>
             <ul className="space-y-2">
               {footerLinks.info.map((link) => (
                 <li key={link.label}>
@@ -118,7 +118,7 @@ const Footer = () => {
           </div>
 
           <div className="hidden md:block">
-            <h4 className="text-xl font-semibold text-white mb-4">Explore</h4>
+            <h4 className="text-xl font-semibold text-white mb-4">Keşfet</h4>
             <ul className="space-y-2">
               {footerLinks.explore.map((link) => (
                 <li key={link.label}>
@@ -134,7 +134,7 @@ const Footer = () => {
           </div>
 
           <div className="hidden md:block">
-            <h4 className="text-xl font-semibold text-white mb-4">Legal</h4>
+            <h4 className="text-xl font-semibold text-white mb-4">Yasal</h4>
             <ul className="space-y-2">
               {footerLinks.legal.map((link) => (
                 <li key={link.label}>
@@ -151,9 +151,9 @@ const Footer = () => {
 
           {/* Newsletter Section - Visible in both mobile and desktop */}
           <div className="col-span-1 md:col-span-1">
-            <h4 className="text-xl font-semibold text-white mb-4">Newsletter</h4>
+            <h4 className="text-xl font-semibold text-white mb-4">Haber Bülteni</h4>
             <p className="text-gray-300 mb-4">
-              Subscribe to our newsletter for updates and exclusive offers.
+              BUTAX'in yönetmeliklerinden ve tekliflerinden haberdar olmak için abone olun.
             </p>
             <div className="flex flex-col space-y-2">
               <Input
@@ -162,7 +162,7 @@ const Footer = () => {
                 className="bg-transparent border-gray-600 text-white placeholder:text-gray-400"
               />
               <Button className="bg-white text-secondary hover:bg-gray-200">
-                Subscribe <Send className="w-4 h-4 ml-2" />
+                Abone Ol <Send className="w-4 h-4 ml-2" />
               </Button>
             </div>
             <div className="flex space-x-4 mt-6">

@@ -1,20 +1,28 @@
-import { Moon, Sun } from "lucide-react";
+// ThemeToggle.tsx
 import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
+import { Switch } from "@heroui/react";
+import { SunIcon } from "@/components/ui/lightIcons"; // Light Mod ikonunu içe aktar
+import { MoonIcon } from "@/components/ui/darkIcons";   // Dark Mod ikonunu içe aktar
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
 
+  const isDarkMode = theme === "dark"; // Temanın dark modda olup olmadığını kontrol et
+
+  const toggleTheme = (isSelected: boolean) => {
+    setTheme(isSelected ? "dark" : "light");
+  };
+
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="hover:text-accent text-foreground"
+    <Switch
+      isSelected={isDarkMode} // Doğru prop ismi kullanıldı
+      color="success"
+      endContent={<MoonIcon />}   // Dark Mod ikonunu kullan
+      size="lg"
+      startContent={<SunIcon />}   // Light Mod ikonunu kullan
+      onValueChange={toggleTheme} // Doğru prop ismi kullanıldı ve fonksiyon güncellendi
+      aria-label="Enable dark mode" // Erişilebilirlik için
     >
-      <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-      <span className="sr-only">Toggle theme</span>
-    </Button>
+    </Switch>
   );
 }

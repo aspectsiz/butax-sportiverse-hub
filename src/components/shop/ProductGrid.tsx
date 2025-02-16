@@ -10,7 +10,7 @@ const ProductGrid = ({ products }: ProductGridProps) => {
     return (
       <div className="text-center py-12">
         <p className="text-lg text-muted-foreground">
-          No products found. Try adjusting your search or category filter.
+        Ürün bulunamadı. Aramanızı veya kategori filtrenizi ayarlamayı deneyin.
         </p>
       </div>
     );

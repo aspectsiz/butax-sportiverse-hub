@@ -66,14 +66,14 @@ const ContactForm = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6"> {/*formRef deleted*/}
       <div>
-        <h2 className="text-3xl font-bold mb-6">Send us a Message</h2>
+        <h2 className="text-3xl font-bold mb-6">Bizimle İletişime Geçin</h2>
       </div>
 
       <div className="space-y-4">
         <div>
           <Input
             type="text"
-            placeholder="Your Name"
+            placeholder="Ad Soyad"
             name="from_name"
             value={formData.from_name}
             onChange={handleChange}
@@ -84,7 +84,7 @@ const ContactForm = () => {
         <div>
           <Input
             type="tel"
-            placeholder="Your Phone Number"
+            placeholder="Telefon Numaraniz"
             name="from_telephone"
             value={formData.from_telephone}
             onChange={handleChange}
@@ -95,7 +95,7 @@ const ContactForm = () => {
         <div>
           <Input
             type="email"
-            placeholder="Your Email"
+            placeholder="E-mail"
             name="from_email"
             value={formData.from_email}
             onChange={handleChange}
@@ -105,7 +105,7 @@ const ContactForm = () => {
 
         <div>
           <Input
-            placeholder="Subject"
+            placeholder="Konu"
             name="subject"
             value={formData.subject}
             onChange={handleChange}
@@ -115,7 +115,7 @@ const ContactForm = () => {
 
         <div>
           <Textarea
-            placeholder="Your Message"
+            placeholder="Mesajınızı yazınız..."
             name="message"
             value={formData.message}
             onChange={handleChange}
@@ -124,7 +124,7 @@ const ContactForm = () => {
           />
         </div>
 
-        <div className="flex justify-center my-4">
+        <div className="flex justify-left my-4">
           <ReCAPTCHA
             ref={recaptchaRef}
             sitekey="6LcERncqAAAAAIZfd99hXQNWuQu6chykOiXz5pW5"

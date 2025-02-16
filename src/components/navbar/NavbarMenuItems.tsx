@@ -3,12 +3,12 @@ import { NavbarContent, NavbarItem } from "@nextui-org/react";
 
 const menuItems = [
   { name: "Anasayfa", href: "/" },
-  { name: "Hakkimizda", href: "/about" },
+  { name: "Hakkimizda", href: "/hakkimizda" },
   { name: "Ürünlerimiz", href: "/shop" },
   { name: "Medya Merkezi", href: "/blog" },
   { name: "Referanslar", href: "/ref" },
   { name: "İletişim", href: "/contact" },
-  { name: "Bayilik", href: "/franchise" },
+//  { name: "Bayilik", href: "/franchise" },
 ];
 
 export const NavbarMenuItems = () => {

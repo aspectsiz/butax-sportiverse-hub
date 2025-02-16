@@ -1,34 +1,54 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import ContactForm from "@/components/contact/ContactForm";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator
+} from "@/components/ui/breadcrumb";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   return (
-    <div className="min-h-screen bg-background">
-
-   {/* Hero Section */}
-    <div className="w-full hero-pattern">
-      <div className="container mx-auto px-4 pt-24 pb-10">
-        <div className="grid md:grid-cols-2 gap-12">
-          <div className="text-primary-foreground text-left">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">BUTAX is here</h1>
-            <p className="text-lg max-w-2xl mx-auto">
-               Our door is always open for a good cup of coffe.
-            </p>
-          </div>
-         </div>
-       </div>
-    </div>
+    <div className="w-full">
+      {/* Hero Section */}
+      <div className="hero-pattern pt-20 lg:pt-24 lg:pb-8 pb-4 px-4 sm:px-6 lg:px-8 w-full text-primary-foreground">
+        {/* Page Header */}
+        <div className="max-w-7xl mx-auto text-center">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+              <Link
+                to="/"
+                className="transition-colors text-muted-foreground hover:text-primary-foreground"
+              >
+                Ana Sayfa
+              </Link>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>İletişim</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+        <h1 className="text-4xl font-bold text-left uppercase">
+        İletişim
+        </h1>
+      </div>
+      </div>
 
   {/* Contact Information */}
     <div className="container mx-auto px-4 py-4">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="space-y-8">
+          <div className="space-y-2">
             <div className="space-y-6 text-left">
               <div className="flex items-start space-x-4">
                 <MapPin className="w-6 h-6 text-accent mt-1" />
                 <div>
-                  <h3 className="font-semibold">Our Location</h3>
+                  <h3 className="font-semibold">Konum</h3>
                   <p className="text-muted-foreground">
                     Yenikent, 26. Cad. No:11, 06946 Sincan/Ankara
                   </p>
@@ -38,7 +58,7 @@ const Contact = () => {
               <div className="flex items-start space-x-4">
                 <Mail className="w-6 h-6 text-accent mt-1" />
                 <div>
-                  <h3 className="font-semibold">Email Us</h3>
+                  <h3 className="font-semibold">E-posta</h3>
                   <p className="text-muted-foreground">info@butaxsports.com</p>
                 </div>
               </div>
@@ -46,7 +66,7 @@ const Contact = () => {
               <div className="flex items-start space-x-4">
                 <Phone className="w-6 h-6 text-accent mt-1" />
                 <div>
-                  <h3 className="font-semibold">Call Us</h3>
+                  <h3 className="font-semibold">Telefon</h3>
                   <p className="text-muted-foreground">+90 (312) 123 4567</p>
                 </div>
               </div>

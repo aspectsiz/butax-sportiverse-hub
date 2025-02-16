@@ -1,7 +1,7 @@
 // src/AppRoutes.tsx
 
 import { Routes, Route } from "react-router-dom";
-import Shop from "@/pages/Shop";
+import Shop from "@/pages/shop";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Franchise from "@/pages/Franchise";
@@ -29,7 +29,7 @@ const AppRoutes = () => {
       <Route path="/shop" element={<MainLayout><Shop /></MainLayout>} />
       <Route path="/shop/:category" element={<MainLayout><CategoryPage /></MainLayout>} />
       <Route path="/shop/:category/:slug" element={<MainLayout><ProductDetail /></MainLayout>} />
-      <Route path="/about" element={<MainLayout><About /></MainLayout>} />
+      <Route path="/hakkimizda" element={<MainLayout><About /></MainLayout>} />
       <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />
       <Route path="/franchise" element={<MainLayout><Franchise /></MainLayout>} />
       <Route path="/signin" element={<SignIn />} />

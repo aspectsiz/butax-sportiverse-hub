@@ -1,13 +1,14 @@
 import type { Config } from "tailwindcss";
 import { nextui } from "@nextui-org/react";
 
-export default {
+const config: Config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
     "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{ts,tsx}", // Tekrar eden satırı kaldırdım
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   prefix: "",
@@ -64,7 +65,29 @@ export default {
         sans: ["Inter", "sans-serif"],
         heading: ["Montserrat", "sans-serif"],
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            blockquote: {
+              fontWeight: '400',
+              fontStyle: 'italic',
+              borderLeftColor: '#cbd5e0',
+              quotes: '"\\201C""\\201D""\\2018""\\2019"',
+              margin: '1.5em 0',
+              paddingLeft: '1em',
+            },
+            'blockquote p:first-of-type::before': { content: 'none' },
+            'blockquote p:last-of-type::after': { content: 'none' },
+          },
+        },
+      },
     },
   },
-  plugins: [require("tailwindcss-animate"), nextui()],
+  plugins: [
+    require("tailwindcss-animate"),
+    nextui(),
+    require('@tailwindcss/typography'),
+  ],
 } satisfies Config;
+
+export default config;

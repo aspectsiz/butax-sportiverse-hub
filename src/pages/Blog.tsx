@@ -1,42 +1,43 @@
 // src/pages/Blog.tsx
 
-
-import { blogPosts } from '@/data/blogData';
-import BlogCard from '@/components/blog/BlogCard';
-import { 
+import { blogPosts } from "@/data/blogData";
+import BlogCard from "@/components/blog/BlogCard";
+import {
   Breadcrumb,
   BreadcrumbList,
   BreadcrumbItem,
   BreadcrumbLink,
-  BreadcrumbPage
+  BreadcrumbPage,
+  BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Blog = () => {
   return (
-    <div className="w-full py-8 px-4">
-      {/* Breadcrumb */}
-      <div className="max-w-7xl mx-auto mb-8">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <Link to="/" className="text-muted-foreground hover:text-foreground">
+    <div className="w-full">
+      {/* Hero Section */}
+      <div className="hero-pattern pt-20 lg:pt-24 lg:pb-8 pb-4 px-4 sm:px-6 lg:px-8 w-full text-primary-foreground">
+        {/* Page Header */}
+        <div className="max-w-7xl mx-auto text-center">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+              <Link
+                to="/"
+                className="transition-colors text-muted-foreground hover:text-primary-foreground"
+              >
                 Ana Sayfa
               </Link>
             </BreadcrumbItem>
+            <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>Blog</BreadcrumbPage>
+              <BreadcrumbPage>Medya Merkezi</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-      </div>
-
-      {/* Page Header */}
-      <div className="max-w-7xl mx-auto mb-12 text-center">
-        <h1 className="text-4xl font-bold mb-4">Blog</h1>
-        <p className="text-muted-foreground text-lg">
-          Fitness ve spor ekipmanları hakkında en güncel içerikler
-        </p>
+        <h1 className="text-4xl font-bold text-left mb-4 uppercase">
+          Medya Merkezi
+        </h1>
       </div>
 
       {/* Blog Grid */}
@@ -47,6 +48,7 @@ const Blog = () => {
           ))}
         </div>
       </div>
+    </div>
     </div>
   );
 };

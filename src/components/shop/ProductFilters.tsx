@@ -24,7 +24,7 @@ const ProductFilters = ({
   return (
     <div className="flex flex-col md:flex-row gap-4 mb-8">
       <Input
-        placeholder="Search products..."
+        placeholder="Aranacak ürün(ler)..."
         value={searchTerm}
         onChange={(e) => onSearchChange(e.target.value)}
         className="max-w-sm"
@@ -33,27 +33,27 @@ const ProductFilters = ({
         value={category}
         onValueChange={onCategoryChange}
       >
-        <SelectTrigger className="max-w-[200px]">
+        <SelectTrigger className="max-w-[250px]">
           <SelectValue placeholder="Category" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="all">All Categories</SelectItem>
-          <SelectItem value="sports-equipment">
+          <SelectItem value="all">Tüm Kategoriler</SelectItem>
+          <SelectItem value="acik-alan-spor-aleti">
             <div className="flex items-center gap-2">
               <DumbbellIcon className="w-5 h-5" />
-              Sports Equipment
+              Açık Alan Spor Aletleri
             </div>
           </SelectItem>
-          <SelectItem value="urban-furniture">
+          <SelectItem value="kent-mobilyalari">
             <div className="flex items-center gap-2">
               <SofaIcon className="w-5 h-5" />
-              Urban Furniture
+              Kent Mobilyaları
             </div>
           </SelectItem>
-          <SelectItem value="sportswear">
+          <SelectItem value="spor-giyim">
             <div className="flex items-center gap-2">
               <ShirtIcon className="w-5 h-5" />
-              Sportswear
+              Spor Giyim
             </div>
           </SelectItem>
         </SelectContent>

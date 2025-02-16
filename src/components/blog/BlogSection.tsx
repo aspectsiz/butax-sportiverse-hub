@@ -11,7 +11,7 @@ interface BlogSectionProps {
 
 const BlogSection: React.FC<BlogSectionProps> = ({ latestPosts }) => {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-secondary/5 w-full">
+    <section className="py-10 px-4 sm:px-6 lg:px-8 bg-secondary/5 w-full">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center mb-12 h-16">
           <h2 className="text-3xl font-bold text-foreground mb-0 text-left uppercase mr-4 align-self-center">Medya Merkezimiz</h2>

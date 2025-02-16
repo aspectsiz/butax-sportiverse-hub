@@ -2,14 +2,15 @@ import { Product } from '@/types/product';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
-import { useToast } from '@/components/ui/use-toast';
 import { useCart } from '@/store/useCart';
 import { DumbbellIcon, SofaIcon, ShirtIcon } from 'lucide-react';
+import { Alert } from "@heroui/react";
+import { useState } from 'react'; // useState import edildi
 
 const categoryIcons = {
-  'sports-equipment': <DumbbellIcon className="w-5 h-5" />,
-  'urban-furniture': <SofaIcon className="w-5 h-5" />,
-  'sportswear': <ShirtIcon className="w-5 h-5" />,
+  'acik-alan-spor-aleti': <DumbbellIcon className="w-5 h-5" />,
+  'kent-mobilyalari': <SofaIcon className="w-5 h-5" />,
+  'spor-giyim': <ShirtIcon className="w-5 h-5" />,
 };
 
 interface ProductCardProps {
@@ -18,15 +19,15 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const navigate = useNavigate();
-  const { toast } = useToast();
   const { addItem } = useCart();
+  const [showAlert, setShowAlert] = useState(false); // Alert görünürlüğünü kontrol etmek için state
 
   const handleAddToCart = () => {
     addItem(product);
-    toast({
-      title: product.quoteOnly ? 'Added to quote request' : 'Added to cart',
-      description: `${product.name} has been added to your ${product.quoteOnly ? 'quote request' : 'cart'}.`,
-    });
+    if (product.quoteOnly) {
+      setShowAlert(true); // Teklif talebine eklendiyse alert'i göster
+      setTimeout(() => setShowAlert(false), 3000); // 3 saniye sonra alert'i otomatik olarak kapat
+    }
   };
 
   const getProductUrl = (product: Product) => {
@@ -55,10 +56,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
         {!product.quoteOnly ? (
           <p className="text-2xl font-bold">${product.price.toFixed(2)}</p>
         ) : (
-          <p className="text-lg font-semibold text-accent">Request Quote</p>
+          <p className="text-lg font-semibold text-accent"></p>
         )}
         <p className="text-sm text-muted-foreground mt-2">
-          {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
+          {product.stock > 0 ? `${product.stock} adet stokta bulunmaktadır.` : 'Stokta Yok'}
         </p>
       </CardContent>
       <CardFooter className="flex gap-2">
@@ -67,16 +68,21 @@ const ProductCard = ({ product }: ProductCardProps) => {
           variant="outline"
           className="flex-1"
         >
-          View Details
+          İncele
         </Button>
         <Button
           onClick={handleAddToCart}
           className="flex-1"
           disabled={product.stock === 0}
         >
-          {product.quoteOnly ? 'Request Quote' : (product.stock > 0 ? 'Add to Cart' : 'Out of Stock')}
+          {product.quoteOnly ? 'Teklif İsteyin' : (product.stock > 0 ? 'Sepete Ekle' : 'Stokta Yok')}
         </Button>
       </CardFooter>
+        {showAlert && (
+          <div className="fixed bottom-4 right-4 z-50"> {/* Sabit pozisyon ve sağ alta yerleştirme */}
+            <Alert color="success" title={`${product.name} teklif talebine eklendi`} variant='solid'/>
+          </div>
+        )}
     </Card>
   );
 };

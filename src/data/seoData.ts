@@ -11,44 +11,44 @@ interface SEODataMap {
 
 export const seoData: SEODataMap = {
   home: {
-    title: "BUTAX Sports - Premium Sports Equipment & Urban Furniture",
-    description: "Discover premium sports equipment, urban furniture, and innovative fitness solutions. Transform your space and elevate your fitness journey with BUTAX.",
-    keywords: ["sports equipment", "urban furniture", "fitness equipment", "outdoor fitness", "gym equipment", "BUTAX sports"],
+    title: "BUTAX Spor Aletleri & Kent Mobilyaları - Premium Çözümler",
+    description: "BUTAX ile üstün spor aletleri, kent mobilyaları ve yenilikçi fitness çözümlerini keşfedin. Alanlarınızı dönüştürün, spor deneyiminizi yükseltin! Fiyatlar için iletişime geçin.",
+    keywords: ["spor aletleri", "kent mobilyaları", "fitness ekipmanları", "dış mekan fitness", "spor salonu ekipmanları", "BUTAX spor aletleri", "BUTAX kent mobilyaları", "dış mekan spor aletleri", "park spor aletleri"],
     ogImage: "/og-image.png"
   },
   shop: {
-    title: "Shop BUTAX Sports Equipment & Fitness Gear",
-    description: "Browse our collection of high-quality sports equipment, urban furniture, and sportswear. Professional-grade fitness solutions for every need.",
-    keywords: ["sports shop", "fitness equipment", "gym gear", "urban furniture", "sportswear", "BUTAX store"],
+    title: "BUTAX Spor Aletleri & Kent Mobilyaları - Online Mağaza",
+    description: "Yüksek kaliteli spor aletleri, kent mobilyaları ve spor giyim koleksiyonumuza göz atın. Her ihtiyaca uygun profesyonel fitness çözümleri. Fiyatlar ve daha fazlası için bize ulaşın!",
+    keywords: ["spor mağazası", "fitness aletleri", "spor salonu malzemeleri", "kent mobilyaları", "spor giyim", "BUTAX mağaza", "BUTAX spor ürünleri", "uygun fiyatlı spor ekipmanları"],
   },
-  about: {
-    title: "About BUTAX - Our Story & Mission",
-    description: "Learn about BUTAX's journey in revolutionizing outdoor fitness and urban sports equipment. Discover our mission and commitment to innovation.",
-    keywords: ["about BUTAX", "company history", "fitness innovation", "sports technology", "urban development", "outdoor fitness"],
+  hakkimizda: {
+    title: "BUTAX Hakkında - Spor ve Kent Yaşamına Değer Katıyoruz",
+    description: "BUTAX'ın dış mekan fitness ve kent spor ekipmanlarında devrim yaratma yolculuğunu öğrenin. Misyonumuzu ve yeniliğe olan bağlılığımızı keşfedin. Bizi daha yakından tanıyın!",
+    keywords: ["BUTAX hakkında", "şirket geçmişi", "fitness yeniliği", "spor teknolojisi", "kentsel gelişim", "dış mekan fitness", "BUTAX misyonu", "BUTAX vizyonu"],
   },
   franchise: {
-    title: "BUTAX Franchise Opportunities",
-    description: "Explore franchise opportunities with BUTAX. Join our growing network of successful fitness equipment and urban furniture businesses.",
-    keywords: ["BUTAX franchise", "business opportunity", "fitness franchise", "sports business", "urban furniture franchise"],
+    title: "BUTAX Franchise - Kendi İşinizi Kurma Fırsatı",
+    description: "BUTAX ile franchise fırsatlarını keşfedin. Büyüyen başarılı spor aletleri ve kent mobilyaları işletmeleri ağımıza katılın. Avantajlı franchise fırsatları için başvurun!",
+    keywords: ["BUTAX franchise", "iş fırsatı", "fitness franchise", "spor işi", "kent mobilyaları franchise", "girişimcilik", "bayilik", "franchise şartları"],
   },
   contact: {
-    title: "Contact BUTAX - Get in Touch",
-    description: "Contact BUTAX for inquiries about our sports equipment, urban furniture, or franchise opportunities. We're here to help.",
-    keywords: ["contact BUTAX", "customer support", "sales inquiry", "franchise information", "location"],
+    title: "BUTAX İletişim - Size Yardımcı Olmaya Hazırız",
+    description: "Spor aletlerimiz, kent mobilyalarımız veya franchise fırsatlarımız hakkında sorularınız için BUTAX ile iletişime geçin. Size yardımcı olmak için buradayız. Fiyat teklifi almak için hemen formumuzu doldurun!",
+    keywords: ["BUTAX iletişim", "müşteri desteği", "satış sorgusu", "franchise bilgisi", "iletişim formu", "destek"],
   },
-  'sports-equipment': {
-    title: "Sports Equipment - BUTAX Sports",
-    description: "Discover our premium collection of sports equipment. Professional-grade fitness solutions for every workout need.",
-    keywords: ["sports equipment", "fitness equipment", "gym equipment", "workout gear", "BUTAX sports"],
+  'acik-alan-spor-aleti': {
+    title: "Spor Aletleri - BUTAX'tan Kaliteli Çözümler",
+    description: "Premium spor aletleri koleksiyonumuzu keşfedin. Her antrenman ihtiyacına uygun profesyonel fitness çözümleri. Kampanyalı ürünlerimiz için takipte kalın!",
+    keywords: ["spor aletleri", "fitness ekipmanları", "spor salonu ekipmanları", "antrenman malzemeleri", "BUTAX spor aletleri", "en iyi spor ekipmanları", "kaliteli spor aletleri"],
   },
-  'urban-furniture': {
-    title: "Urban Furniture - BUTAX Sports",
-    description: "Browse our modern urban furniture collection. Durable and stylish solutions for public spaces.",
-    keywords: ["urban furniture", "outdoor furniture", "public space furniture", "street furniture", "BUTAX furniture"],
+  'kent-mobilyalari': {
+    title: "Kent Mobilyaları - BUTAX ile Şehirlerinizi Güzelleştirin",
+    description: "Modern kent mobilyaları koleksiyonumuza göz atın. Kamusal alanlar için dayanıklı ve şık çözümler. Projeleriniz için özel fiyat teklifi alın!",
+    keywords: ["kent mobilyaları", "dış mekan mobilyaları", "kamusal alan mobilyaları", "sokak mobilyaları", "BUTAX mobilyaları", "park mobilyaları", "belediye mobilyaları"],
   },
-  'sportswear': {
-    title: "Sportswear - BUTAX Sports",
-    description: "Shop high-quality sportswear for maximum performance. Comfortable and durable athletic clothing.",
-    keywords: ["sportswear", "athletic wear", "gym clothes", "workout clothing", "BUTAX sportswear"],
+  'spor-giyim': {
+    title: "Spor Giyim - BUTAX'tan Performans Artıran Şıklık",
+    description: "Maksimum performans için yüksek kaliteli spor giyim ürünlerimizi satın alın. Konforlu ve dayanıklı atletik giyim. Yeni sezon ürünlerimizi inceleyin!",
+    keywords: ["spor giyim", "atletik giyim", "spor kıyafetleri", "antrenman giyim", "BUTAX spor giyim", "erkek spor giyim", "kadın spor giyim"],
   },
 };

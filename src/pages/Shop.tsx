@@ -38,26 +38,31 @@ const Shop = () => {
   };
 
   return (
-    <main className="container mx-auto px-4 pt-24 pb-8">
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <Link to="/" className="transition-colors hover:text-foreground">Home</Link>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Shop</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+    <div className="w-full">
+      <div className="hero-pattern pt-20 lg:pt-24 lg:pb-8 pb-4 px-4 sm:px-6 lg:px-8 w-full text-primary-foreground">
+        {/* Page Header */}
+        <div className="max-w-7xl mx-auto text-center">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <Link
+                  to="/"
+                  className="transition-colors text-muted-foreground hover:text-primary-foreground"
+                >
+                  Ana Sayfa
+                </Link>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Ürünlerimiz</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+          <h1 className="text-4xl font-bold text-left uppercase">Ürünlerimiz</h1>
+          </div>
+          </div>
 
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">Shop Our Products</h1>
-        <p className="text-muted-foreground">
-          Browse our collection of high-quality sports equipment, urban furniture, and sportswear.
-        </p>
-      </div>
-
+    <main className="container mx-auto px-4 py-4">
       <ProductFilters
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
@@ -72,6 +77,7 @@ const Shop = () => {
         baseUrl="https://yourwebsite.com/shop"
       />
     </main>
+    </div>
   );
 };
 

@@ -1,5 +1,13 @@
 import { Building, Users, MapPin, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+} from "@/components/ui/breadcrumb";
+import { Link } from "react-router-dom";
 
 const Franchise = () => {
   const benefits = [
@@ -14,13 +22,28 @@ const Franchise = () => {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <div className="hero-pattern pt-24 pb-16 px-4 sm:px-6 lg:px-8 w-full text-primary-foreground">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">BUTAX Franchise Opportunities</h1>
-          <p className="text-lg text-center max-w-2xl mx-auto">
-            Join the future of fitness with a BUTAX franchise. Be part of a growing network of successful gym owners.
-          </p>
-        </div>
+      <div className="hero-pattern pt-20 lg:pt-24 lg:pb-12 pb-4 px-4 sm:px-6 lg:px-8 w-full text-primary-foreground">
+        {/* Page Header */}
+        <div className="max-w-7xl mx-auto text-center">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+              <Link
+                to="/"
+                className="text-muted-foreground hover:text-primary-foreground"
+              >
+                Ana Sayfa
+              </Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem>
+              <BreadcrumbPage>Bayilik</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+        <h1 className="text-4xl font-bold text-left uppercase">
+        Bayilik
+        </h1>
+      </div>
       </div>
 
       {/* Why Choose Us */}

@@ -1,26 +1,60 @@
 export interface Product {
+  price: any;
   id: string;
   name: string;
   description: string;
-  price: number;
   category: string;
   imageUrl: string;
   stock: number;
   quoteOnly?: boolean;
   specifications?: {
     dimensions?: {
-      length: number;
-      width: number;
-      height: number;
+      length?: number;
+      width?: number;
+      height?: number;
     };
-    weight?: number;
+    totalWeight?: string; // Toplam ağırlık
+    weightUnit?: string; // Ağırlık birimi (örneğin, "KG")
     material?: string;
-    minUserHeight?: number;
-    safetyArea?: number;
+    minUserHeight?: string;
+    safetyArea?: string;
     installation?: string;
     standard?: string;
     origin?: string;
   };
+  slug: string;
+  rating: number;
+  sales: string;
+  isBestSeller: boolean;
+  isAdvantageous: boolean;
+  isLowPrice: boolean;
+  isVerifiedSeller: boolean;
+  isVideoAvailable: boolean;
+  normalizedCategory: string;
+  seoKeywords: string;
+  metaDescription: string;
+  campaign: string;
+  ageRange: string;
+  color1: string;
+  color2: string;
+  color3: string;
+  color4: string;
+  color5: string;
+  cargodelivery: string;
+  hedefbolge: string;
+  length: string;
+  width: string;
+  height: string;
+  equipmentWeight: string;
+  userHeight: string;
+  safetyArea: string;
+  baseMounting: string;
+  standard: string;
+  countryOfManufacture: string;
+  metalParts: string;
+  tubeStrengths: string;
+  coatingSolution: string;
+  productCode: string; // Ürün kodu eklendi
 }
 
 export interface CartItem extends Product {

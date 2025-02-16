@@ -51,15 +51,21 @@ const CategoryPage = () => {
   useSEO(seoData[category as keyof typeof seoData] || seoData.shop);
 
   return (
-    <main className="container mx-auto px-4 pt-24 pb-8">
-      <Breadcrumb>
+
+
+
+<div className="w-full">
+      <div className="hero-pattern pt-20 lg:pt-24 lg:pb-8 pb-4 px-4 sm:px-6 lg:px-8 w-full text-primary-foreground">
+        {/* Page Header */}
+        <div className="max-w-7xl mx-auto text-center">
+        <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <Link to="/" className="transition-colors hover:text-foreground">Home</Link>
+            <Link to="/" className="transition-colors text-muted-foreground hover:text-primary-foreground">Ana Sayfa</Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <Link to="/shop" className="transition-colors hover:text-foreground">Shop</Link>
+            <Link to="/shop" className="transition-colors text-muted-foreground hover:text-primary-foreground">Ürünlerimiz</Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -67,14 +73,11 @@ const CategoryPage = () => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
+          <h1 className="text-4xl text-left font-bold">{getCategoryDisplayName(category || '')}</h1>
+          </div>
+          </div>
 
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">{getCategoryDisplayName(category || '')}</h1>
-        <p className="text-muted-foreground">
-          Browse our collection of {getCategoryDisplayName(category || '')}
-        </p>
-      </div>
-
+      <main className="container mx-auto px-4 py-4">
       <ProductFilters
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
@@ -89,6 +92,7 @@ const CategoryPage = () => {
         baseUrl={`https://yourwebsite.com/shop/${category}`}
       />
     </main>
+    </div>
   );
 };
 
