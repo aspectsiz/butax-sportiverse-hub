@@ -1,3 +1,4 @@
+
 import { createContext, useContext, useEffect, useState } from 'react';
 import { Session, User } from '@supabase/supabase-js';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
@@ -19,13 +20,22 @@ interface SignInMethods {
   facebook: () => Promise<AuthResponse>;
 }
 
+interface UserMetadata {
+  firstName?: string;
+  lastName?: string;
+  username?: string;
+  dateOfBirth?: string;
+  phone?: string;
+  [key: string]: any;
+}
+
 interface AuthContextType {
   session: Session | null;
   user: User | null;
   userProfile: UserProfile | null;
   setUserProfile: (profile: UserProfile | null) => void;
   signOut: () => Promise<void>;
-  signUp: (email: string, password: string, role: UserRole) => Promise<AuthResponse>;
+  signUp: (email: string, password: string, role: UserRole, metadata?: UserMetadata) => Promise<AuthResponse>;
   signIn: SignInMethods;
 }
 
@@ -75,12 +85,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setUserProfile(null);
   };
 
-  const signUp = async (email: string, password: string, role: UserRole): Promise<AuthResponse> => {
+  const signUp = async (email: string, password: string, role: UserRole, metadata?: UserMetadata): Promise<AuthResponse> => {
     const { error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        data: { role },
+        data: { role, ...metadata },
       },
     });
     return { error: error ? { message: error.message } : null };
