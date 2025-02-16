@@ -1,3 +1,4 @@
+
 -- Enable the moddatetime extension first
 CREATE EXTENSION IF NOT EXISTS moddatetime;
 
