@@ -5,10 +5,10 @@ import { NavbarContent, NavbarItem } from "@nextui-org/react";
 const menuItems = [
   { name: "Anasayfa", href: "/" },
   { name: "Hakkimizda", href: "/hakkimizda" },
-  { name: "Ürünlerimiz", href: "/shop" },
-  { name: "Medya Merkezi", href: "/blog" },
-  { name: "Referanslar", href: "/ref" },
-  { name: "İletişim", href: "/contact" },
+  { name: "Ürünlerimiz", href: "/market" },
+  { name: "Medya Merkezi", href: "/medya-merkezi" },
+  { name: "Referanslar", href: "/referanslar" },
+  { name: "İletişim", href: "/iletisim" },
 ];
 
 export const NavbarMenuItems = () => {

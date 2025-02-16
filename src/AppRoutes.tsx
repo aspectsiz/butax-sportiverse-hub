@@ -1,3 +1,4 @@
+
 // src/AppRoutes.tsx
 
 import { Routes, Route } from "react-router-dom";
@@ -31,13 +32,13 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<MainLayout><Index /></MainLayout>} />
-      <Route path="/shop" element={<MainLayout><Shop /></MainLayout>} />
-      <Route path="/shop/:category" element={<MainLayout><CategoryPage /></MainLayout>} />
-      <Route path="/shop/:category/:slug" element={<MainLayout><ProductDetail /></MainLayout>} />
+      <Route path="/market" element={<MainLayout><Shop /></MainLayout>} />
+      <Route path="/market/:category" element={<MainLayout><CategoryPage /></MainLayout>} />
+      <Route path="/market/:category/:slug" element={<MainLayout><ProductDetail /></MainLayout>} />
       <Route path="/hakkimizda" element={<MainLayout><About /></MainLayout>} />
-      <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />
-      <Route path="/franchise" element={<MainLayout><Franchise /></MainLayout>} />
-      <Route path="/ref" element={<MainLayout><References /></MainLayout>} />
+      <Route path="/iletisim" element={<MainLayout><Contact /></MainLayout>} />
+      <Route path="/bayilik" element={<MainLayout><Franchise /></MainLayout>} />
+      <Route path="/referanslar" element={<MainLayout><References /></MainLayout>} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/checkout" element={<MainLayout><Checkout /></MainLayout>} />
@@ -48,8 +49,8 @@ const AppRoutes = () => {
       <Route path="/cookie-policy" element={<MainLayout><CookiePolicy /></MainLayout>} />
       <Route path="/kvkk-gdpr" element={<MainLayout><KVKKGDPR /></MainLayout>} />
       
-      <Route path="/blog" element={<MainLayout><Blog /></MainLayout>} />
-      <Route path="/blog/:slug" element={<MainLayout><BlogPost /></MainLayout>} />
+      <Route path="/medya-merkezi" element={<MainLayout><Blog /></MainLayout>} />
+      <Route path="/medya-merkezi/:slug" element={<MainLayout><BlogPost /></MainLayout>} />
       
       {/* Protected Admin Routes */}
       <Route 
