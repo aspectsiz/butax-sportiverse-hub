@@ -1,7 +1,7 @@
 // src/AppRoutes.tsx
 
 import { Routes, Route } from "react-router-dom";
-import Shop from "@/pages/shop";
+import Shop from "@/pages/Shop";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Franchise from "@/pages/Franchise";
