@@ -21,6 +21,11 @@ import ReviewsPage from "@/pages/user/ReviewsPage";
 import Checkout from "@/components/shop/Checkout";
 import MainLayout from "@/components/layout/MainLayout";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
+import PrivacyPolicy from "@/pages/legal/PrivacyPolicy";
+import TermsOfUse from "@/pages/legal/TermsOfUse";
+import CookiePolicy from "@/pages/legal/CookiePolicy";
+import KVKKGDPR from "@/pages/legal/KVKKGDPR";
+import References from "@/pages/References";
 
 const AppRoutes = () => {
   return (
@@ -32,9 +37,16 @@ const AppRoutes = () => {
       <Route path="/hakkimizda" element={<MainLayout><About /></MainLayout>} />
       <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />
       <Route path="/franchise" element={<MainLayout><Franchise /></MainLayout>} />
+      <Route path="/ref" element={<MainLayout><References /></MainLayout>} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/checkout" element={<MainLayout><Checkout /></MainLayout>} />
+      
+      {/* Legal Pages */}
+      <Route path="/privacy-policy" element={<MainLayout><PrivacyPolicy /></MainLayout>} />
+      <Route path="/terms-of-use" element={<MainLayout><TermsOfUse /></MainLayout>} />
+      <Route path="/cookie-policy" element={<MainLayout><CookiePolicy /></MainLayout>} />
+      <Route path="/kvkk-gdpr" element={<MainLayout><KVKKGDPR /></MainLayout>} />
       
       <Route path="/blog" element={<MainLayout><Blog /></MainLayout>} />
       <Route path="/blog/:slug" element={<MainLayout><BlogPost /></MainLayout>} />

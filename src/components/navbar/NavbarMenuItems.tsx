@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { NavbarContent, NavbarItem } from "@nextui-org/react";
 
@@ -8,7 +9,6 @@ const menuItems = [
   { name: "Medya Merkezi", href: "/blog" },
   { name: "Referanslar", href: "/ref" },
   { name: "İletişim", href: "/contact" },
-//  { name: "Bayilik", href: "/franchise" },
 ];
 
 export const NavbarMenuItems = () => {
