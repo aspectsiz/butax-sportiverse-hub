@@ -1,4 +1,3 @@
-
 // src/lib/stringUtils.ts
 export const toEnglishCharacters = (text: string): string => {
   const turkishCharacters: { [key: string]: string } = {
