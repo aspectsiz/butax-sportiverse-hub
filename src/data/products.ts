@@ -10,6 +10,7 @@ export const mockProducts: Product[] = [
     description: 'Ayarlanabilir Bench Press ile konforlu ve etkili bir egzersiz deneyimi yaşayin. Yüksek kaliteli malzemelerle üretilmiştir.',
     category: 'acik-alan-spor-aleti',
     imageUrl: squarePlaceholder,
+    images: [squarePlaceholder],
     stock: 10,
     slug: 'modern-park-spor-aleti-bench-press',
     rating: 4.8,
@@ -45,11 +46,11 @@ export const mockProducts: Product[] = [
     coatingSolution: 'Çinko ve Toz Boya Kaplama, Elektropolisaj',
     quoteOnly: true,
     specifications: {
-      totalWeight: '5-60', // Örnek olarak toplam ağırlık
-      weightUnit: 'KG', // Ağırlık birimi
+      totalWeight: '5-60',
+      weightUnit: 'KG',
     },
-    price: undefined,
-    productCode: 'BP001' // Bench Press Aleti için ürün kodu
+    price: 0,
+    productCode: 'BP001'
   },
   {
     id: '2',
@@ -57,6 +58,7 @@ export const mockProducts: Product[] = [
     description: 'Dayanıklı malzemelerden üretilmiş ve kol kaslarınızı geliştirmek için tasarlanmış kompakt biceps curl aleti.',
     category: 'acik-alan-spor-aleti',
     imageUrl: squarePlaceholder,
+    images: [squarePlaceholder],
     stock: 5,
     slug: 'modern-park-spor-aleti-biceps-curl',
     rating: 4.7,
@@ -92,11 +94,11 @@ export const mockProducts: Product[] = [
     coatingSolution: 'Çinko ve Toz Boya Kaplama, Elektropolisaj',
     quoteOnly: true,
     specifications: {
-      totalWeight: '5-60', // Örnek olarak toplam ağırlık
-      weightUnit: 'KG', // Ağırlık birimi
+      totalWeight: '5-60',
+      weightUnit: 'KG',
     },
-    price: undefined,
-    productCode: 'BC002' // Biceps Curl Aleti için ürün kodu
+    price: 0,
+    productCode: 'BC002'
   },
   {
     id: '3',
@@ -104,6 +106,7 @@ export const mockProducts: Product[] = [
     description: 'Çok yönlü kullanımıyla hem parkta hem evde rahatlıkla kullanılabilecek dayanıklı Chin Up Bar.',
     category: 'acik-alan-spor-aleti',
     imageUrl: squarePlaceholder,
+    images: [squarePlaceholder],
     stock: 25,
     slug: 'modern-park-spor-aleti-chin-up-bar',
     rating: 4.9,
@@ -139,11 +142,11 @@ export const mockProducts: Product[] = [
     coatingSolution: 'Çinko ve Toz Boya Kaplama',
     quoteOnly: true,
     specifications: {
-      totalWeight: '5-60', // Örnek olarak toplam ağırlık
-      weightUnit: 'KG', // Ağırlık birimi
+      totalWeight: '5-60',
+      weightUnit: 'KG',
     },
-    price: undefined,
-    productCode: 'CUB003' // Chin Up Bar Aleti için ürün kodu
+    price: 0,
+    productCode: 'CUB003'
   },
   {
     id: '4',
@@ -151,6 +154,7 @@ export const mockProducts: Product[] = [
     description: 'Göğüs kaslarınızı geliştirmek ve farklı eğimlerle antrenman yapmak için ideal Incline Bench Press aleti.',
     category: 'acik-alan-spor-aleti',
     imageUrl: squarePlaceholder,
+    images: [squarePlaceholder],
     stock: 12,
     slug: 'modern-park-spor-aleti-incline-bench-press',
     rating: 4.6,
@@ -186,11 +190,11 @@ export const mockProducts: Product[] = [
     coatingSolution: 'Çinko ve Toz Boya Kaplama, elektropolij',
     quoteOnly: true,
     specifications: {
-      totalWeight: '5-60', // Örnek olarak toplam ağırlık
-      weightUnit: 'KG', // Ağırlık birimi
+      totalWeight: '5-60',
+      weightUnit: 'KG',
     },
-    price: undefined,
-    productCode: 'IBP004' // Incline Bench Press Aleti için ürün kodu
+    price: 0,
+    productCode: 'IBP004'
   },
   {
     id: '5',
@@ -198,6 +202,7 @@ export const mockProducts: Product[] = [
     description: 'Sırt ve kanat kaslarınızı hedefleyen ergonomik tasarımlı Lat Pull Down aleti, açık havada antrenman için mükemmel bir seçimdir.',
     category: 'acik-alan-spor-aleti',
     imageUrl: squarePlaceholder,
+    images: [squarePlaceholder],
     stock: 8,
     slug: 'modern-park-spor-aleti-lat-pull-down',
     rating: 4.7,
@@ -233,11 +238,11 @@ export const mockProducts: Product[] = [
     coatingSolution: 'Çinko ve Toz Boya Kaplama, elektropolij',
     quoteOnly: true,
     specifications: {
-      totalWeight: '5-60', // Örnek olarak toplam ağırlık
-      weightUnit: 'KG', // Ağırlık birimi
+      totalWeight: '5-60',
+      weightUnit: 'KG',
     },
-    price: undefined,
-    productCode: 'LPD005' // Lat Pull Down Aleti için ürün kodu
+    price: 0,
+    productCode: 'LPD005'
   },
   {
     id: '6',
@@ -245,6 +250,7 @@ export const mockProducts: Product[] = [
     description: 'Bacak kaslarınızı geliştirmek için mükemmel bir tercih olan Leg Press aleti, dayanıklı ve ergonomik tasarımıyla dikkat çeker.',
     category: 'acik-alan-spor-aleti',
     imageUrl: squarePlaceholder,
+    images: [squarePlaceholder],
     stock: 20,
     slug: 'modern-park-spor-aleti-leg-press',
     rating: 4.8,
@@ -280,11 +286,11 @@ export const mockProducts: Product[] = [
     coatingSolution: 'Çinko ve Toz Boya Kaplama',
     quoteOnly: true,
     specifications: {
-      totalWeight: '5-60', // Örnek olarak toplam ağırlık
-      weightUnit: 'KG', // Ağırlık birimi
+      totalWeight: '5-60',
+      weightUnit: 'KG',
     },
-    price: undefined,
-    productCode: 'LPA006' // Leg Press Aleti için ürün kodu
+    price: 0,
+    productCode: 'LPA006'
   },
   {
     id: '7',
@@ -292,6 +298,7 @@ export const mockProducts: Product[] = [
     description: 'Leg Raise, Dip ve Chin Up özelliklerini bir arada sunan bu çok yönlü alet, üst vücut ve karın kaslarını etkili bir şekilde çalıştırmak için mükemmeldir.',
     category: 'acik-alan-spor-aleti',
     imageUrl: squarePlaceholder,
+    images: [squarePlaceholder],
     stock: 3,
     slug: 'modern-park-spor-aleti-multi-fit-3-in-1',
     rating: 4.9,
@@ -327,11 +334,11 @@ export const mockProducts: Product[] = [
     coatingSolution: 'Çinko ve Toz Boya Kaplama',
     quoteOnly: true,
     specifications: {
-      totalWeight: '5-60', // Örnek olarak toplam ağırlık
-      weightUnit: 'KG', // Ağırlık birimi
+      totalWeight: '5-60',
+      weightUnit: 'KG',
     },
-    price: undefined,
-    productCode: 'MFE007' // Multi-Fit 3-in-1 Egzersiz Aleti için ürün kodu
+    price: 0,
+    productCode: 'MFE007'
   },
   {
     id: '8',
@@ -339,6 +346,7 @@ export const mockProducts: Product[] = [
     description: 'Core Rack, karın, sırt ve core bölgesini hedefleyen etkili bir antrenman aracı olup açık hava kullanımına uygundur.',
     category: 'acik-alan-spor-aleti',
     imageUrl: squarePlaceholder,
+    images: [squarePlaceholder],
     stock: 35,
     slug: 'modern-park-spor-aleti-core-rack',
     rating: 4.8,
@@ -374,11 +382,11 @@ export const mockProducts: Product[] = [
     coatingSolution: 'Çinko ve Toz Boya Kaplama',
     quoteOnly: true,
     specifications: {
-      totalWeight: '5-60', // Örnek olarak toplam ağırlık
-      weightUnit: 'KG', // Ağırlık birimi
+      totalWeight: '5-60',
+      weightUnit: 'KG',
     },
-    price: undefined,
-    productCode: 'CR008' // Core Rack için ürün kodu
+    price: 0,
+    productCode: 'CR008'
   },
   {
     id: '9',
@@ -386,6 +394,7 @@ export const mockProducts: Product[] = [
     description: 'Squat hareketini güvenle ve etkili bir şekilde yapmanıza olanak tanıyan dayanıklı ve ergonomik tasarıma sahip bir spor aleti.',
     category: 'acik-alan-spor-aleti',
     imageUrl: squarePlaceholder,
+    images: [squarePlaceholder],
     stock: 18,
     slug: 'modern-park-spor-aleti-squat',
     rating: 4.7,
@@ -421,11 +430,11 @@ export const mockProducts: Product[] = [
     coatingSolution: 'Çinko ve Toz Boya Kaplama, elektropolij',
     quoteOnly: true,
     specifications: {
-      totalWeight: '5-60', // Örnek olarak toplam ağırlık
-      weightUnit: 'KG', // Ağırlık birimi
+      totalWeight: '5-60',
+      weightUnit: 'KG',
     },
-    price: undefined,
-    productCode: 'SQ009' // Squat için ürün kodu
+    price: 0,
+    productCode: 'SQ009'
   },
   {
     id: '10',
@@ -433,6 +442,7 @@ export const mockProducts: Product[] = [
     description: 'Triceps kaslarınızı hedefleyerek kol gücünüzü artırmanıza yardımcı olan dayanıklı Triceps Press aleti.',
     category: 'acik-alan-spor-aleti',
     imageUrl: squarePlaceholder,
+    images: [squarePlaceholder],
     stock: 42,
     slug: 'modern-park-spor-aleti-triceps-press',
     rating: 4.6,
@@ -468,10 +478,14 @@ export const mockProducts: Product[] = [
     coatingSolution: 'Çinko ve Toz Boya Kaplama, elektropolij',
     quoteOnly: true,
     specifications: {
-      totalWeight: '5-60', // Örnek olarak toplam ağırlık
-      weightUnit: 'KG', // Ağırlık birimi
+      totalWeight: '5-60',
+      weightUnit: 'KG',
     },
-    price: undefined,
-    productCode: 'TP010' // Triceps Press için ürün kodu
+    price: 0,
+    productCode: 'TP010'
   },
-];
+].map(product => ({
+  ...product,
+  images: [product.imageUrl],
+  price: 0
+}));
