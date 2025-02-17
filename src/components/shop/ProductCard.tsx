@@ -17,7 +17,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <CardHeader className="p-0">
         <Link to={`/market/${product.category}/${product.slug}`}>
           <img
-            src={product.images[0]}
+            src={product.imageUrl}
             alt={product.name}
             className="w-full h-48 object-cover"
           />

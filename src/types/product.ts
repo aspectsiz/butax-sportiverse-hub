@@ -1,10 +1,11 @@
+
 export interface Product {
-  price: any;
   id: string;
   name: string;
   description: string;
   category: string;
   imageUrl: string;
+  images: string[]; // Add this line
   stock: number;
   quoteOnly?: boolean;
   specifications?: {
@@ -13,8 +14,8 @@ export interface Product {
       width?: number;
       height?: number;
     };
-    totalWeight?: string; // Toplam ağırlık
-    weightUnit?: string; // Ağırlık birimi (örneğin, "KG")
+    totalWeight?: string;
+    weightUnit?: string;
     material?: string;
     minUserHeight?: string;
     safetyArea?: string;
@@ -54,7 +55,8 @@ export interface Product {
   metalParts: string;
   tubeStrengths: string;
   coatingSolution: string;
-  productCode: string; // Ürün kodu eklendi
+  productCode: string;
+  price: number;
 }
 
 export interface CartItem extends Product {
